@@ -1,6 +1,7 @@
 import React from 'react';
+import InterviewForm from '../components/interview/InterviewForm';
 
 function InterviewPage() {
-  return <div></div>;
+  return <InterviewForm />;
 }
 export default InterviewPage;
