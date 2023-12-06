@@ -104,7 +104,7 @@ const StYouTubeVideo = styled.div`
 const StEntireContainer = styled.div`
   display: flex;
   font-size: 5rem;
-  @media screen and (max-width: 76.8rem) {
+  @media screen and (max-width: 75rem) {
     display: flex;
     flex-direction: column;
   }
@@ -129,7 +129,7 @@ const StMenuWrapper = styled.div`
   &:hover {
     cursor: pointer;
   }
-  @media screen and (max-width: 76.8rem) {
+  @media screen and (max-width: 75rem) {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -225,7 +225,7 @@ const StStoreButtonBox = styled.div`
 const StFavoriteStoreContainer = styled.div`
   height: 50rem;
   width: 50%;
-  @media screen and (max-width: 76.8rem) {
+  @media screen and (max-width: 75rem) {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -244,7 +244,7 @@ const StFavoriteWrapper = styled.div`
     position: absolute;
     top: 13%;
     left: 7%;
-    @media screen and (max-width: 76.8rem) {
+    @media screen and (max-width: 75rem) {
     color: #071F60;
     font-weight: bold;
     position: absolute;
@@ -252,7 +252,7 @@ const StFavoriteWrapper = styled.div`
     left: 7%;
     }
   }
-  @media screen and (max-width: 76.8rem) {
+  @media screen and (max-width: 75rem) {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -271,7 +271,7 @@ const StStoreWrapper = styled.div`
     position: absolute;
     bottom: 15%;
     right: 5%;
-    @media screen and (max-width: 76.8rem) {
+    @media screen and (max-width: 75rem) {
     color: white;
     font-weight: bold;
     position: absolute;
@@ -279,7 +279,7 @@ const StStoreWrapper = styled.div`
     right: 5%;
     }
   }
-  @media screen and (max-width: 76.8rem) {
+  @media screen and (max-width: 75rem) {
     width: 100%;
     display: flex;
     flex-direction: column;
