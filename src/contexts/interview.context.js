@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import useInterview from '../hooks/useInterview';
 
 const initialState = {
   ages: '10ages',
@@ -10,16 +11,18 @@ const initialState = {
 };
 const InterviewContext = createContext(initialState);
 
-export default function InterviewProvider({ children }) {
+export default function InterviewFormProvider({ children }) {
   const [ages, setAges] = useState('10ages');
   const [gender, setGender] = useState('male');
-  const [product, setProduct] = useState('');
+  const [productName, setProductName] = useState('');
   const [category, setCategory] = useState('선택해주세요');
+
+  const { interviews, mutation } = useInterview();
 
   const setters = {
     ages: setAges,
     gender: setGender,
-    product: setProduct,
+    product: setProductName,
     category: setCategory
   };
 
@@ -29,15 +32,17 @@ export default function InterviewProvider({ children }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    mutation.mutate({ ages, gender, productName, category });
   };
 
   const value = {
     ages,
     gender,
-    product,
+    productName,
     category,
     handleSubmit,
-    handleChange
+    handleChange,
+    interviews
   };
 
   return (
@@ -47,6 +52,6 @@ export default function InterviewProvider({ children }) {
   );
 }
 
-export function useInterview() {
+export function useInterviewForm() {
   return useContext(InterviewContext);
 }

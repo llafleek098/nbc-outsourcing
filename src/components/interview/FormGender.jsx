@@ -1,8 +1,8 @@
 import React from 'react';
-import { useInterview } from '../../contexts/interview.context';
+import { useInterviewForm } from '../../contexts/interview.context';
 
 const FormGender = () => {
-  const { handleChange } = useInterview();
+  const { handleChange } = useInterviewForm();
   return (
     <fieldset name="gender" onChange={handleChange}>
       <legend>성별</legend>

@@ -1,9 +1,9 @@
 import React from 'react';
-import { useInterview } from '../../contexts/interview.context';
+import { useInterviewForm } from '../../contexts/interview.context';
 import { agesData } from './form.data';
 
 const FormAges = () => {
-  const { handleChange } = useInterview();
+  const { handleChange } = useInterviewForm();
   return (
     <fieldset name="ages" onChange={handleChange}>
       <legend>나이대</legend>

@@ -1,18 +1,20 @@
 import React from 'react';
-import { useInterview } from '../../contexts/interview.context';
+import { useInterviewForm } from '../../contexts/interview.context';
 import FormAges from './FormAges';
 import FormGender from './FormGender';
 import FormProduct from './FormProduct';
 
 function InterviewForm() {
-  const { handleSubmit } = useInterview();
+  const { handleSubmit } = useInterviewForm();
   return (
-    <form onSubmit={handleSubmit}>
-      <FormAges />
-      <FormGender />
-      <FormProduct />
-      <button type="submit">제출</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <FormAges />
+        <FormGender />
+        <FormProduct />
+        <button type="submit">제출</button>
+      </form>
+    </>
   );
 }
 
