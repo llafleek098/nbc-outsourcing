@@ -17,7 +17,7 @@ export default function InterviewProvider({ children }) {
   const [category, setCategory] = useState('선택해주세요');
 
   const setters = {
-    age: setAges,
+    ages: setAges,
     gender: setGender,
     product: setProduct,
     category: setCategory
