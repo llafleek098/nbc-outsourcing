@@ -1,11 +1,11 @@
 import React from 'react';
-import useInterviewForm from '../../hooks/useInterviewForm';
+import { useInterview } from '../../contexts/interview.context';
 import FormAges from './FormAges';
 import FormGender from './FormGender';
 import FormProduct from './FormProduct';
 
 function InterviewForm() {
-  const { handleSubmit } = useInterviewForm();
+  const { handleSubmit } = useInterview();
   return (
     <form onSubmit={handleSubmit}>
       <FormAges />

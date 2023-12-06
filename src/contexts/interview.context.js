@@ -1,6 +1,16 @@
-import { useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
-function useInterviewForm() {
+const initialState = {
+  ages: '10ages',
+  gender: 'male',
+  product: '아메리카노',
+  category: '커피',
+  handleSubmit: (e) => {},
+  handleChange: (e) => {}
+};
+const InterviewContext = createContext(initialState);
+
+export default function InterviewProvider({ children }) {
   const [ages, setAges] = useState('10ages');
   const [gender, setGender] = useState('male');
   const [product, setProduct] = useState('아메리카노');
@@ -22,7 +32,7 @@ function useInterviewForm() {
     console.log({ ages, gender, product, category });
   };
 
-  return {
+  const value = {
     ages,
     gender,
     product,
@@ -30,6 +40,14 @@ function useInterviewForm() {
     handleSubmit,
     handleChange
   };
+
+  return (
+    <InterviewContext.Provider value={value}>
+      {children}
+    </InterviewContext.Provider>
+  );
 }
 
-export default useInterviewForm;
+export function useInterview() {
+  return useContext(InterviewContext);
+}
