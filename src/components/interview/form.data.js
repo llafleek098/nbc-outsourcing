@@ -14,3 +14,22 @@ export const categoryData = [
   '아이스크림/디저트',
   '빽스치노'
 ];
+
+function getCountData(data) {
+  return data.reduce((result, item) => {
+    return {
+      ...result,
+      [item.value]: {
+        ...item,
+        count: 0
+      }
+    };
+  }, {});
+}
+
+export const getAgesCountData = () => getCountData(agesData);
+export const getGenderCountData = () =>
+  getCountData([
+    { value: 'female', label: '여성' },
+    { value: 'male', label: '남성' }
+  ]);
