@@ -3,8 +3,8 @@ import { createContext, useContext, useState } from 'react';
 const initialState = {
   ages: '10ages',
   gender: 'male',
-  product: '아메리카노',
-  category: '커피',
+  product: '',
+  category: '',
   handleSubmit: (e) => {},
   handleChange: (e) => {}
 };
@@ -13,8 +13,8 @@ const InterviewContext = createContext(initialState);
 export default function InterviewProvider({ children }) {
   const [ages, setAges] = useState('10ages');
   const [gender, setGender] = useState('male');
-  const [product, setProduct] = useState('아메리카노');
-  const [category, setCategory] = useState('커피');
+  const [product, setProduct] = useState('');
+  const [category, setCategory] = useState('선택해주세요');
 
   const setters = {
     age: setAges,
@@ -24,12 +24,11 @@ export default function InterviewProvider({ children }) {
   };
 
   const handleChange = (e) => {
-    setters[e.currentTarget.name] = e.target.value;
+    setters[e.currentTarget.name](e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ ages, gender, product, category });
   };
 
   const value = {

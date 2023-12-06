@@ -1,22 +1,32 @@
 import React from 'react';
 import { useInterview } from '../../contexts/interview.context';
+import useProduct from '../../hooks/useProduct';
 import { categoryData } from './form.data';
 
 function FormProduct() {
-  const { handleChange } = useInterview();
+  const { handleChange, category } = useInterview();
+  const { products } = useProduct();
 
   return (
     <fieldset>
       <legend>좋아하는 상품</legend>
       <select name="category" onChange={handleChange}>
         {categoryData.map((category) => (
-          <option value={category}>{category}</option>
+          <option key={category} value={category}>
+            {category}
+          </option>
         ))}
       </select>
       <select name="product" onChange={handleChange}>
-        <option value={'아메리카노'}>아메리카노</option>
-        <option value={'카페라떼'}>카페라떼</option>
-        <option value={'카페모카'}>카페모카</option>
+        {products?.[category] ? (
+          products[category].map((product) => (
+            <option key={product.name} value={product.name}>
+              {product.name}
+            </option>
+          ))
+        ) : (
+          <option value={''}>선택해주세요</option>
+        )}
       </select>
     </fieldset>
   );
