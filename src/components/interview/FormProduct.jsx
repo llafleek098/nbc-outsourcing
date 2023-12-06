@@ -1,9 +1,9 @@
 import React from 'react';
-import useInterviewForm from '../../hooks/useInterviewForm';
+import { useInterview } from '../../contexts/interview.context';
 import { categoryData } from './form.data';
 
 function FormProduct() {
-  const { handleChange } = useInterviewForm();
+  const { handleChange } = useInterview();
 
   return (
     <fieldset>
