@@ -28,6 +28,10 @@ export default function InterviewFormProvider({ children }) {
 
   const handleChange = (e) => {
     setters[e.currentTarget.name](e.target.value);
+    if (e.currentTarget.name === 'category') {
+      // category가 바뀔떄는 productNAme은 디폴트 값으로 넘어감
+      setProductName('');
+    }
   };
 
   const handleSubmit = (e) => {

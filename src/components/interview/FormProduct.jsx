@@ -18,15 +18,13 @@ function FormProduct() {
         ))}
       </select>
       <select name="product" onChange={handleChange}>
-        {products?.[category] ? (
+        <option value={''}>선택해주세요</option>
+        {products?.[category] &&
           products[category].map((product) => (
             <option key={product.name} value={product.name}>
               {product.name}
             </option>
-          ))
-        ) : (
-          <option value={''}>선택해주세요</option>
-        )}
+          ))}
       </select>
     </fieldset>
   );
