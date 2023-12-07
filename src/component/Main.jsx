@@ -52,7 +52,7 @@ function Main() {
       </StYouTubeWrapper>
       <StEntireContainer>
         <StMenuWrapper>
-          <StBgImg src={bg1} />
+          <StBgImg className='bg1' src={bg1} />
           <p>PAIK'S MENU</p>
           <StMenuButtonBox name={'Menu'} onClick={handleOnClickMenu}>
             <PlusButton/>
@@ -119,6 +119,11 @@ const StMenuWrapper = styled.div`
   height: 50rem;
   width: 50%;
   position: relative;
+  overflow: hidden;
+  & .bg1 {
+  transform: scale(1.0);
+  transition: transform 0.5s;
+  }
   & p {
     color: #6b4d30;
     font-weight: bold;
@@ -128,6 +133,10 @@ const StMenuWrapper = styled.div`
   }
   &:hover {
     cursor: pointer;
+    & .bg1 {
+      transform: scale(1.1);
+      transition: transform 0.5s;
+    }
   }
   @media screen and (max-width: 75rem) {
     width: 100%;
