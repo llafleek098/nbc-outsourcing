@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import product_bg from '../../assets/img/product_bg.png'
 import product_mbg from '../../assets/img/product_mbg.png'
+import 뱅쇼hot from '../../assets/img/뱅쇼hot.png'
+// import logo from '../../assets/img/Logo.png'
 import styled from 'styled-components';
 import { css } from 'styled-components';
 
@@ -16,7 +18,7 @@ function Product() {
   <StProductHeaderContainer>
     <StProductBgImg className='product_bg' src={product_bg} alt='product background' />
     <StProductBgImg className='product_mbg' src={product_mbg} alt='product mobile background' />
-    <p>PAIK'S<br />&emsp;MENU</p>
+    <div>PAIK'S MENU</div>
   </StProductHeaderContainer>
   <main>
   <StSelectCategoryContainer>
@@ -26,8 +28,10 @@ function Product() {
   </StSelectCategoryContainer>
   <StroductsContainer>
     <StProducts>
-
+      <StProductImg src={뱅쇼hot} alt='productID' />
+      <div>뱅쇼 HOT</div>
     </StProducts>
+    <StProductExplanation className='hoverImg'></StProductExplanation>
   </StroductsContainer>
   </main>
     </>
@@ -36,13 +40,14 @@ function Product() {
 
 const StProductHeaderContainer = styled.header`
   position: relative;
-  & p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & div {
     color: #6b4d30;
     font-size: 5rem;
     font-weight: bold;
     position: absolute;
-    top: 50%;
-    left: 45%;
   }
   .product_bg {
     display: block;
@@ -50,12 +55,6 @@ const StProductHeaderContainer = styled.header`
   .product_mbg {
       display: none;
     }
-  @media screen and (max-width: 55rem) {
-    & p {
-      top: 50%;
-      left: 40%;
-    }
-  }
   @media screen and (max-width: 37.5rem) {
     .product_bg {
     display: none;
@@ -67,10 +66,9 @@ const StProductHeaderContainer = styled.header`
       min-height: 40rem;
       min-width: 20rem;
     }
-    & p {
+    & div {
       font-size: 3.5rem;
-      top: 78%;
-      left: 28%;
+      bottom: 7%;
     }
   }
 `;
@@ -128,14 +126,99 @@ const StCategorybutton = styled.button`
 `;
 
 const StroductsContainer = styled.div`
+  transition: all 0.3s;
+  max-width: 100rem;
   display: flex;
   justify-content: center;
+  /* align-content: stretch; */
+  /* flex-direction: row; */
+  margin: auto;
+  flex-wrap: wrap;
 `;
 
 const StProducts = styled.div`
-  background-color: pink;
-  width: 20rem;
+  display: block;
+  width: 20%;
   aspect-ratio: 3/4;
+  border: 0.2rem solid #f1f1f1;
+  position: relative;
+  opacity: 1;
+  transition: 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  & img {
+    transform: scale(1);
+    transition: transform 0.5s;
+    opacity: 1;
+    }
+  &:hover {
+    /* cursor: pointer; */
+    & img { 
+      transform: scale(1.1);
+      transition: transform 0.5s;
+      opacity: 5;
+    }
+    & .hoverImg {
+      height: 100%;
+    }
+  }
+  & div {
+    color: #071F60;
+    font-size: 2rem;
+    font-weight: bolder;
+    position: absolute;
+    bottom: 5%;
+  }
+  @media screen and (max-width: 60rem) {
+    min-width: 13rem;
+    width: 40%;
+  }
+  @media screen and (max-width: 37.5rem) {
+    min-width: 13rem;
+    width: 80%;
+  }
 `;
+
+const StProductImg = styled.img`
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+`;
+
+const StProductExplanation = styled.div`
+  background-color: #FFE800;
+  width: 20%;
+  aspect-ratio: 3/4;
+  border: 0.1rem solid white;
+  opacity: 5;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  /* overflow: hidden; */
+  transition: all.4s;
+  & div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* bottom: 10%;
+    left: 42%; */
+  }
+  @media screen and (max-width: 60rem) {
+    min-width: 13rem;
+    width: 40%;
+  }
+  @media screen and (max-width: 37.5rem) {
+    min-width: 13rem;
+    width: 80%;
+  }
+`
 
 export default Product;
