@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const styled = { createGlobalStyle };
 
-const GlobalStyles = styled.createGlobalStyle`
+export const GlobalStyles = styled.createGlobalStyle`
   // reset css
   /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -152,10 +152,4 @@ const GlobalStyles = styled.createGlobalStyle`
     border: none;
     background-color: none;
   }
-  /* typography */
-  html {
-    font-size: 62.5%;
-  }
 `;
-
-export default GlobalStyles;
