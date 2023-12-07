@@ -8,7 +8,7 @@ import YoutubeWrapper from './YoutubeWrapper';
 
 function Main() {
   return (
-    <div>
+    <StMainWrapper>
       <YoutubeWrapper />
       <StEntireContainer>
         <StMenuWrapper>
@@ -41,9 +41,14 @@ function Main() {
           </StStoreWrapper>
         </StFavoriteStoreContainer>
       </StEntireContainer>
-    </div>
+    </StMainWrapper>
   );
 }
+const StMainWrapper = styled.div`
+  p {
+    letter-spacing: -3.9px;
+  }
+`;
 
 const StEntireContainer = styled.div`
   display: flex;
@@ -70,7 +75,7 @@ const StMenuWrapper = styled.div`
   }
   & p {
     color: #6b4d30;
-    font-weight: bold;
+    font-weight: 800;
     position: absolute;
     top: 70%;
     left: 7%;
@@ -193,14 +198,11 @@ const StFavoriteWrapper = styled.div`
   }
   & p {
     color: #071f60;
-    font-weight: bold;
+    font-weight: 900;
     position: absolute;
     top: 13%;
     left: 7%;
     @media screen and (max-width: 75rem) {
-      color: #071f60;
-      font-weight: bold;
-      position: absolute;
       top: 17%;
       left: 7%;
     }

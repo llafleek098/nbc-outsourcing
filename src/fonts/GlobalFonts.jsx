@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalFonts = createGlobalStyle`
-  body {
+  body * {
     font-family: 'Montserrat', sans-serif;
   }
 `;

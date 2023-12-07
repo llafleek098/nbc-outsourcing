@@ -1,4 +1,4 @@
-import YoutubeWrapper from './components/home/YoutubeWrapper';
+import Router from './Router';
 import { InterviewClientProvider } from './hooks/useInterview';
 import { ProductClientProvider } from './hooks/useProduct';
 
@@ -6,7 +6,7 @@ function App() {
   return (
     <InterviewClientProvider>
       <ProductClientProvider>
-        <YoutubeWrapper />
+        <Router />
       </ProductClientProvider>
     </InterviewClientProvider>
   );

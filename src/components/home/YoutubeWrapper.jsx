@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaCircleArrowLeft, FaCircleArrowRight } from 'react-icons/fa6';
 import YouTube from 'react-youtube';
 import styled from 'styled-components';
 const youtubeIds = ['1-zO9VZgAuw', 'Fdf6fmB8VcQ', 'QShoaTFK70c'];
@@ -29,8 +30,12 @@ function YoutubeWrapper() {
         ))}
       </StYoutubePlayerContainer>
       <StControlButtonContainer>
-        <button onClick={handleClick(prevPosition)}>{'<'}</button>
-        <button onClick={handleClick(nextPosition)}>{'>'}</button>
+        <button onClick={handleClick(prevPosition)}>
+          <FaCircleArrowLeft />
+        </button>
+        <button onClick={handleClick(nextPosition)}>
+          <FaCircleArrowRight />
+        </button>
       </StControlButtonContainer>
       <StPaginationContainer onChange={handleRadio}>
         {youtubeIds.map((youtubeId, index) => (
@@ -53,7 +58,7 @@ const prevPosition = (position, total) => (position - 1 + total) % total;
 export default YoutubeWrapper;
 
 const StYoutubePlayerWrapper = styled.div`
-  background-color: pink;
+  /* background-color: pink; */
   width: 100%;
   aspect-ratio: 1.78/1;
   position: relative;
@@ -66,6 +71,8 @@ const StYoutubePlayerContainer = styled.ul`
   height: 100%;
 
   overflow: hidden;
+
+  border-radius: 2.5rem;
 `;
 const StYoutubePlayerItem = styled.li`
   position: relative;
@@ -75,7 +82,7 @@ const StYoutubePlayerItem = styled.li`
   top: -${(props) => props.$top}%;
   left: ${(props) => props.$left}%;
   opacity: ${(props) => (props.$selected ? 1 : 0)};
-  transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.8s ease-in-out;
   iframe {
     position: absolute;
     width: 100%;
@@ -97,16 +104,19 @@ const StControlButtonContainer = styled.div`
   padding: 1rem;
 
   button {
-    font-size: 9rem;
-    line-height: 9rem;
+    font-size: 5rem;
+    line-height: 5rem;
     outline: none;
     border: none;
     background: none;
     color: white;
     cursor: pointer;
+    transition: color 0.4s ease-in-out;
+
+    color: var(--primaryColor);
   }
   button:hover {
-    color: black;
+    color: var(--accentColor);
   }
 `;
 const StPaginationContainer = styled.div`
@@ -124,7 +134,10 @@ const StPaginationContainer = styled.div`
     height: 1.25em;
     background-color: var(--secondaryColor);
   }
-  [type='radio']:checked {
+  input[type='radio']:checked {
     background-color: var(--primaryColor);
+  }
+  input[type='radio']:hover {
+    background-color: var(--accentColor);
   }
 `;
