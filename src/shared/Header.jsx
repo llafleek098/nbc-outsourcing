@@ -24,7 +24,7 @@ const HeaderContainer = () => {
   );
 };
 const StHeaderStyle = styled.div`
-  background-color: #e6e7e8;
+  background-color: white;
   width: 100vw;
   height: 100px;
   font-size: 25px;
