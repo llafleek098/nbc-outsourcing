@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import product_bg from '../../assets/img/product_bg.png'
 import product_mbg from '../../assets/img/product_mbg.png'
 import 뱅쇼hot from '../../assets/img/뱅쇼hot.png'
-// import logo from '../../assets/img/Logo.png'
 import styled from 'styled-components';
 import { css } from 'styled-components';
+// import logo from '../../assets/img/Logo.png'
 
 function Product() {
 
@@ -192,21 +192,17 @@ const StProductOverlay = styled.div`
   & h1 {
     font-size: 2.3rem;
     margin: 2rem 0 1.3rem 0;
-    opacity: 1;
   }
   & h3 {
     margin: 0 0 0.6rem 0.2rem;
-    opacity: 1;
   }
   & hr {
     border-color: #071F60;
     width: 100%;
-    opacity: 1;
   }
   & p {
     font-size: 1.2rem;
     line-height: 1.5;
-    opacity: 1;
   }
   &:hover {
     opacity: 0.7;
