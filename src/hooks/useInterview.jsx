@@ -1,34 +1,46 @@
-import { useState } from 'react';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useMutation,
+  useQuery
+} from '@tanstack/react-query';
+import jsonServerInstance from '../api/serverInstance';
 
 function useInterview() {
-  const [ages, setAges] = useState('10ages');
-  const [gender, setGender] = useState('male');
-  const [product, setProduct] = useState('아메리카노');
-  const [category, setCategory] = useState('커피');
+  const {
+    data: interviews,
+    isLoading,
+    error,
+    refetch
+  } = useQuery({
+    queryKey: ['interviews'],
+    queryFn: fetchInterview,
+    enabled: false
+  });
 
-  const setters = {
-    age: setAges,
-    gender: setGender,
-    product: setProduct,
-    category: setCategory
-  };
+  const mutation = useMutation({
+    mutationFn: postInterview,
+    onSuccess: () => {
+      refetch();
+    }
+  });
 
-  const handleChange = (e) => {
-    setters[e.current.target.name] = e.target.value;
-  };
+  return { interviews, isLoading, error, mutation };
+}
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+async function fetchInterview() {
+  const response = await jsonServerInstance.get('/interviews');
+  return response.data;
+}
+function postInterview(newInterview) {
+  return jsonServerInstance.post('/interviews', newInterview);
+}
 
-  return {
-    ages,
-    gender,
-    product,
-    category,
-    handleSubmit,
-    handleChange
-  };
+export function InterviewClientProvider({ children }) {
+  const queryClient = new QueryClient();
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
 }
 
 export default useInterview;
