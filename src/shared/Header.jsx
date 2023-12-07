@@ -11,7 +11,6 @@ const HeaderContainer = () => {
           <StPaiksCoffeeLogo src={paiksLogo} />
         </StLogoButton>
       </Link>
-
       <Link to="/products">
         <StHeaderButton>메뉴</StHeaderButton>
       </Link>
@@ -35,9 +34,15 @@ const StHeaderStyle = styled.div`
   align-items: center;
   padding-left: 300px;
   padding-right: 300px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   @media screen and (max-width: 75rem) {
     display: flex;
     flex-direction: column;
+    height: 320px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 `;
 
@@ -52,11 +57,16 @@ const StHeaderButton = styled.button`
 const StLogoButton = styled.button`
   cursor: pointer;
   background-color: transparent;
+  @media screen and (max-width: 75rem) {
+  }
 `;
 
 const StPaiksCoffeeLogo = styled.img`
   margin-left: 20px;
   width: auto;
+  @media screen and (max-width: 75rem) {
+    width: 120px;
+  }
 `;
 
 export default HeaderContainer;
