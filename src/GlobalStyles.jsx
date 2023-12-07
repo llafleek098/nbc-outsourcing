@@ -134,16 +134,6 @@ const GlobalStyles = styled.createGlobalStyle`
     border-spacing: 0;
   }
 
-  div,
-  section,
-  footer,
-  header,
-  article,
-  aside,
-  nav {
-    box-sizing: border-box;
-  }
-
   a {
     color: inherit;
     text-decoration: none;
@@ -155,6 +145,14 @@ const GlobalStyles = styled.createGlobalStyle`
   /* typography */
   html {
     font-size: 62.5%;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  :root {
+    --primaryColor: #071f60;
+    --secondaryColor: #e6e7e8;
+    --accentColor: #ffe800;
   }
 `;
 
