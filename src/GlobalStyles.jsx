@@ -152,6 +152,10 @@ const GlobalStyles = styled.createGlobalStyle`
     border: none;
     background-color: none;
   }
+  /* typography */
+  html {
+    font-size: 62.5%;
+  }
 `;
 
 export default GlobalStyles;
