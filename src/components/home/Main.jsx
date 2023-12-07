@@ -1,105 +1,49 @@
-import React from 'react'
-import bg1 from '../assets/img/main_bg1.jpg'
-import bg2 from '../assets/img/main_bg2.jpg'
-import bg3 from '../assets/img/main_bg3.jpg'
-import logo from '../assets/img/Logo.png'
-import styled from 'styled-components'
-// import { useNavigate } from 'react-router-dom'
+import React from 'react';
+import styled from 'styled-components';
+import logo from '../../assets/img/Logo.png';
+import bg1 from '../../assets/img/main_bg1.jpg';
+import bg2 from '../../assets/img/main_bg2.jpg';
+import bg3 from '../../assets/img/main_bg3.jpg';
+import YoutubeWrapper from './YoutubeWrapper';
 
 function Main() {
-
-  // const navigate = useNavigate();
-
-  // const handleNavigate = (e) => {
-  //   console.log(e.target.name)
-  //   const {name} = e.target
-  //   switch (name) {
-  //     case 'Menu':
-  //       console.log('메뉴로 이동합니다.')
-  //       // navigate('/')
-  //       break;
-  //     case 'Favorite':
-  //       console.log('선호도 조사폼으로 이동합니다.')
-  //       // navigate('/')
-  //       break;
-  //     case 'Store':
-  //       console.log('매장안내로 이동합니다.')
-  //       // navigate('/')
-  //       break;
-  //     default:
-  //       return;
-  //   }
-  // }
-
-  const handleOnClickMenu = () => {
-    console.log('메뉴로 이동합니다.')
-    // navigate('/')
-  }
-  const handleOnClickFavorite = () => {
-    console.log('선호도 조사폼으로 이동합니다.')
-    // navigate('/')
-  }
-  const handleOnClickStore = () => {
-    console.log('매장안내로 이동합니다.')
-    // navigate('/')
-  }
-
   return (
     <div>
-      <StYouTubeWrapper>
-        <StYouTubeVideo>
-        </StYouTubeVideo>
-      </StYouTubeWrapper>
+      <YoutubeWrapper />
       <StEntireContainer>
         <StMenuWrapper>
-          <StBgImg className='bg1' src={bg1} />
+          <StBgImg className="bg1" src={bg1} />
           <p>PAIK'S MENU</p>
-          <StMenuButtonBox name={'Menu'} onClick={handleOnClickMenu}>
-            <PlusButton/>
+          <StMenuButtonBox>
+            <PlusButton />
           </StMenuButtonBox>
         </StMenuWrapper>
         <StFavoriteStoreContainer>
           <StFavoriteWrapper>
             <StBgImg src={bg2} />
-            <p>WHAT'S YOUR<br />
-            FAVORITE<br />
-            PAIK'S</p>
-            <StFavoriteButtonBox name={'Favorite'} onClick={handleOnClickFavorite}>
-            <PlusButton/>
+            <p>
+              WHAT'S YOUR
+              <br />
+              FAVORITE
+              <br />
+              PAIK'S
+            </p>
+            <StFavoriteButtonBox>
+              <PlusButton />
             </StFavoriteButtonBox>
           </StFavoriteWrapper>
           <StStoreWrapper>
             <StBgImg src={bg3} />
             <p>PAIK'S STORE</p>
-            <StStoreButtonBox name={'Store'} onClick={handleOnClickStore}>
-            <PlusButton/>
+            <StStoreButtonBox>
+              <PlusButton />
             </StStoreButtonBox>
           </StStoreWrapper>
         </StFavoriteStoreContainer>
       </StEntireContainer>
     </div>
-  )
+  );
 }
-
-const StYouTubeWrapper = styled.div`
-  background-color: pink;
-  width: 100%;
-  aspect-ratio: 1.78/1;
-  position: relative;
-`;
-
-const StYouTubeVideo = styled.div`
-  border: 1px solid red;
-  height: 100%;
-  width: 100%;
-  max-width: 1280px;
-  max-height: 720px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 2rem;
-`;
 
 const StEntireContainer = styled.div`
   display: flex;
@@ -121,8 +65,8 @@ const StMenuWrapper = styled.div`
   position: relative;
   overflow: hidden;
   & .bg1 {
-  transform: scale(1.0);
-  transition: transform 0.5s;
+    transform: scale(1);
+    transition: transform 0.5s;
   }
   & p {
     color: #6b4d30;
@@ -175,7 +119,7 @@ const StButtonAnimation = styled.div`
   position: relative;
   transition: 0.4s;
   transform-style: preserve-3d;
-`
+`;
 
 const StMoveButton = styled.button`
   background-color: white;
@@ -248,17 +192,17 @@ const StFavoriteWrapper = styled.div`
     cursor: pointer;
   }
   & p {
-    color: #071F60;
+    color: #071f60;
     font-weight: bold;
     position: absolute;
     top: 13%;
     left: 7%;
     @media screen and (max-width: 75rem) {
-    color: #071F60;
-    font-weight: bold;
-    position: absolute;
-    top: 17%;
-    left: 7%;
+      color: #071f60;
+      font-weight: bold;
+      position: absolute;
+      top: 17%;
+      left: 7%;
     }
   }
   @media screen and (max-width: 75rem) {
@@ -281,11 +225,11 @@ const StStoreWrapper = styled.div`
     bottom: 15%;
     right: 5%;
     @media screen and (max-width: 75rem) {
-    color: white;
-    font-weight: bold;
-    position: absolute;
-    bottom: 15%;
-    right: 5%;
+      color: white;
+      font-weight: bold;
+      position: absolute;
+      bottom: 15%;
+      right: 5%;
     }
   }
   @media screen and (max-width: 75rem) {
@@ -301,7 +245,7 @@ const PlusButton = () => {
       <StMoveButton>+</StMoveButton>
       <StSwitchLogoImg src={logo} />
     </StButtonAnimation>
-  )
-}
+  );
+};
 
 export default Main;
