@@ -11,6 +11,7 @@ const HeaderContainer = () => {
           <StPaiksCoffeeLogo src={paiksLogo} />
         </StLogoButton>
       </Link>
+
       <Link to="/products">
         <StHeaderButton>메뉴</StHeaderButton>
       </Link>
@@ -30,11 +31,14 @@ const StHeaderStyle = styled.div`
   font-size: 25px;
   font-weight: 600;
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-evenly;
   align-items: center;
   padding-left: 300px;
   padding-right: 300px;
+  @media screen and (max-width: 75rem) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const StHeaderButton = styled.button`
