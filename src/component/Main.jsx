@@ -45,13 +45,14 @@ function Main() {
   )
 }
 
+// 유튜브가 들어갈 공간
 const StYouTubeWrapper = styled.div`
   background-color: pink;
   width: 100%;
   aspect-ratio: 1.78/1;
   position: relative;
 `;
-
+// 유튜브 크기 지정
 const StYouTubeVideo = styled.div`
   border: 1px solid red;
   height: 100%;
@@ -65,6 +66,7 @@ const StYouTubeVideo = styled.div`
   padding: 2rem;
 `;
 
+// 페이지 이동 컴포넌트가 모두 들어있는 가장 큰 컨테이너
 const StEntireContainer = styled.div`
   display: flex;
   font-size: 5rem;
@@ -77,8 +79,18 @@ const StEntireContainer = styled.div`
     flex-direction: column;
     font-size: 4rem;
   }
-`;
-
+  `;
+  // 각 컴포넌트에 들어갈 배경이미지 사이즈 지정
+  const StBgImg = styled.img`
+    top: 0;
+    left: 0;
+    transform: translate(50, 50);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+  `;
+// 메뉴 페이지 이동 컴포넌트(링크)
 const StMenuLinkWrapper = styled(Link)`
   height: 50rem;
   width: 50%;
@@ -108,17 +120,7 @@ const StMenuLinkWrapper = styled(Link)`
     flex-direction: column;
   }
 `;
-
-const StBgImg = styled.img`
-  top: 0;
-  left: 0;
-  transform: translate(50, 50);
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  margin: auto;
-`;
-
+// 메뉴 페이지 이동 버튼 애니메이션 박스(위치 지정)
 const StMenuButtonBox = styled.div`
   width: 5rem;
   height: 5rem;
@@ -132,7 +134,7 @@ const StMenuButtonBox = styled.div`
     }
   }
 `;
-
+// 메뉴 페이지 이동 버튼 애니메이션을 위한 추가 박스
 const StButtonAnimation = styled.div`
   width: 100%;
   height: 100%;
@@ -140,7 +142,7 @@ const StButtonAnimation = styled.div`
   transition: 0.4s;
   transform-style: preserve-3d;
 `
-
+// 플러스 모양 버튼(앞면)
 const StMoveButton = styled.button`
   background-color: white;
   width: 100%;
@@ -155,7 +157,7 @@ const StMoveButton = styled.button`
     cursor: pointer;
   }
 `;
-
+// 호버 시 바뀌는 이미지(뒷면)
 const StSwitchLogoImg = styled.img`
   width: 100%;
   height: 100%;
@@ -166,35 +168,7 @@ const StSwitchLogoImg = styled.img`
     cursor: pointer;
   }
 `;
-
-const StFavoriteButtonBox = styled.div`
-  width: 5rem;
-  height: 5rem;
-  position: absolute;
-  perspective: 110rem;
-  bottom: 10%;
-  right: 5%;
-  &:hover {
-    & div {
-      transform: rotateY(180deg);
-    }
-  }
-`;
-
-const StStoreButtonBox = styled.div`
-  width: 5rem;
-  height: 5rem;
-  position: absolute;
-  perspective: 110rem;
-  top: 10%;
-  left: 5%;
-  &:hover {
-    & div {
-      transform: rotateY(180deg);
-    }
-  }
-`;
-
+// 선호도 조사&매장 검색 페이지 정렬 및 css 위한 컨테이너
 const StFavoriteStoreContainer = styled.div`
   height: 50rem;
   width: 50%;
@@ -204,7 +178,7 @@ const StFavoriteStoreContainer = styled.div`
     flex-direction: column;
   }
 `;
-
+// 선호도 조사 페이지 이동 컴포넌트(링크)
 const StFavoriteWrapper = styled(Link)`
   display: block;
   height: 50%;
@@ -220,7 +194,21 @@ const StFavoriteWrapper = styled(Link)`
     left: 7%;
   }
 `;
-
+// 선호도 조사 페이지 이동 버튼 애니메이션 박스(위치 지정)
+const StFavoriteButtonBox = styled.div`
+  width: 5rem;
+  height: 5rem;
+  position: absolute;
+  perspective: 110rem;
+  bottom: 10%;
+  right: 5%;
+  &:hover {
+    & div {
+      transform: rotateY(180deg);
+    }
+  }
+`;
+// 매장 검색 페이지 이동 컴포넌트(링크)
 const StStoreWrapper = styled(Link)`
   display: block;
   height: 50%;
@@ -236,7 +224,22 @@ const StStoreWrapper = styled(Link)`
     right: 5%;
   }
 `;
+// 매장 검색 페이지 이동 버튼 애니메이션 박스(위치 지정)
+const StStoreButtonBox = styled.div`
+  width: 5rem;
+  height: 5rem;
+  position: absolute;
+  perspective: 110rem;
+  top: 10%;
+  left: 5%;
+  &:hover {
+    & div {
+      transform: rotateY(180deg);
+    }
+  }
+`;
 
+// 반복되는 플러스 버튼 함수화
 const PlusButton = () => {
   return (
     <StButtonAnimation>

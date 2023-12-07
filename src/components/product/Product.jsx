@@ -26,13 +26,19 @@ function Product() {
       return <StCategorybutton $selectCategory={selectCategory} key={category} onClick={handleOnClickSelectCategory}>{category}</StCategorybutton>
     })}
   </StSelectCategoryContainer>
-  <StroductsContainer>
-    <StProducts>
+
+  <StProductsContainer>
+    <StProductBox>
       <StProductImg src={뱅쇼hot} alt='productID' />
-      <div>뱅쇼 HOT</div>
-    </StProducts>
-    <StProductExplanation className='hoverImg'></StProductExplanation>
-  </StroductsContainer>
+      <StProductName>뱅쇼(HOT)</StProductName>
+        <StProductOverlay>
+          <h1>뱅쇼(HOT)</h1>
+          <h3>VIN CHAUD</h3>
+          <hr />
+          <p>상큼한 과일향과 풍부한 시나몬향이 매력적인 메뉴</p>
+        </StProductOverlay>
+    </StProductBox>
+  </StProductsContainer>
   </main>
     </>
   )
@@ -73,6 +79,7 @@ const StProductHeaderContainer = styled.header`
   }
 `;
 
+// 헤더 배경이미지
 const StProductBgImg = styled.img`
   top: 0;
   left: 0;
@@ -82,23 +89,24 @@ const StProductBgImg = styled.img`
   object-fit: cover;
   margin: auto;
 `;
-
+// 카테고리 탭 전체 컨테이너
 const StSelectCategoryContainer = styled.main`
   display: flex;
   justify-content: center;
   padding: 2rem;
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
   @media screen and (max-width: 37.5rem) {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  `;
-
+`;
+// 카테고리 버튼
 const StCategorybutton = styled.button`
   width: 20rem;
   padding: 0.5rem 2rem;
   border: 0.1rem solid white;
+  border-radius: 0.5rem;
   font-size: 1.5rem;
   transition: 0.3s;
   &:hover {
@@ -110,7 +118,7 @@ const StCategorybutton = styled.button`
     min-width: 13rem;
     width: 80%;
   }
-  
+  /* 눌러지는 카테고리마다 조건부 css */
   ${(props) => {
     if (props.$selectCategory === props.children) {
       return css`
@@ -125,51 +133,26 @@ const StCategorybutton = styled.button`
   }}
 `;
 
-const StroductsContainer = styled.div`
-  transition: all 0.3s;
+// 제품 카드 전체를 감싸는 컨테이너
+const StProductsContainer = styled.div`
   max-width: 100rem;
   display: flex;
   justify-content: center;
-  /* align-content: stretch; */
-  /* flex-direction: row; */
+  align-items: center;
+  transition: all 0.3s;
   margin: auto;
   flex-wrap: wrap;
+  overflow: hidden;
 `;
-
-const StProducts = styled.div`
-  display: block;
-  width: 20%;
+// 제품 사진과 이름이 들어갈 박스
+const StProductBox = styled.div`
+  width: 20rem;
   aspect-ratio: 3/4;
-  border: 0.2rem solid #f1f1f1;
+  border: 0.1rem solid #f1f1f1;
+  border-radius: 0.5rem;
   position: relative;
-  opacity: 1;
-  transition: 0.3s ease-in-out;
   display: flex;
   justify-content: center;
-  overflow: hidden;
-  & img {
-    transform: scale(1);
-    transition: transform 0.5s;
-    opacity: 1;
-    }
-  &:hover {
-    /* cursor: pointer; */
-    & img { 
-      transform: scale(1.1);
-      transition: transform 0.5s;
-      opacity: 5;
-    }
-    & .hoverImg {
-      height: 100%;
-    }
-  }
-  & div {
-    color: #071F60;
-    font-size: 2rem;
-    font-weight: bolder;
-    position: absolute;
-    bottom: 5%;
-  }
   @media screen and (max-width: 60rem) {
     min-width: 13rem;
     width: 40%;
@@ -179,46 +162,56 @@ const StProducts = styled.div`
     width: 80%;
   }
 `;
-
+// 상품 카드 안에 들어갈 이미지
 const StProductImg = styled.img`
-  top: 0;
-  left: 0;
-  transform: translate(50, 50);
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  margin: auto;
+  display: block;
 `;
-
-const StProductExplanation = styled.div`
-  background-color: #FFE800;
-  width: 20%;
-  aspect-ratio: 3/4;
-  border: 0.1rem solid white;
-  opacity: 5;
+// 상품 카드 안에 들어갈 이름
+const StProductName = styled.h1`
+  font-size: 1.7rem;
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 0;
-  /* overflow: hidden; */
-  transition: all.4s;
-  & div {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    /* bottom: 10%;
-    left: 42%; */
-  }
-  @media screen and (max-width: 60rem) {
-    min-width: 13rem;
-    width: 40%;
-  }
-  @media screen and (max-width: 37.5rem) {
-    min-width: 13rem;
-    width: 80%;
-  }
+  bottom: 5%;
 `
+// 호버 시 올라오는 상품 설명 박스
+const StProductOverlay = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background: #FFE800;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: all .5s;
+  transform: translateY(2.5rem);
+  & h1 {
+    font-size: 2.3rem;
+    margin: 2rem 0 1.3rem 0;
+    opacity: 1;
+  }
+  & h3 {
+    margin: 0 0 0.6rem 0.2rem;
+    opacity: 1;
+  }
+  & hr {
+    border-color: #071F60;
+    width: 100%;
+    opacity: 1;
+  }
+  & p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    opacity: 1;
+  }
+  &:hover {
+    opacity: 0.7;
+    transform: translateY(0rem);
+  }
+  `
 
 export default Product;
