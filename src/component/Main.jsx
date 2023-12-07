@@ -4,45 +4,9 @@ import bg2 from '../assets/img/main_bg2.jpg'
 import bg3 from '../assets/img/main_bg3.jpg'
 import logo from '../assets/img/Logo.png'
 import styled from 'styled-components'
-// import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function Main() {
-
-  // const navigate = useNavigate();
-
-  // const handleNavigate = (e) => {
-  //   console.log(e.target.name)
-  //   const {name} = e.target
-  //   switch (name) {
-  //     case 'Menu':
-  //       console.log('메뉴로 이동합니다.')
-  //       // navigate('/')
-  //       break;
-  //     case 'Favorite':
-  //       console.log('선호도 조사폼으로 이동합니다.')
-  //       // navigate('/')
-  //       break;
-  //     case 'Store':
-  //       console.log('매장안내로 이동합니다.')
-  //       // navigate('/')
-  //       break;
-  //     default:
-  //       return;
-  //   }
-  // }
-
-  const handleOnClickMenu = () => {
-    console.log('메뉴로 이동합니다.')
-    // navigate('/')
-  }
-  const handleOnClickFavorite = () => {
-    console.log('선호도 조사폼으로 이동합니다.')
-    // navigate('/')
-  }
-  const handleOnClickStore = () => {
-    console.log('매장안내로 이동합니다.')
-    // navigate('/')
-  }
 
   return (
     <div>
@@ -51,27 +15,27 @@ function Main() {
         </StYouTubeVideo>
       </StYouTubeWrapper>
       <StEntireContainer>
-        <StMenuWrapper>
+        <StMenuLinkWrapper to='/products'>
           <StBgImg className='bg1' src={bg1} />
           <p>PAIK'S MENU</p>
-          <StMenuButtonBox name={'Menu'} onClick={handleOnClickMenu}>
+          <StMenuButtonBox>
             <PlusButton/>
           </StMenuButtonBox>
-        </StMenuWrapper>
+        </StMenuLinkWrapper>
         <StFavoriteStoreContainer>
-          <StFavoriteWrapper>
+          <StFavoriteWrapper to='/interview'>
             <StBgImg src={bg2} />
             <p>WHAT'S YOUR<br />
             FAVORITE<br />
             PAIK'S</p>
-            <StFavoriteButtonBox name={'Favorite'} onClick={handleOnClickFavorite}>
+            <StFavoriteButtonBox>
             <PlusButton/>
             </StFavoriteButtonBox>
           </StFavoriteWrapper>
-          <StStoreWrapper>
+          <StStoreWrapper to='/location'>
             <StBgImg src={bg3} />
             <p>PAIK'S STORE</p>
-            <StStoreButtonBox name={'Store'} onClick={handleOnClickStore}>
+            <StStoreButtonBox>
             <PlusButton/>
             </StStoreButtonBox>
           </StStoreWrapper>
@@ -115,7 +79,7 @@ const StEntireContainer = styled.div`
   }
 `;
 
-const StMenuWrapper = styled.div`
+const StMenuLinkWrapper = styled(Link)`
   height: 50rem;
   width: 50%;
   position: relative;
@@ -241,7 +205,8 @@ const StFavoriteStoreContainer = styled.div`
   }
 `;
 
-const StFavoriteWrapper = styled.div`
+const StFavoriteWrapper = styled(Link)`
+  display: block;
   height: 50%;
   position: relative;
   &:hover {
@@ -253,22 +218,11 @@ const StFavoriteWrapper = styled.div`
     position: absolute;
     top: 13%;
     left: 7%;
-    @media screen and (max-width: 75rem) {
-    color: #071F60;
-    font-weight: bold;
-    position: absolute;
-    top: 17%;
-    left: 7%;
-    }
-  }
-  @media screen and (max-width: 75rem) {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
   }
 `;
 
-const StStoreWrapper = styled.div`
+const StStoreWrapper = styled(Link)`
+  display: block;
   height: 50%;
   position: relative;
   &:hover {
@@ -280,18 +234,6 @@ const StStoreWrapper = styled.div`
     position: absolute;
     bottom: 15%;
     right: 5%;
-    @media screen and (max-width: 75rem) {
-    color: white;
-    font-weight: bold;
-    position: absolute;
-    bottom: 15%;
-    right: 5%;
-    }
-  }
-  @media screen and (max-width: 75rem) {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
   }
 `;
 
