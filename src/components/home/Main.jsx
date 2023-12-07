@@ -59,7 +59,7 @@ const StEntireContainer = styled.div`
     display: flex;
     flex-direction: column;
   }
-  @media screen and (max-width: 37.5rem) {
+  @ screen and (max-width: 37.5rem) {
     display: flex;
     flex-direction: column;
     font-size: 4rem;
