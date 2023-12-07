@@ -58,11 +58,12 @@ const prevPosition = (position, total) => (position - 1 + total) % total;
 export default YoutubeWrapper;
 
 const StYoutubePlayerWrapper = styled.div`
-  /* background-color: pink; */
   width: 100%;
   aspect-ratio: 1.78/1;
   position: relative;
-  padding: 9rem;
+
+  margin-bottom: 2rem;
+  margin-top: 6rem;
 `;
 const StYoutubePlayerContainer = styled.ul`
   position: relative;
@@ -72,18 +73,24 @@ const StYoutubePlayerContainer = styled.ul`
 
   overflow: hidden;
 
-  border-radius: 2.5rem;
+  border-radius: 1rem;
+  padding: 5rem;
+  @media screen and (max-width: 75rem) {
+    padding: 0;
+  }
 `;
 const StYoutubePlayerItem = styled.li`
   position: relative;
   width: 100%;
   height: 100%;
-
+  border-radius: 1rem;
+  overflow: hidden;
   top: -${(props) => props.$top}%;
   left: ${(props) => props.$left}%;
   opacity: ${(props) => (props.$selected ? 1 : 0)};
   transition: opacity 0.8s ease-in-out;
   iframe {
+    z-index: 2;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -104,8 +111,8 @@ const StControlButtonContainer = styled.div`
   padding: 1rem;
 
   button {
-    font-size: 5rem;
-    line-height: 5rem;
+    font-size: 3rem;
+    line-height: 3rem;
     outline: none;
     border: none;
     background: none;
@@ -117,6 +124,11 @@ const StControlButtonContainer = styled.div`
   }
   button:hover {
     color: var(--accentColor);
+  }
+  @media screen and (max-width: 75rem) {
+    button {
+      display: none;
+    }
   }
 `;
 const StPaginationContainer = styled.div`
@@ -139,5 +151,12 @@ const StPaginationContainer = styled.div`
   }
   input[type='radio']:hover {
     background-color: var(--accentColor);
+  }
+  @media screen and (max-width: 75rem) {
+    bottom: -2rem;
+    input[type='radio'] {
+      width: 0.85rem;
+      height: 0.85rem;
+    }
   }
 `;
