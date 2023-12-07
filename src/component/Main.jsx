@@ -16,7 +16,7 @@ function Main() {
       </StYouTubeWrapper>
       <StEntireContainer>
         <StMenuLinkWrapper to='/products'>
-          <StBgImg className='bg1' src={bg1} />
+          <StBgImg className='bg1' src={bg1} alt='products background img' />
           <p>PAIK'S MENU</p>
           <StMenuButtonBox>
             <PlusButton/>
@@ -24,7 +24,7 @@ function Main() {
         </StMenuLinkWrapper>
         <StFavoriteStoreContainer>
           <StFavoriteWrapper to='/interview'>
-            <StBgImg src={bg2} />
+            <StBgImg src={bg2} alt='interview background img' />
             <p>WHAT'S YOUR<br />
             FAVORITE<br />
             PAIK'S</p>
@@ -33,7 +33,7 @@ function Main() {
             </StFavoriteButtonBox>
           </StFavoriteWrapper>
           <StStoreWrapper to='/location'>
-            <StBgImg src={bg3} />
+            <StBgImg src={bg3} alt='location background img' />
             <p>PAIK'S STORE</p>
             <StStoreButtonBox>
             <PlusButton/>
