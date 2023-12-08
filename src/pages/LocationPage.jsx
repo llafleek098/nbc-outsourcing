@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  CustomOverlayMap,
-  Map,
-  MapMarker,
-  MarkerClusterer
-} from 'react-kakao-maps-sdk';
+import { Map, MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
 import styled from 'styled-components';
 
 function LocationPage() {
@@ -15,15 +10,21 @@ function LocationPage() {
     lat: 37.50231497199725,
     lng: 127.04484141806945
   });
-  const [searchPlace, setSearchPlace] = useState('');
-  console.log(markers);
+  const [place, setPlace] = useState([]);
+  const [searchPlace, setSearchPlace] = useState();
+  const onSearchChanged = (e) => {
+    setSearchPlace(e.target.value);
+  };
+
+  console.log(place);
+  console.log(typeof place);
   const searchPaik = () => {
     if (!map) return;
     const ps = new window.kakao.maps.services.Places(map);
-    console.log(1);
     ps.keywordSearch(
       '빽다방',
       (data, status, _pagination) => {
+        setPlace(data);
         if (status === window.kakao.maps.services.Status.OK) {
           // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
           // LatLngBounds 객체에 좌표를 추가합니다
@@ -80,17 +81,68 @@ function LocationPage() {
     searchPaik();
   }, [map]);
 
-  const onSearchChanged = (e) => {
-    setSearchPlace(e.target.value);
+  //장소검색
+  const searchStore = (e) => {
+    e.preventDefault();
+    // 장소 검색 객체를 생성합니다
+    const ps = new window.kakao.maps.services.Places();
+    ps.keywordSearch(searchPlace, (data, status, _pagination) => {
+      if (status === window.kakao.maps.services.Status.OK) {
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+        // LatLngBounds 객체에 좌표를 추가합니다
+        const bounds = new window.kakao.maps.LatLngBounds();
+
+        for (var i = 0; i < data.length; i++) {
+          // @ts-ignore
+          markers.push({
+            position: {
+              lat: data[i].y,
+              lng: data[i].x
+            },
+            content: data[i].place_name
+          });
+          // @ts-ignore
+          bounds.extend(new window.kakao.maps.LatLng(data[i].y, data[i].x));
+        }
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+        map.setBounds(bounds);
+      }
+    });
   };
   return (
     <Container>
-      <Input value={searchPlace} onChange={onSearchChanged} />
+      <StoreMain>매장 안내</StoreMain>
+      <SearchWrap onSubmit={searchStore}>
+        <SearchTitle>매장명</SearchTitle>
+        <SearchBox>
+          <Input value={searchPlace} onChange={onSearchChanged} />
+          <SearchButton>검색</SearchButton>
+        </SearchBox>
+        {/* 검색결과창 */}
+        <SearchBodyContents>
+          {place.map((item) => {
+            return (
+              <SearchContentList key={item.id}>
+                <img
+                  src="https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png"
+                  alt="빽다방 로고"
+                  width={50}
+                  height={50}
+                />
+                <SearchStoreInfo>
+                  <StoreTitle>{item.place_name}</StoreTitle>
+                  <StoreAddress>{item.road_address_name}</StoreAddress>
+                </SearchStoreInfo>
+              </SearchContentList>
+            );
+          })}
+        </SearchBodyContents>
+      </SearchWrap>
       <Map // 로드뷰를 표시할 Container
         center={currentPosition}
         style={{
           width: '100%',
-          height: '350px'
+          height: '400px'
         }}
         level={5}
         onCreate={(map) => {
@@ -100,37 +152,53 @@ function LocationPage() {
         onZoomChanged={() => searchPaik()}
         onDragEnd={() => searchPaik()}
       >
-        <MarkerClusterer
-          averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-          minLevel={10} // 클러스터 할 최소 지도 레벨
-        >
-          {markers.map((marker) => (
-            <MapMarker
-              image={{
-                src: 'https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png', // 마커이미지의 주소입니다
-                size: {
-                  width: 42,
-                  height: 42
-                }, // 마커이미지의 크기입니다
-                options: {
-                  offset: {
-                    x: 27,
-                    y: 69
-                  } // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-                }
-              }}
-              key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
-              position={marker.position}
-              onClick={() => setInfo(marker)}
-            >
-              {info && info.content === marker.content && (
-                <CustomOverlayMap position={marker.position}>
-                  <div style={{ color: '#000' }}>{marker.content}</div>
-                </CustomOverlayMap>
-              )}
-            </MapMarker>
-          ))}
-        </MarkerClusterer>
+        {markers.map((marker) => (
+          <MapMarker
+            image={{
+              src: 'https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png', // 마커이미지의 주소입니다
+              size: {
+                width: 42,
+                height: 42
+              }, // 마커이미지의 크기입니다
+              options: {
+                offset: {
+                  x: 27,
+                  y: 69
+                } // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+              }
+            }}
+            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
+            position={marker.position}
+            onClick={() => setInfo(marker)}
+          >
+            {info && info.content === marker.content && (
+              // <CustomOverlayMap position={marker.position} yAnchor={10}></CustomOverlayMap>
+              <ContentWrap>
+                <Contents>
+                  <TitleWrap>
+                    <Title>{marker.content}</Title>
+                    <CloseBtn
+                      onClick={() => {
+                        setInfo();
+                      }}
+                    >
+                      x
+                    </CloseBtn>
+                  </TitleWrap>
+                  <BodyContents>
+                    <StoreInfo>
+                      <img
+                        src="https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png"
+                        width={42}
+                        height={42}
+                      />
+                    </StoreInfo>
+                  </BodyContents>
+                </Contents>
+              </ContentWrap>
+            )}
+          </MapMarker>
+        ))}
       </Map>
     </Container>
   );
@@ -142,22 +210,120 @@ const Container = styled.div`
   position: relative;
   max-width: 1200px;
   min-width: 760px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  flex-direction: column;
   margin: 0 auto;
 `;
-const Input = styled.input`
+
+const StoreMain = styled.h2`
+  font-size: 24px;
+  margin: 60px 0;
+  color: #071f60;
+  font-weight: 600;
+`;
+
+const SearchWrap = styled.form`
   position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 999;
+  top: 16rem;
+  left: 2rem;
   width: 300px;
+  z-index: 999;
+  /* border: 4px solid #071f60; */
+  background-color: #071f60;
+`;
+const SearchTitle = styled.div`
+  font-size: 24px;
+  padding: 1rem;
+  color: white;
+  font-weight: 600;
+`;
+const SearchBox = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.5rem;
+`;
+const SearchButton = styled.button`
+  cursor: pointer;
+  background-color: transparent;
+  color: #ffe800;
+  font-weight: 800;
+  font-size: 18px;
+  padding: 0.5rem;
+`;
+const Input = styled.input`
+  width: 75%;
   height: 50px;
   border: 4px solid #071f60;
   padding: 10px 20px;
   &:focus {
     outline: none;
   }
+`;
+const SearchBodyContents = styled.ul`
+  background-color: white;
+  border: 1px solid gray;
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 230px;
+  & img {
+    padding: 0.5rem;
+  }
+`;
+const SearchContentList = styled.li`
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+  border-bottom: 1px solid gray;
+`;
+const SearchStoreInfo = styled.div`
+  margin-left: 1rem;
+  font-size: 16px;
+`;
+const StoreTitle = styled.div`
+  font-weight: bold;
+`;
+const StoreAddress = styled.div`
+  font-size: 14px;
+  margin-top: 0.5rem;
+`;
+
+const ContentWrap = styled.div`
+  position: relative;
+`;
+const Contents = styled.div`
+  position: absolute;
+  top: -8.5rem;
+  left: -1rem;
+  border: 4px solid #ffe800;
+  z-index: 999;
+  width: 220px;
+  background-color: white;
+`;
+const TitleWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffe800;
+  padding: 1rem;
+`;
+const Title = styled.div`
+  font-size: 14px;
+  color: #071f60;
+  font-weight: 800;
+`;
+const CloseBtn = styled.button`
+  background-color: transparent;
+`;
+const BodyContents = styled.div``;
+
+const StoreInfo = styled.div`
+  padding: 1rem;
 `;
