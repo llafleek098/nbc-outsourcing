@@ -10,9 +10,14 @@ function FormProduct() {
   const { handleChange, category } = useInterviewForm();
 
   const { products } = useProduct();
-  const [searchValue, handleSearchValue, filteredProducts] = useSearchDebounce(
+
+  const [searchValue, handleSearchValue] = useSearchDebounce(
     products[category]
   );
+
+  const filteredProducts =
+    products[category] &&
+    products[category].filter((product) => product.name.includes(searchValue));
 
   return (
     <>
