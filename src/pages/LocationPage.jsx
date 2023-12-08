@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import styled from 'styled-components';
-import storebg from '../assets/img/store-bg.jpg';
+import storeBg from '../assets/img/store-bg.jpg';
+import PageBannerWrapper from '../components/common/PageBanner.styles';
 
 function LocationPage() {
   const [info, setInfo] = useState();
@@ -121,20 +122,24 @@ function LocationPage() {
   };
   return (
     <Container>
-      <StoreMain image={storebg}>
+      <StBanner basicBg={storeBg}>
         <h2>매장 안내</h2>
         <p>원하시는 지역의 매장을 검색해 보세요!</p>
-      </StoreMain>
+      </StBanner>
+      {/* <StoreMain image={storebg}>
+        <h2>매장 안내</h2>
+        <p>원하시는 지역의 매장을 검색해 보세요!</p>
+      </StoreMain> */}
 
-      <MapWrapper>
-        <SearchWrap onSubmit={searchStore}>
-          <SearchTitle>매장명</SearchTitle>
-          <SearchBox>
-            <Input value={searchPlace} onChange={onSearchChanged} />
-            <SearchButton>검색</SearchButton>
-          </SearchBox>
+      <StMapWrapper>
+        <StSearchWrap onSubmit={searchStore}>
+          <StSearchTitle>매장명</StSearchTitle>
+          <StSearchBox>
+            <StInput value={searchPlace} onChange={onSearchChanged} />
+            <StSearchButton>검색</StSearchButton>
+          </StSearchBox>
           {/* 검색결과창 */}
-          <SearchBodyContents>
+          <StSearchBodyContents>
             {place.map((item) => {
               //marker가 가지고 있는 것 : address, content, phone, position -> 'lat, lng'
               const newMarker = {
@@ -147,7 +152,7 @@ function LocationPage() {
                 }
               };
               return (
-                <SearchContentList
+                <StSearchContentList
                   key={item.id}
                   onClick={() => handleClickSearchContent(newMarker)}
                 >
@@ -157,16 +162,16 @@ function LocationPage() {
                     width={50}
                     height={50}
                   />
-                  <SearchStoreInfo>
-                    <StoreTitle>{item.place_name}</StoreTitle>
-                    <StoreAddress>{item.road_address_name}</StoreAddress>
-                  </SearchStoreInfo>
-                </SearchContentList>
+                  <StSearchStoreInfo>
+                    <StStoreTitle>{item.place_name}</StStoreTitle>
+                    <StStoreAddress>{item.road_address_name}</StStoreAddress>
+                  </StSearchStoreInfo>
+                </StSearchContentList>
               );
             })}
-          </SearchBodyContents>
-        </SearchWrap>
-      </MapWrapper>
+          </StSearchBodyContents>
+        </StSearchWrap>
+      </StMapWrapper>
       <Map // 로드뷰를 표시할 Container
         center={currentPosition}
         style={{
@@ -202,31 +207,31 @@ function LocationPage() {
             onClick={() => setInfo(marker)}
           >
             {info && info.content === marker.content && (
-              <ContentWrap>
-                <Contents>
-                  <TitleWrap>
-                    <Title>{marker.content}</Title>
-                    <CloseBtn
+              <StContentWrap>
+                <StContents>
+                  <StTitleWrap>
+                    <StTitle>{marker.content}</StTitle>
+                    <StCloseBtn
                       onClick={() => {
                         setInfo();
                       }}
                     >
                       x
-                    </CloseBtn>
-                  </TitleWrap>
-                  <BodyContents>
+                    </StCloseBtn>
+                  </StTitleWrap>
+                  <StBodyContents>
                     <img
                       src="https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png"
                       width={42}
                       height={42}
                     />
-                    <StoreInfo>
-                      <AdressInfo>{marker.adress}</AdressInfo>
-                      <PhoneInfo>{marker.phone}</PhoneInfo>
-                    </StoreInfo>
-                  </BodyContents>
-                </Contents>
-              </ContentWrap>
+                    <StStoreInfo>
+                      <StAddressInfo>{marker.adress}</StAddressInfo>
+                      <StPhoneInfo>{marker.phone}</StPhoneInfo>
+                    </StStoreInfo>
+                  </StBodyContents>
+                </StContents>
+              </StContentWrap>
             )}
           </MapMarker>
         ))}
@@ -247,7 +252,7 @@ const Container = styled.div`
   flex-direction: column;
   margin: 0 auto;
 `;
-
+const StBanner = styled(PageBannerWrapper)``;
 const StoreMain = styled.div`
   display: flex;
   flex-direction: column;
@@ -274,12 +279,12 @@ const StoreMain = styled.div`
     margin-top: 2rem;
   }
 `;
-const MapWrapper = styled.div`
+const StMapWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
 `;
-const SearchWrap = styled.form`
+const StSearchWrap = styled.form`
   position: absolute;
   left: -56rem;
   top: 1rem;
@@ -288,20 +293,20 @@ const SearchWrap = styled.form`
   background-color: #071f60;
   border-radius: 1rem;
 `;
-const SearchTitle = styled.div`
+const StSearchTitle = styled.div`
   font-size: 24px;
   padding: 1rem;
   color: white;
   font-weight: 600;
   margin: 0.5rem;
 `;
-const SearchBox = styled.div`
+const StSearchBox = styled.div`
   display: flex;
   justify-content: space-evenly;
   padding: 0.5rem;
   margin: 0.5rem 0;
 `;
-const SearchButton = styled.button`
+const StSearchButton = styled.button`
   cursor: pointer;
   background-color: transparent;
   color: #ffe800;
@@ -309,7 +314,7 @@ const SearchButton = styled.button`
   font-size: 18px;
   padding: 0.5rem;
 `;
-const Input = styled.input`
+const StInput = styled.input`
   width: 75%;
   height: 50px;
   padding: 10px 20px;
@@ -319,7 +324,7 @@ const Input = styled.input`
     outline: none;
   }
 `;
-const SearchBodyContents = styled.ul`
+const StSearchBodyContents = styled.ul`
   background-color: white;
   border: 1px solid gray;
   border-top: none;
@@ -334,7 +339,7 @@ const SearchBodyContents = styled.ul`
     padding: 0.5rem;
   }
 `;
-const SearchContentList = styled.li`
+const StSearchContentList = styled.li`
   display: flex;
   align-items: center;
   padding: 1rem;
@@ -342,22 +347,22 @@ const SearchContentList = styled.li`
   border-bottom: 1px solid gray;
   cursor: pointer;
 `;
-const SearchStoreInfo = styled.div`
+const StSearchStoreInfo = styled.div`
   margin-left: 1rem;
   font-size: 16px;
 `;
-const StoreTitle = styled.div`
+const StStoreTitle = styled.div`
   font-weight: bold;
 `;
-const StoreAddress = styled.div`
+const StStoreAddress = styled.div`
   font-size: 14px;
   margin-top: 0.5rem;
 `;
 
-const ContentWrap = styled.div`
+const StContentWrap = styled.div`
   position: relative;
 `;
-const Contents = styled.div`
+const StContents = styled.div`
   position: absolute;
   top: -7rem;
   left: -1rem;
@@ -366,31 +371,31 @@ const Contents = styled.div`
   width: 220px;
   background-color: white;
 `;
-const TitleWrap = styled.div`
+const StTitleWrap = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: #ffe800;
   padding: 1rem;
 `;
-const Title = styled.div`
+const StTitle = styled.div`
   font-size: 14px;
   color: #071f60;
   font-weight: 800;
 `;
-const CloseBtn = styled.button`
+const StCloseBtn = styled.button`
   background-color: transparent;
 `;
-const BodyContents = styled.div`
+const StBodyContents = styled.div`
   display: flex;
 `;
 
-const StoreInfo = styled.div`
+const StStoreInfo = styled.div`
   padding: 1rem;
 `;
-const AdressInfo = styled.div`
+const StAddressInfo = styled.div`
   font-size: 14px;
 `;
 
-const PhoneInfo = styled.div`
+const StPhoneInfo = styled.div`
   font-size: 14px;
 `;

@@ -1,26 +1,11 @@
 import styled from 'styled-components';
-
-function PageBanner({ title, description, titleColor, mobileBg, basicBg }) {
-  return (
-    <StPageBannerWrapper
-      titleColor={titleColor}
-      mobileBg={mobileBg}
-      basicBg={basicBg}
-    >
-      <h2>{title}</h2>
-      <p>{description}</p>
-    </StPageBannerWrapper>
-  );
-}
-
-export default PageBanner;
-
-const StPageBannerWrapper = styled.header`
+const PageBannerWrapper = styled.header`
   position: relative;
 
   height: 50rem;
   width: 100%;
   padding: 1rem;
+  margin-bottom: 2rem;
   background: url(${(props) => props.basicBg}) center no-repeat;
 
   display: flex;
@@ -30,8 +15,6 @@ const StPageBannerWrapper = styled.header`
   gap: 2rem;
 
   h2 {
-    color: ${(props) => props.titleColor};
-    letter-spacing: -5px;
     font-size: 5rem;
     text-transform: uppercase;
     font-weight: 600;
@@ -55,3 +38,4 @@ const StPageBannerWrapper = styled.header`
     }
   }
 `;
+export default PageBannerWrapper;

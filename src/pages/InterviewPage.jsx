@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import interviewBg from '../assets/img/interview_bg.jpg';
+import PageBannerWrapper from '../components/common/PageBanner.styles';
 import InterviewForm from '../components/interview/InterviewForm';
 import InterviewResult from '../components/interview/InterviewResult';
 import InterviewProvider from '../contexts/interview.context';
@@ -8,9 +9,14 @@ import InterviewProvider from '../contexts/interview.context';
 function InterviewPage() {
   return (
     <InterviewProvider>
-      <StBanner>
-        <h2> WHAT'S YOUR FAVORITE PAIK'S</h2>
+      <StBanner basicBg={interviewBg}>
+        <h2> WHERE'S YOUR FAVORITE PAIK'S</h2>
+        <p>좋아하는 음식을 알려주세요</p>
       </StBanner>
+      {/* <StBanner>
+        <h2> WHAT'S YOUR FAVORITE PAIK'S</h2>
+        <p>좋아하는 음식을 선택해보세요</p>
+      </StBanner> */}
       <StInterviewWrapper>
         <InterviewForm />
         <InterviewResult />
@@ -20,21 +26,13 @@ function InterviewPage() {
 }
 export default InterviewPage;
 
-const StBanner = styled.div`
-  background: url(${interviewBg}) center / cover no-repeat;
-  height: 40rem;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+const StBanner = styled(PageBannerWrapper)`
   h2 {
-    font-size: 5rem;
     color: var(--primaryColor);
-    font-weight: 900;
-    letter-spacing: -3.9px;
   }
-  margin-bottom: 4rem;
+  @media screen and (max-width: 37.5rem) {
+    justify-content: center;
+  }
 `;
 const StInterviewWrapper = styled.div`
   max-width: 1200px;

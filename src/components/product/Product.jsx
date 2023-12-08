@@ -5,7 +5,7 @@ import product_bg from '../../assets/img/product_bg.png';
 import product_mbg from '../../assets/img/product_mbg.png';
 import small_logo from '../../assets/img/small_Logo.png';
 import useProduct from '../../hooks/useProduct';
-import PageBanner from '../common/PageBanner';
+import { default as PageBannerWrapper } from '../common/PageBanner.styles';
 import { categories } from '../interview/forms/form.data';
 
 function Product() {
@@ -15,13 +15,10 @@ function Product() {
 
   return (
     <StProductContainer>
-      <PageBanner
-        title="paik's menu"
-        titleColor="#6b4d30"
-        basicBg={product_bg}
-        mobileBg={product_mbg}
-        description={'빽다방에서 제공하는 메뉴를 확인해보세요'}
-      />
+      <StProductHeaderContainer basicBg={product_bg} mobileBg={product_mbg}>
+        <h2>paik's menu</h2>
+        <p>빽다방에서 제공하는 메뉴를 확인해보세요</p>
+      </StProductHeaderContainer>
       {/* <StProductHeaderContainer>
         <StProductBgImg
           className="product_bg"
@@ -87,38 +84,12 @@ const StProductContainer = styled.div`
 
 // 헤더 전체 컨테이너
 
-const StProductHeaderContainer = styled.header`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  & div {
+const StProductHeaderContainer = styled(PageBannerWrapper)`
+  h2 {
     color: #6b4d30;
-    letter-spacing: -5px;
-    font-size: 5rem;
-    position: absolute;
-  }
-  .product_bg {
-    display: block;
-  }
-  .product_mbg {
-    display: none;
   }
   @media screen and (max-width: 37.5rem) {
-    .product_bg {
-      display: none;
-    }
-    .product_mbg {
-      display: block;
-      width: 100%;
-      height: 100%;
-      min-height: 40rem;
-      min-width: 20rem;
-    }
-    & div {
-      font-size: 3.5rem;
-      bottom: 7%;
-    }
+    padding-bottom: 7%;
   }
 `;
 
