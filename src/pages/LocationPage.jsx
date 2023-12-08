@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Map, MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import styled from 'styled-components';
 
 function LocationPage() {
@@ -16,8 +16,9 @@ function LocationPage() {
     setSearchPlace(e.target.value);
   };
 
-  console.log(place);
-  console.log(typeof place);
+  console.log('place', place);
+  console.log('markers', markers);
+
   const searchPaik = () => {
     if (!map) return;
     const ps = new window.kakao.maps.services.Places(map);
@@ -25,6 +26,7 @@ function LocationPage() {
       '빽다방',
       (data, status, _pagination) => {
         setPlace(data);
+
         if (status === window.kakao.maps.services.Status.OK) {
           // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
           // LatLngBounds 객체에 좌표를 추가합니다
@@ -38,8 +40,11 @@ function LocationPage() {
                 lat: data[i].y,
                 lng: data[i].x
               },
-              content: data[i].place_name
+              content: data[i].place_name,
+              adress: data[i].road_address_name,
+              phone: data[i].phone
             });
+            //기능완성 후 처음부터 코드 분석해보기
             // @ts-ignore
             bounds.extend(new window.kakao.maps.LatLng(data[i].y, data[i].x));
           }
@@ -172,7 +177,6 @@ function LocationPage() {
             onClick={() => setInfo(marker)}
           >
             {info && info.content === marker.content && (
-              // <CustomOverlayMap position={marker.position} yAnchor={10}></CustomOverlayMap>
               <ContentWrap>
                 <Contents>
                   <TitleWrap>
@@ -186,12 +190,14 @@ function LocationPage() {
                     </CloseBtn>
                   </TitleWrap>
                   <BodyContents>
+                    <img
+                      src="https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png"
+                      width={42}
+                      height={42}
+                    />
                     <StoreInfo>
-                      <img
-                        src="https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png"
-                        width={42}
-                        height={42}
-                      />
+                      <AdressInfo>{marker.adress}</AdressInfo>
+                      <PhoneInfo>{marker.phone}</PhoneInfo>
                     </StoreInfo>
                   </BodyContents>
                 </Contents>
@@ -233,6 +239,7 @@ const SearchWrap = styled.form`
   z-index: 999;
   /* border: 4px solid #071f60; */
   background-color: #071f60;
+  border-radius: 1rem;
 `;
 const SearchTitle = styled.div`
   font-size: 24px;
@@ -301,7 +308,7 @@ const ContentWrap = styled.div`
 `;
 const Contents = styled.div`
   position: absolute;
-  top: -8.5rem;
+  top: -6.5rem;
   left: -1rem;
   border: 4px solid #ffe800;
   z-index: 999;
@@ -322,8 +329,17 @@ const Title = styled.div`
 const CloseBtn = styled.button`
   background-color: transparent;
 `;
-const BodyContents = styled.div``;
+const BodyContents = styled.div`
+  display: flex;
+`;
 
 const StoreInfo = styled.div`
   padding: 1rem;
+`;
+const AdressInfo = styled.div`
+  font-size: 14px;
+`;
+
+const PhoneInfo = styled.div`
+  font-size: 14px;
 `;
