@@ -5,6 +5,7 @@ import product_bg from '../../assets/img/product_bg.png';
 import product_mbg from '../../assets/img/product_mbg.png';
 import small_logo from '../../assets/img/small_Logo.png';
 import useProduct from '../../hooks/useProduct';
+import PageBanner from '../common/PageBanner';
 import { categories } from '../interview/forms/form.data';
 
 function Product() {
@@ -14,7 +15,14 @@ function Product() {
 
   return (
     <StProductContainer>
-      <StProductHeaderContainer>
+      <PageBanner
+        title="paik's menu"
+        titleColor="#6b4d30"
+        basicBg={product_bg}
+        mobileBg={product_mbg}
+        description={'빽다방에서 제공하는 메뉴를 확인해보세요'}
+      />
+      {/* <StProductHeaderContainer>
         <StProductBgImg
           className="product_bg"
           src={product_bg}
@@ -26,7 +34,7 @@ function Product() {
           alt="product mobile background"
         />
         <div>PAIK'S MENU</div>
-      </StProductHeaderContainer>
+      </StProductHeaderContainer> */}
       <main>
         <StSelectCategoryContainer>
           {categories.map((category) => {
