@@ -40,8 +40,8 @@ export const getGenderCountData = () =>
   ]);
 
 export const pagesData = [
-  { component: FormAges, title: '나이대를 선택해주세요' },
-  { component: FormGender, title: '성별을 선택해주세요' },
-  { component: FormProduct, title: '좋아하는 메뉴를 선택해주세요' }
+  { component: <FormAges />, title: '나이대를 선택해주세요' },
+  { component: <FormGender />, title: '성별을 선택해주세요' },
+  { component: <FormProduct />, title: '좋아하는 메뉴를 선택해주세요' }
 ];
 export const MAX_PAGE = pagesData.length;

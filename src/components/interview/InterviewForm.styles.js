@@ -3,7 +3,6 @@ export const StFieldSet = styled.fieldset`
   border-radius: 1rem;
   position: relative;
   padding-top: 4rem;
-  padding-left: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
