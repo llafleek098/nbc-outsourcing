@@ -25,7 +25,8 @@ function Product() {
           src={product_mbg}
           alt="product mobile background"
         />
-        <div>PAIK'S MENU</div>
+        <h2>PAIK'S MENU</h2>
+        <p>지금 바로 가까운 매장에서 빽다방 메뉴를 만나 보실 수 있습니다.</p>
       </StProductHeaderContainer>
       <main>
         <StSelectCategoryContainer>
@@ -35,7 +36,6 @@ function Product() {
                 to={`/products?category=${category}`}
                 $selectCategory={selectedCategory}
                 key={category}
-                // onClick={handleSelectCategory}
                 value={category}
               >
                 {category}
@@ -43,7 +43,7 @@ function Product() {
             );
           })}
         </StSelectCategoryContainer>
-        <StProductsContainer>
+        <StProductListContainer>
           {products &&
             selectedCategory &&
             products[selectedCategory]?.map(
@@ -62,7 +62,7 @@ function Product() {
                 );
               }
             )}
-        </StProductsContainer>
+        </StProductListContainer>
       </main>
     </StProductContainer>
   );
@@ -70,25 +70,30 @@ function Product() {
 
 // 전체를 감싸는 컨테이너
 const StProductContainer = styled.div`
-  margin: 0 auto;
-  div,
-  button {
+  margin: 0 auto 3rem auto;
+  h2 {
     font-weight: bold;
   }
 `;
 
 // 헤더 전체 컨테이너
-
 const StProductHeaderContainer = styled.header`
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  & div {
+  & h2 {
     color: #6b4d30;
     letter-spacing: -5px;
     font-size: 5rem;
     position: absolute;
+    top: 45%;
+    transform: translateY(-45%);
+  }
+  & p {
+    font-size: 2rem;
+    position: absolute;
+    top: 57%;
+    transform: translateY(-57%);
   }
   .product_bg {
     display: block;
@@ -102,14 +107,29 @@ const StProductHeaderContainer = styled.header`
     }
     .product_mbg {
       display: block;
-      width: 100%;
-      height: 100%;
+      height: 50rem;
       min-height: 40rem;
       min-width: 20rem;
     }
-    & div {
+    & h2 {
       font-size: 3.5rem;
-      bottom: 7%;
+      top: 88%;
+      transform: translateY(-88%);
+    }
+    & p {
+      font-size: 1.5rem;
+      top: 93%;
+      transform: translateY(-93%);
+    }
+  }
+  @media screen and (max-width: 30rem) {
+    & h2 {
+      font-size: 3.5rem;
+      top: 92%;
+      transform: translateY(-92%);
+    }
+    & p {
+      display: none;
     }
   }
 `;
@@ -135,14 +155,19 @@ const StSelectCategoryContainer = styled.ul`
     flex-direction: column;
     align-items: center;
   }
-`;
+  `;
 // 카테고리 버튼
 const StCategoryButton = styled(Link)`
-  width: 20rem;
+  width: 25rem;
+  min-height: 4rem;
   padding: 0.5rem 2rem;
   border: 0.1rem solid #f1f1f1;
   border-radius: 0.5rem;
-  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.3rem;
   transition: 0.3s;
   letter-spacing: 3px;
   &:hover {
@@ -153,6 +178,7 @@ const StCategoryButton = styled(Link)`
   @media screen and (max-width: 37.5rem) {
     min-width: 13rem;
     width: 80%;
+
   }
   /* 눌러지는 카테고리마다 조건부 css */
   ${(props) => {
@@ -169,33 +195,41 @@ const StCategoryButton = styled(Link)`
   }}
 `;
 
-// 제품 카드 전체를 감싸는 컨테이너
-const StProductsContainer = styled.div`
+// 제품 카드 전체 리스트를 감싸는 컨테이너
+const StProductListContainer = styled.div`
   max-width: 100rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.3s;
   margin: auto;
-  flex-wrap: wrap;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  transition: all 0.3s;
   overflow: hidden;
+  @media screen and (max-width: 60rem) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (max-width: 37.5rem) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 20rem) {
+    grid-template-columns: 1fr;
+  }
 `;
 // 제품 사진과 이름이 들어갈 박스
-const StProductBox = styled.div`
-  width: 20rem;
+const StProductBox = styled.li`
+  list-style-type: none;
+  width: 100%;
   aspect-ratio: 3/4;
   border: 0.1rem solid #f1f1f1;
   border-radius: 0.5rem;
   position: relative;
-  display: flex;
-  justify-content: center;
+  overflow: hidden;
   @media screen and (max-width: 60rem) {
     min-width: 13rem;
-    width: 40%;
+    width: 100%;
   }
   @media screen and (max-width: 37.5rem) {
     min-width: 13rem;
-    width: 80%;
+    width: 100%;
   }
 `;
 // 상품 카드 안에 들어갈 이미지
@@ -206,10 +240,18 @@ const StProductImg = styled.img`
 `;
 // 상품 카드 안에 들어갈 이름
 const StProductName = styled.h1`
-  font-size: 1.7rem;
+  width: 100%;
+  padding: 0 1rem;
+  font-size: 1.5rem;
+  display: block;
   position: absolute;
+  text-align: center;
   color: #071f60;
   bottom: 5%;
+  max-width: 100%;
+  white-space:nowrap;
+  overflow : hidden;
+  text-overflow:ellipsis;
 `;
 // 호버 시 올라오는 상품 설명 박스
 const StProductOverlay = styled.div`

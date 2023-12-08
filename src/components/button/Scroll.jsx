@@ -36,10 +36,18 @@ const TopButton = () => {
 };
 
 const StTopButton = styled.button`
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: white;
+  border: 0.2rem solid #f1f1f1;
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default TopButton;

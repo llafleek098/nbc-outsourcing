@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import styled from 'styled-components';
-import storebg from '../assets/img/store-bg.jpg';
+import store_bg from '../assets/img/store_bg.jpg';
+import store_mbg from '../assets/img/store_mbg.jpg';
 
 function LocationPage() {
   const [info, setInfo] = useState();
@@ -120,122 +121,211 @@ function LocationPage() {
     setInfo(marker);
   };
   return (
-    <Container>
-      <StoreMain image={storebg}>
-        <h2>매장 안내</h2>
-        <p>원하시는 지역의 매장을 검색해 보세요!</p>
-      </StoreMain>
-
-      <MapWrapper>
-        <SearchWrap onSubmit={searchStore}>
-          <SearchTitle>매장명</SearchTitle>
-          <SearchBox>
-            <Input value={searchPlace} onChange={onSearchChanged} />
-            <SearchButton>검색</SearchButton>
-          </SearchBox>
-          {/* 검색결과창 */}
-          <SearchBodyContents>
-            {place.map((item) => {
-              //marker가 가지고 있는 것 : address, content, phone, position -> 'lat, lng'
-              const newMarker = {
-                address: item.address,
-                content: item.place_name,
-                phone: item.phone,
-                position: {
-                  lat: item.x,
-                  lng: item.y
-                }
-              };
-              return (
-                <SearchContentList
-                  key={item.id}
-                  onClick={() => handleClickSearchContent(newMarker)}
-                >
-                  <img
-                    src="https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png"
-                    alt="빽다방 로고"
-                    width={50}
-                    height={50}
-                  />
-                  <SearchStoreInfo>
-                    <StoreTitle>{item.place_name}</StoreTitle>
-                    <StoreAddress>{item.road_address_name}</StoreAddress>
-                  </SearchStoreInfo>
-                </SearchContentList>
-              );
-            })}
-          </SearchBodyContents>
-        </SearchWrap>
-      </MapWrapper>
-      <Map // 로드뷰를 표시할 Container
-        center={currentPosition}
-        style={{
-          width: '1200px',
-          height: '400px',
-          position: 'relative'
-        }}
-        level={5}
-        onCreate={(map) => {
-          setMap(map);
-        }}
-        // onCenterChanged={() => searchPaik()}
-        onZoomChanged={() => searchPaik()}
-        onDragEnd={() => searchPaik()}
-      >
-        {markers.map((marker) => (
-          <MapMarker
-            image={{
-              src: 'https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png', // 마커이미지의 주소입니다
-              size: {
-                width: 42,
-                height: 42
-              }, // 마커이미지의 크기입니다
-              options: {
-                offset: {
-                  x: 27,
-                  y: 69
-                } // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-              }
-            }}
-            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
-            position={marker.position}
-            onClick={() => setInfo(marker)}
-          >
-            {info && info.content === marker.content && (
-              <ContentWrap>
-                <Contents>
-                  <TitleWrap>
-                    <Title>{marker.content}</Title>
-                    <CloseBtn
-                      onClick={() => {
-                        setInfo();
-                      }}
-                    >
-                      x
-                    </CloseBtn>
-                  </TitleWrap>
-                  <BodyContents>
+    <>
+      <StStoreContainer>
+        <StStoreHeaderContainer>
+          <StStoreBgImg
+            className="store_bg"
+            src={store_bg}
+            alt="store background"
+            />
+          <StStoreBgImg
+            className="store_mbg"
+            src={store_mbg}
+            alt="store mobile background"
+            />
+          <h2>PAIK'S STORE</h2>
+          <p>원하시는 지역의 매장을 검색해 보세요!</p>
+        </StStoreHeaderContainer>
+      </StStoreContainer>
+      <Container>
+        <MapWrapper>
+          <SearchWrap onSubmit={searchStore}>
+            <SearchTitle>매장명</SearchTitle>
+            <SearchBox>
+              <Input value={searchPlace} onChange={onSearchChanged} />
+              <SearchButton>검색</SearchButton>
+            </SearchBox>
+            {/* 검색결과창 */}
+            <SearchBodyContents>
+              {place.map((item) => {
+                //marker가 가지고 있는 것 : address, content, phone, position -> 'lat, lng'
+                const newMarker = {
+                  address: item.address,
+                  content: item.place_name,
+                  phone: item.phone,
+                  position: {
+                    lat: item.x,
+                    lng: item.y
+                  }
+                };
+                return (
+                  <SearchContentList
+                    key={item.id}
+                    onClick={() => handleClickSearchContent(newMarker)}
+                  >
                     <img
                       src="https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png"
-                      width={42}
-                      height={42}
+                      alt="빽다방 로고"
+                      width={50}
+                      height={50}
                     />
-                    <StoreInfo>
-                      <AdressInfo>{marker.adress}</AdressInfo>
-                      <PhoneInfo>{marker.phone}</PhoneInfo>
-                    </StoreInfo>
-                  </BodyContents>
-                </Contents>
-              </ContentWrap>
-            )}
-          </MapMarker>
-        ))}
-      </Map>
-    </Container>
+                    <SearchStoreInfo>
+                      <StoreTitle>{item.place_name}</StoreTitle>
+                      <StoreAddress>{item.road_address_name}</StoreAddress>
+                    </SearchStoreInfo>
+                  </SearchContentList>
+                );
+              })}
+            </SearchBodyContents>
+          </SearchWrap>
+        </MapWrapper>
+        <Map // 로드뷰를 표시할 Container
+          center={currentPosition}
+          style={{
+            width: '1200px',
+            height: '400px',
+            position: 'relative'
+          }}
+          level={5}
+          onCreate={(map) => {
+            setMap(map);
+          }}
+          // onCenterChanged={() => searchPaik()}
+          onZoomChanged={() => searchPaik()}
+          onDragEnd={() => searchPaik()}
+        >
+          {markers.map((marker) => (
+            <MapMarker
+              image={{
+                src: 'https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png', // 마커이미지의 주소입니다
+                size: {
+                  width: 42,
+                  height: 42
+                }, // 마커이미지의 크기입니다
+                options: {
+                  offset: {
+                    x: 27,
+                    y: 69
+                  } // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+                }
+              }}
+              key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
+              position={marker.position}
+              onClick={() => setInfo(marker)}
+            >
+              {info && info.content === marker.content && (
+                <ContentWrap>
+                  <Contents>
+                    <TitleWrap>
+                      <Title>{marker.content}</Title>
+                      <CloseBtn
+                        onClick={() => {
+                          setInfo();
+                        }}
+                      >
+                        x
+                      </CloseBtn>
+                    </TitleWrap>
+                    <BodyContents>
+                      <img
+                        src="https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png"
+                        width={42}
+                        height={42}
+                      />
+                      <StoreInfo>
+                        <AdressInfo>{marker.adress}</AdressInfo>
+                        <PhoneInfo>{marker.phone}</PhoneInfo>
+                      </StoreInfo>
+                    </BodyContents>
+                  </Contents>
+                </ContentWrap>
+              )}
+            </MapMarker>
+          ))}
+        </Map>
+      </Container>
+    </>
   );
 }
 
 export default LocationPage;
+
+// 헤더 전체를 감싸는 컨테이너
+const StStoreContainer = styled.div`
+  margin: 0 auto 3rem auto;
+  h2 {
+    font-weight: bold;
+  }
+`;
+
+// 헤더 전체 컨테이너
+const StStoreHeaderContainer = styled.header`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  & h2 {
+    color: #6b4d30;
+    letter-spacing: -5px;
+    font-size: 5rem;
+    position: absolute;
+    top: 45%;
+    transform: translateY(-45%);
+  }
+  & p {
+    font-size: 2rem;
+    position: absolute;
+    top: 57%;
+    transform: translateY(-57%);
+  }
+  .store_bg {
+    display: block;
+  }
+  .store_mbg {
+    display: none;
+  }
+  @media screen and (max-width: 37.5rem) {
+    .store_bg {
+      display: none;
+    }
+    .store_mbg {
+      display: block;
+      height: 50rem;
+      min-height: 40rem;
+      min-width: 20rem;
+    }
+    & h2 {
+      font-size: 3.5rem;
+      top: 88%;
+      transform: translateY(-88%);
+    }
+    & p {
+      font-size: 1.5rem;
+      top: 93%;
+      transform: translateY(-93%);
+    }
+  }
+  @media screen and (max-width: 30rem) {
+    & h2 {
+      font-size: 3.5rem;
+      top: 92%;
+      transform: translateY(-92%);
+    }
+    & p {
+      display: none;
+    }
+  }
+`;
+// 헤더 배경이미지
+const StStoreBgImg = styled.img`
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 50rem;
+  object-fit: cover;
+  margin: auto;
+`;
 
 const Container = styled.div`
   position: relative;
@@ -246,33 +336,6 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
-`;
-
-const StoreMain = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  background-image: url(${(props) => props.image});
-  min-height: 300px;
-  width: 100%;
-  margin-bottom: 60px;
-  & h2 {
-    font-size: 40px;
-    ::after {
-      display: block;
-      width: 40px;
-      height: 2px;
-      margin: 32px auto;
-      background: #202020;
-      content: '';
-    }
-  }
-  & p {
-    font-size: 20px;
-    margin-top: 2rem;
-  }
 `;
 const MapWrapper = styled.div`
   max-width: 1200px;

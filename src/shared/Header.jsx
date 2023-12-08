@@ -25,7 +25,7 @@ const HeaderContainer = () => {
 };
 const StHeaderStyle = styled.div`
   background-color: white;
-  width: 100vw;
+  width: 100%;
   height: 100px;
   font-size: 25px;
   font-weight: 600;
