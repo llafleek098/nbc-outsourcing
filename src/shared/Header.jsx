@@ -24,7 +24,7 @@ const HeaderContainer = () => {
   );
 };
 const StHeaderStyle = styled.div`
-  background-color: whitet;
+  background-color: white;
   width: 100vw;
   height: 100px;
   font-size: 25px;
@@ -38,7 +38,7 @@ const StHeaderStyle = styled.div`
   top: 0;
   z-index: 10; //헤더 맨 앞으로 불러오는
   @media screen and (max-width: 75rem) {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     display: flex;
     flex-direction: column;
     height: 320px;
