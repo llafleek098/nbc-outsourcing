@@ -3,44 +3,52 @@ import styled from 'styled-components';
 import interviewBg from '../../assets/img/interview_bg.jpg';
 import { useInterviewForm } from '../../contexts/interview.context';
 import FormContentWrapper from './FormPage';
-import ProgressBar from './ProgressBar';
-import { MAX_PAGE, pagesData } from './form.data';
 import {
   StNavigateButtonContainer,
   StNavigateButtonNext,
   StNavigateButtonPrev
-} from './form.styles';
+} from './InterviewForm.styles';
+import ProgressBar from './ProgressBar';
+import { MAX_PAGE, pagesData } from './form.data';
 
 function InterviewForm() {
   const { handleSubmit, handleNavigateNextPage, handleNavigatePrevPage, page } =
     useInterviewForm();
 
   const FormComponent = page < MAX_PAGE - 1 && pagesData[page].component;
+  console.log(page);
 
   return (
     <StInterviewFormWrapper>
       <StBanner>
         <h2> WHAT'S YOUR FAVORITE PAIK'S</h2>
       </StBanner>
-      <ProgressBar page={page} />
-      <StForm onSubmit={handleSubmit}>
-        {page < MAX_PAGE - 1 && (
-          <FormContentWrapper title={pagesData[page].title}>
-            {<FormComponent />}
-          </FormContentWrapper>
-        )}
-        <StNavigateButtonContainer>
-          <StNavigateButtonPrev
-            onClick={handleNavigatePrevPage}
-            disabled={page === 0}
-          >
-            뒤로가기
-          </StNavigateButtonPrev>
-          <StNavigateButtonNext type="submit" onClick={handleNavigateNextPage}>
-            계속하기
-          </StNavigateButtonNext>
-        </StNavigateButtonContainer>
-      </StForm>
+      {page < MAX_PAGE - 1 && (
+        <>
+          <ProgressBar page={page} />
+          <StForm onSubmit={handleSubmit}>
+            {page < MAX_PAGE - 1 && (
+              <FormContentWrapper title={pagesData[page].title}>
+                {<FormComponent />}
+              </FormContentWrapper>
+            )}
+            <StNavigateButtonContainer>
+              <StNavigateButtonPrev
+                onClick={handleNavigatePrevPage}
+                disabled={page === 0}
+              >
+                뒤로가기
+              </StNavigateButtonPrev>
+              <StNavigateButtonNext
+                type="submit"
+                onClick={handleNavigateNextPage}
+              >
+                계속하기
+              </StNavigateButtonNext>
+            </StNavigateButtonContainer>
+          </StForm>
+        </>
+      )}
     </StInterviewFormWrapper>
   );
 }
