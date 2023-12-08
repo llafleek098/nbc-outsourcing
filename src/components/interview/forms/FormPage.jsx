@@ -1,5 +1,5 @@
 import React from 'react';
-import { StFieldSet, StLegend } from './InterviewForm.styles';
+import { StFieldSet, StLegend } from '../InterviewForm.styles';
 function FormContentWrapper({ title, children }) {
   return (
     <StFieldSet>

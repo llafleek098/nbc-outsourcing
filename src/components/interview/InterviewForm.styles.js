@@ -53,26 +53,3 @@ export const StRadioInputWrapper = styled.li`
     line-height: 4rem;
   }
 `;
-export const StNavigateButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  gap: 2rem;
-`;
-const StNavigateButton = styled.button`
-  padding: 1rem 5rem;
-  border-radius: 1rem;
-`;
-export const StNavigateButtonPrev = styled(StNavigateButton)`
-  background-color: var(--secondaryColor);
-`;
-export const StNavigateButtonNext = styled(StNavigateButton)`
-  background-color: var(--primaryColor);
-  color: white;
-  transition: background-color 0.2s ease-in-out;
-  &:hover {
-    background-color: var(--accentColor);
-    color: black;
-  }
-`;

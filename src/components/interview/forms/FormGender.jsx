@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useInterviewForm } from '../../contexts/interview.context';
+import { useInterviewForm } from '../../../contexts/interview.context';
 import {
   StRadioInputContainer,
   StRadioInputWrapper
-} from './InterviewForm.styles';
+} from '../InterviewForm.styles';
 
 const FormGender = () => {
   const { handleChange, gender } = useInterviewForm();
@@ -40,6 +40,7 @@ const StContainer = styled(StRadioInputContainer)`
   label {
     padding: 1rem 0;
     font-size: 1.5rem;
+    cursor: pointer;
   }
 
   li {

@@ -43,4 +43,4 @@ export const pagesData = [
   { component: FormGender, title: '성별을 선택해주세요' },
   { component: FormProduct, title: '좋아하는 메뉴를 선택해주세요' }
 ];
-export const MAX_PAGE = pagesData.length + 1;
+export const MAX_PAGE = pagesData.length;

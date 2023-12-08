@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useInterviewForm } from '../../contexts/interview.context';
-import useProduct from '../../hooks/useProduct';
+import { useInterviewForm } from '../../../contexts/interview.context';
+import useProduct from '../../../hooks/useProduct';
 import ProductCard from './ProductCard';
 import { categoryData } from './form.data';
 

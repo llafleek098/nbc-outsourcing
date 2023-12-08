@@ -1,20 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useInterviewForm } from '../../contexts/interview.context';
+import { useInterviewForm } from '../../../contexts/interview.context';
 function ProductCard({ product }) {
   const { handleChange, productName } = useInterviewForm();
-  console.log({ productName });
   return (
     <StProductCardWrapper
       onChange={handleChange}
       $checked={productName === product.name}
     >
-      <label htmlFor={product.name} name="product">
+      <label htmlFor={product.name} name="productName">
         <img src={product.imgSrc} alt={product.name} />
         <h3>{product.name}</h3>
         <input
           type="radio"
-          name="product"
+          name="productName"
           value={product.name}
           id={product.name}
         />

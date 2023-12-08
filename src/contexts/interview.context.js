@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react';
-import { MAX_PAGE } from '../components/interview/form.data.js';
+import { MAX_PAGE } from '../components/interview/forms/form.data.js';
 import useInterview from '../hooks/useInterview.jsx';
+const FIRST_PAGE = 0;
 
 const initialState = {
   ages: '10ages',
@@ -8,65 +9,70 @@ const initialState = {
   productName: '',
   category: '',
   page: 0,
-  interviews: [],
   handleSubmit: (e) => {},
   handleChange: (e) => {},
   handleNavigateNextPage: () => {},
-  handleNavigatePrevPage: () => {}
+  handleNavigatePrevPage: () => {},
+  handleResetInterview: () => {},
+  isDisablePrev: true,
+  isDisableNext: true,
+  isDisableSubmit: true
 };
 const InterviewContext = createContext(initialState);
+const initialData = {
+  ages: '10ages',
+  gender: 'male',
+  productName: '',
+  category: '선택해주세요'
+};
 
 export default function InterviewFormProvider({ children }) {
-  const [ages, setAges] = useState('10ages');
-  const [gender, setGender] = useState('male');
-  const [productName, setProductName] = useState('');
-  const [category, setCategory] = useState('선택해주세요');
+  const [data, setData] = useState(initialData);
   const [page, setPage] = useState(0);
 
-  const { interviews, mutation } = useInterview();
-
-  const setters = {
-    ages: setAges,
-    gender: setGender,
-    product: setProductName,
-    category: setCategory
-  };
+  const { mutation } = useInterview();
 
   const handleChange = (e) => {
-    setters[e.target.name](e.target.value);
-
+    setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     if (e.currentTarget.name === 'category') {
-      setProductName('');
+      setData((prev) => ({ ...prev, productName: '' }));
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (page < MAX_PAGE - 1) return;
-    if (!ages || !gender || !productName || !category) {
-      alert('모든 항목을 선택해주세요');
-      setPage(0);
-      return;
-    }
-
-    mutation.mutate({ ages, gender, productName, category });
+    setPage(MAX_PAGE);
+    mutation.mutate({ ...data });
   };
 
-  const handleNavigateNextPage = () => setPage((prev) => (prev + 1) % MAX_PAGE);
+  const handleNavigateNextPage = () => {
+    setPage((prev) => (prev + 1) % MAX_PAGE);
+  };
+
   const handleNavigatePrevPage = () =>
     setPage((prev) => (prev - 1 + MAX_PAGE) % MAX_PAGE);
 
+  const handleResetInterview = () => {
+    setPage(FIRST_PAGE);
+    setData(initialData);
+  };
+
+  const isDisablePrev = page === FIRST_PAGE;
+  const isDisableSubmit =
+    page !== MAX_PAGE - 1 || Object.keys(data).some((key) => !data[key]);
+  const isDisableNext = page === MAX_PAGE - 1;
+
   const value = {
-    ages,
-    gender,
-    productName,
-    category,
+    ...data,
     handleSubmit,
     handleChange,
-    interviews,
     page,
     handleNavigateNextPage,
-    handleNavigatePrevPage
+    handleNavigatePrevPage,
+    handleResetInterview,
+    isDisablePrev,
+    isDisableNext,
+    isDisableSubmit
   };
 
   return (
