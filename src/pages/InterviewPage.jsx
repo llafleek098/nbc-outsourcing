@@ -11,7 +11,7 @@ function InterviewPage() {
   return (
     <InterviewProvider>
       <StBanner basicBg={interview_bg} mobileBg={interview_mbg}>
-        <h2> WHERE'S YOUR FAVORITE PAIK'S</h2>
+        <h2> WHAT'S YOUR FAVORITE PAIK'S</h2>
         <p>좋아하는 음식을 알려주세요</p>
       </StBanner>
       <StInterviewWrapper>
