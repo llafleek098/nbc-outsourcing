@@ -4,7 +4,7 @@ import product_mbg from '../../assets/img/product_mbg.png'
 import 뱅쇼hot from '../../assets/img/뱅쇼hot.png'
 import styled from 'styled-components';
 import { css } from 'styled-components';
-// import logo from '../../assets/img/Logo.png'
+import small_logo from '../../assets/img/small_Logo.png'
 
 function Product() {
 
@@ -184,7 +184,7 @@ const StProductName = styled.h1`
   position: absolute;
   color: #071F60;
   bottom: 5%;
-`
+`;
 // 호버 시 올라오는 상품 설명 박스
 const StProductOverlay = styled.div`
   width: 100%;
@@ -218,7 +218,8 @@ const StProductOverlay = styled.div`
   &:hover {
     opacity: 0.7;
     transform: translateY(0rem);
+    cursor: url(${small_logo}) 5 5, default;
   }
-  `
+`;
 
 export default Product;
