@@ -41,7 +41,6 @@ function Product() {
             );
           })}
         </StSelectCategoryContainer>
-
         <StProductsContainer>
           {products &&
             products[selectCategory]?.map(
