@@ -125,45 +125,48 @@ function LocationPage() {
         <h2>매장 안내</h2>
         <p>원하시는 지역의 매장을 검색해 보세요!</p>
       </StoreMain>
-      <SearchWrap onSubmit={searchStore}>
-        <SearchTitle>매장명</SearchTitle>
-        <SearchBox>
-          <Input value={searchPlace} onChange={onSearchChanged} />
-          <SearchButton>검색</SearchButton>
-        </SearchBox>
-        {/* 검색결과창 */}
-        <SearchBodyContents>
-          {place.map((item) => {
-            //marker가 가지고 있는 것 : address, content, phone, position -> 'lat, lng'
-            const newMarker = {
-              address: item.address,
-              content: item.place_name,
-              phone: item.phone,
-              position: {
-                lat: item.x,
-                lng: item.y
-              }
-            };
-            return (
-              <SearchContentList
-                key={item.id}
-                onClick={() => handleClickSearchContent(newMarker)}
-              >
-                <img
-                  src="https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png"
-                  alt="빽다방 로고"
-                  width={50}
-                  height={50}
-                />
-                <SearchStoreInfo>
-                  <StoreTitle>{item.place_name}</StoreTitle>
-                  <StoreAddress>{item.road_address_name}</StoreAddress>
-                </SearchStoreInfo>
-              </SearchContentList>
-            );
-          })}
-        </SearchBodyContents>
-      </SearchWrap>
+
+      <MapWrapper>
+        <SearchWrap onSubmit={searchStore}>
+          <SearchTitle>매장명</SearchTitle>
+          <SearchBox>
+            <Input value={searchPlace} onChange={onSearchChanged} />
+            <SearchButton>검색</SearchButton>
+          </SearchBox>
+          {/* 검색결과창 */}
+          <SearchBodyContents>
+            {place.map((item) => {
+              //marker가 가지고 있는 것 : address, content, phone, position -> 'lat, lng'
+              const newMarker = {
+                address: item.address,
+                content: item.place_name,
+                phone: item.phone,
+                position: {
+                  lat: item.x,
+                  lng: item.y
+                }
+              };
+              return (
+                <SearchContentList
+                  key={item.id}
+                  onClick={() => handleClickSearchContent(newMarker)}
+                >
+                  <img
+                    src="https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png"
+                    alt="빽다방 로고"
+                    width={50}
+                    height={50}
+                  />
+                  <SearchStoreInfo>
+                    <StoreTitle>{item.place_name}</StoreTitle>
+                    <StoreAddress>{item.road_address_name}</StoreAddress>
+                  </SearchStoreInfo>
+                </SearchContentList>
+              );
+            })}
+          </SearchBodyContents>
+        </SearchWrap>
+      </MapWrapper>
       <Map // 로드뷰를 표시할 Container
         center={currentPosition}
         style={{
@@ -236,7 +239,6 @@ export default LocationPage;
 
 const Container = styled.div`
   position: relative;
-  /* max-width: 1200px; */
   min-width: 760px;
   height: 100%;
   display: flex;
@@ -272,11 +274,15 @@ const StoreMain = styled.div`
     margin-top: 2rem;
   }
 `;
-
+const MapWrapper = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+`;
 const SearchWrap = styled.form`
   position: absolute;
-  top: 38rem;
-  left: 23rem;
+  left: -56rem;
+  top: 1rem;
   width: 300px;
   z-index: 999;
   background-color: #071f60;
@@ -353,7 +359,7 @@ const ContentWrap = styled.div`
 `;
 const Contents = styled.div`
   position: absolute;
-  top: -7 rem;
+  top: -7rem;
   left: -1rem;
   border: 4px solid #ffe800;
   z-index: 999;
