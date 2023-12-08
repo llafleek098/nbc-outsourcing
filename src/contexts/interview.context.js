@@ -1,13 +1,18 @@
 import { createContext, useContext, useState } from 'react';
-import useInterview from '../hooks/useInterview';
+import { MAX_PAGE } from '../components/interview/form.data.js';
+import useInterview from '../hooks/useInterview.jsx';
 
 const initialState = {
   ages: '10ages',
   gender: 'male',
-  product: '',
+  productName: '',
   category: '',
+  page: 0,
+  interviews: [],
   handleSubmit: (e) => {},
-  handleChange: (e) => {}
+  handleChange: (e) => {},
+  handleNavigateNextPage: () => {},
+  handleNavigatePrevPage: () => {}
 };
 const InterviewContext = createContext(initialState);
 
@@ -16,6 +21,7 @@ export default function InterviewFormProvider({ children }) {
   const [gender, setGender] = useState('male');
   const [productName, setProductName] = useState('');
   const [category, setCategory] = useState('선택해주세요');
+  const [page, setPage] = useState(0);
 
   const { interviews, mutation } = useInterview();
 
@@ -27,17 +33,28 @@ export default function InterviewFormProvider({ children }) {
   };
 
   const handleChange = (e) => {
-    setters[e.currentTarget.name](e.target.value);
+    setters[e.target.name](e.target.value);
+
     if (e.currentTarget.name === 'category') {
-      // category가 바뀔떄는 productNAme은 디폴트 값으로 넘어감
       setProductName('');
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (page < MAX_PAGE - 1) return;
+    if (!ages || !gender || !productName || !category) {
+      alert('모든 항목을 선택해주세요');
+      setPage(0);
+      return;
+    }
+
     mutation.mutate({ ages, gender, productName, category });
   };
+
+  const handleNavigateNextPage = () => setPage((prev) => (prev + 1) % MAX_PAGE);
+  const handleNavigatePrevPage = () =>
+    setPage((prev) => (prev - 1 + MAX_PAGE) % MAX_PAGE);
 
   const value = {
     ages,
@@ -46,7 +63,10 @@ export default function InterviewFormProvider({ children }) {
     category,
     handleSubmit,
     handleChange,
-    interviews
+    interviews,
+    page,
+    handleNavigateNextPage,
+    handleNavigatePrevPage
   };
 
   return (
