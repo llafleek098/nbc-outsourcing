@@ -18,6 +18,7 @@ export const categoryData = [
   '아이스크림/디저트',
   '빽스치노'
 ];
+export const categories = categoryData.slice(1);
 
 function getCountData(data) {
   return data.reduce((result, item) => {

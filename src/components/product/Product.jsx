@@ -1,89 +1,82 @@
-import React, { useEffect, useState } from 'react'
-import product_bg from '../../assets/img/product_bg.png'
-import product_mbg from '../../assets/img/product_mbg.png'
-import 뱅쇼hot from '../../assets/img/뱅쇼hot.png'
-import styled from 'styled-components';
-import { css } from 'styled-components';
-import small_logo from '../../assets/img/small_Logo.png'
-import axios from 'axios';
+import React from 'react';
+import styled, { css } from 'styled-components';
+import product_bg from '../../assets/img/product_bg.png';
+import product_mbg from '../../assets/img/product_mbg.png';
+import small_logo from '../../assets/img/small_Logo.png';
+import useInput from '../../hooks/useInput';
+import useProduct from '../../hooks/useProduct';
+import { categories } from '../interview/forms/form.data';
 
 function Product() {
-
-  const productCategory = ['커피', '음료', '아이스크림/디저트', '빽스치노']
-  const [selectCategory, setSelectCategory] = useState('커피');
-  const [productList, setProductList] = useState(null);
-
-  const handleOnClickSelectCategory = e => setSelectCategory(e.target.textContent)
-
-  // 비동기 함수
-  const productlist = async () => {
-    try {
-      const {data} = await axios.get('http://localhost:4000/products')
-      setProductList(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    // DB로부터 값 가져오기
-    productlist();
-  }, [])
+  const [selectCategory, handleSelectCategory] = useInput('커피');
+  const { products } = useProduct();
 
   return (
     <StProductContainer>
       <StProductHeaderContainer>
-        <StProductBgImg className='product_bg' src={product_bg} alt='product background' />
-        <StProductBgImg className='product_mbg' src={product_mbg} alt='product mobile background' />
+        <StProductBgImg
+          className="product_bg"
+          src={product_bg}
+          alt="product background"
+        />
+        <StProductBgImg
+          className="product_mbg"
+          src={product_mbg}
+          alt="product mobile background"
+        />
         <div>PAIK'S MENU</div>
       </StProductHeaderContainer>
       <main>
-      <StSelectCategoryContainer>
-        {productCategory.map(category => {
-          return <StCategorybutton $selectCategory={selectCategory} key={category} onClick={handleOnClickSelectCategory}>{category}</StCategorybutton>
-        })}
-      </StSelectCategoryContainer>
+        <StSelectCategoryContainer>
+          {categories.map((category) => {
+            return (
+              <StCategoryButton
+                $selectCategory={selectCategory}
+                key={category}
+                onClick={handleSelectCategory}
+                value={category}
+              >
+                {category}
+              </StCategoryButton>
+            );
+          })}
+        </StSelectCategoryContainer>
 
-      <StProductsContainer>
-        <StProductBox>
-          <StProductImg src={뱅쇼hot} alt='productID' />
-          <StProductName>뱅쇼(HOT)</StProductName>
-            <StProductOverlay>
-              <h1>뱅쇼(HOT)</h1>
-              <h3>VIN CHAUD</h3>
-              <hr />
-              <p>상큼한 과일향과 풍부한 시나몬향이 매력적인 메뉴</p>
-            </StProductOverlay>
-        </StProductBox>
-        {productList && productList[selectCategory]?.map(item => {
-          return (
-            <StProductBox key={item.name}>
-              <StProductImg src={item.imgSrc} alt='productID' />
-              <StProductName>{item.name}</StProductName>
-                <StProductOverlay>
-                  <h1>{item.name}</h1>
-                  <h3>{item.subName}</h3>
-                  <hr />
-                  <p>{item.description}</p>
-                </StProductOverlay>
-            </StProductBox>
-          )
-        })}
-      </StProductsContainer>
+        <StProductsContainer>
+          {products &&
+            products[selectCategory]?.map(
+              ({ name, imgSrc, subName, description }) => {
+                return (
+                  <StProductBox key={name}>
+                    <StProductImg src={imgSrc} alt="productID" />
+                    <StProductName>{name}</StProductName>
+                    <StProductOverlay>
+                      <h1>{name}</h1>
+                      <h3>{subName}</h3>
+                      <hr />
+                      <p>{description}</p>
+                    </StProductOverlay>
+                  </StProductBox>
+                );
+              }
+            )}
+        </StProductsContainer>
       </main>
-  </StProductContainer>
-  )
-};
+    </StProductContainer>
+  );
+}
 
 // 전체를 감싸는 컨테이너
 const StProductContainer = styled.div`
   margin: 0 auto;
-  div, button {
+  div,
+  button {
     font-weight: bold;
   }
 `;
 
 // 헤더 전체 컨테이너
+
 const StProductHeaderContainer = styled.header`
   position: relative;
   display: flex;
@@ -99,12 +92,12 @@ const StProductHeaderContainer = styled.header`
     display: block;
   }
   .product_mbg {
-      display: none;
-    }
-  @media screen and (max-width: 37.5rem) {
-    .product_bg {
     display: none;
   }
+  @media screen and (max-width: 37.5rem) {
+    .product_bg {
+      display: none;
+    }
     .product_mbg {
       display: block;
       width: 100%;
@@ -130,7 +123,7 @@ const StProductBgImg = styled.img`
   margin: auto;
 `;
 // 카테고리 탭 전체 컨테이너
-const StSelectCategoryContainer = styled.main`
+const StSelectCategoryContainer = styled.ul`
   display: flex;
   justify-content: center;
   padding: 2rem;
@@ -142,7 +135,7 @@ const StSelectCategoryContainer = styled.main`
   }
 `;
 // 카테고리 버튼
-const StCategorybutton = styled.button`
+const StCategoryButton = styled.button`
   width: 20rem;
   padding: 0.5rem 2rem;
   border: 0.1rem solid #f1f1f1;
@@ -151,8 +144,8 @@ const StCategorybutton = styled.button`
   transition: 0.3s;
   letter-spacing: 3px;
   &:hover {
-    background-color: #FFE800;
-    color: #071F60;
+    background-color: #ffe800;
+    color: #071f60;
     cursor: pointer;
   }
   @media screen and (max-width: 37.5rem) {
@@ -163,14 +156,14 @@ const StCategorybutton = styled.button`
   ${(props) => {
     if (props.$selectCategory === props.children) {
       return css`
-        background-color: #FFE800;
-        color: #071F60;
+        background-color: #ffe800;
+        color: #071f60;
       `;
     }
     return css`
       background-color: white;
       color: #7483aa;
-    `
+    `;
   }}
 `;
 
@@ -213,7 +206,7 @@ const StProductImg = styled.img`
 const StProductName = styled.h1`
   font-size: 1.7rem;
   position: absolute;
-  color: #071F60;
+  color: #071f60;
   bottom: 5%;
 `;
 // 호버 시 올라오는 상품 설명 박스
@@ -224,12 +217,12 @@ const StProductOverlay = styled.div`
   top: 0;
   left: 0;
   position: absolute;
-  background: #FFE800;
+  background: #ffe800;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   opacity: 0;
-  transition: all .5s;
+  transition: all 0.5s;
   transform: translateY(2.5rem);
   & h1 {
     font-size: 2.3rem;
@@ -239,7 +232,7 @@ const StProductOverlay = styled.div`
     margin: 0 0 0.6rem 0.2rem;
   }
   & hr {
-    border-color: #071F60;
+    border-color: #071f60;
     width: 100%;
   }
   & p {
