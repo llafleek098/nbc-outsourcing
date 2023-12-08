@@ -12,14 +12,14 @@ const initialState = {
   selectedMarker: null
 };
 
-async function searchPaik(mapInstance) {
+async function searchPaik(mapInstance, searchPlace) {
   if (!window.kakao) throw new Error('not kakao');
   const placeSearchInstance = new window.kakao.maps.services.Places(
     mapInstance
   );
   return new Promise((res) => {
     placeSearchInstance.keywordSearch(
-      '빽다방',
+      searchPlace || '빽다방',
       (data, status) => {
         if (status === window.kakao.maps.services.Status.OK) {
           const bounds = new window.kakao.maps.LatLngBounds();
