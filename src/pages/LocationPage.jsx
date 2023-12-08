@@ -5,6 +5,7 @@ import storeBg from '../assets/img/store-bg.jpg';
 import PageBannerWrapper from '../components/common/PageBanner.styles';
 
 function LocationPage() {
+  // info : selectedMarker
   const [info, setInfo] = useState();
   const [markers, setMarkers] = useState([]);
   const [map, setMap] = useState();
@@ -26,7 +27,7 @@ function LocationPage() {
     const ps = new window.kakao.maps.services.Places(map);
     ps.keywordSearch(
       '빽다방',
-      (data, status, _pagination) => {
+      (data, status) => {
         setPlace(data);
 
         if (status === window.kakao.maps.services.Status.OK) {

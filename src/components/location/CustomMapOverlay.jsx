@@ -1,18 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-function CustomMapOverlay({ marker, handler }) {
+import useKakaoMap from '../../hooks/useKakaoMap';
+function CustomMapOverlay({ marker }) {
+  const { updateSelectedMarker } = useKakaoMap();
+  const removeSelectedMarker = () => {
+    updateSelectedMarker(null);
+  };
   return (
     <StContentWrap>
       <StContents>
         <StTitleWrap>
           <StTitle>{marker.content}</StTitle>
-          <StCloseBtn
-            onClick={() => {
-              handler(null);
-            }}
-          >
-            x
-          </StCloseBtn>
+          <StCloseBtn onClick={removeSelectedMarker}>x</StCloseBtn>
         </StTitleWrap>
         <StBodyContents>
           <img
