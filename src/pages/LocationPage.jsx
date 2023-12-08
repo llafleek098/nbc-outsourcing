@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-// import { Map, MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
+import { Map, MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
 import styled from 'styled-components';
 
 function LocationPage() {
@@ -79,7 +79,7 @@ function LocationPage() {
   const onSearchChanged = () => {};
   return (
     <Container>
-      {/* <Input ref={inputRef} onChange={onSearchChanged} />
+      <Input ref={inputRef} onChange={onSearchChanged} />
       <Map // 로드뷰를 표시할 Container
         center={currentPosition}
         style={{
@@ -123,7 +123,7 @@ function LocationPage() {
             </MapMarker>
           ))}
         </MarkerClusterer>
-      </Map> */}
+      </Map>
     </Container>
   );
 }
