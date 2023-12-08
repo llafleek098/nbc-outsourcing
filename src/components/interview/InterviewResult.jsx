@@ -21,6 +21,7 @@ function InterviewResult() {
     category &&
     productName &&
     products[category].find((product) => product.name === productName);
+
   const filteredInterviews = interviews
     ? interviews.filter((interview) => interview.productName === productName)
     : [];
