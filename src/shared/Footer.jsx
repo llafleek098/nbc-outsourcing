@@ -32,18 +32,21 @@ const StFooterContainer = styled.div`
 
 const StFooterLogo = styled.img`
   width: 200px;
+  margin-bottom: 5px;
   @media screen and (max-width: 75rem) {
     width: 150px;
   }
 `;
 
 const StFooterText = styled.p`
-  font-size: 15px;
+  font-size: 13px;
+  color: #4c4d52;
   @media screen and (max-width: 75rem) {
     display: flex;
     justify-content: center;
     text-align: center;
     align-items: center;
+    flex-direction: column;
   }
 `;
 
