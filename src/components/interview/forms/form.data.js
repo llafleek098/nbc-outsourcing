@@ -1,3 +1,7 @@
+import FormAges from './FormAges';
+import FormGender from './FormGender';
+import FormProduct from './FormProduct';
+
 export const agesData = [
   { value: '10ages', label: '10대' },
   { value: '20ages', label: '20대' },
@@ -33,3 +37,10 @@ export const getGenderCountData = () =>
     { value: 'female', label: '여성' },
     { value: 'male', label: '남성' }
   ]);
+
+export const pagesData = [
+  { component: FormAges, title: '나이대를 선택해주세요' },
+  { component: FormGender, title: '성별을 선택해주세요' },
+  { component: FormProduct, title: '좋아하는 메뉴를 선택해주세요' }
+];
+export const MAX_PAGE = pagesData.length;
