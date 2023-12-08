@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const colors = [
-  '#ED4C67',
-  '#12CAFF',
-  '#FFC312',
-  '#C4E538',
-  '#FDA7DF',
-  '#B53471'
+  '#FC6A6A',
+  '#A8CAFF',
+  '#FCEDA7',
+  '#D9F5AB',
+  '#DDB5F5',
+  '#FFC9E3'
 ];
 function InterviewChart({ title, countData, total }) {
   return (
@@ -25,7 +25,7 @@ function InterviewChart({ title, countData, total }) {
                 $percent={percent}
               >
                 <p>{label}</p>
-                <p>{percent * 100}%</p>
+                <p>{parseInt(percent * 100)}%</p>
               </StInterviewChartItem>
             )
           );
