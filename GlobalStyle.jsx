@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const styled = { createGlobalStyle };
 
-const GlobalStyles = styled.createGlobalStyle`
+export const GlobalStyles = styled.createGlobalStyle`
   // reset css
   /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -134,6 +134,16 @@ const GlobalStyles = styled.createGlobalStyle`
     border-spacing: 0;
   }
 
+  div,
+  section,
+  footer,
+  header,
+  article,
+  aside,
+  nav {
+    box-sizing: border-box;
+  }
+
   a {
     color: inherit;
     text-decoration: none;
@@ -142,18 +152,4 @@ const GlobalStyles = styled.createGlobalStyle`
     border: none;
     background-color: none;
   }
-  /* typography */
-  html {
-    font-size: 62.5%;
-  }
-  * {
-    box-sizing: border-box;
-  }
-  :root {
-    --primaryColor: #071f60;
-    --secondaryColor: #e6e7e8;
-    --accentColor: #ffe800;
-  }
 `;
-
-export default GlobalStyles;

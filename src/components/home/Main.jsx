@@ -1,25 +1,22 @@
 import React from 'react'
-import bg1 from '../assets/img/main_bg1.jpg'
-import bg2 from '../assets/img/main_bg2.jpg'
-import bg3 from '../assets/img/main_bg3.jpg'
-import logo from '../assets/img/Logo.png'
 import styled from 'styled-components'
+import logo from '../../assets/img/Logo.png';
+import bg1 from '../../assets/img/main_bg1.jpg';
+import bg2 from '../../assets/img/main_bg2.jpg';
+import bg3 from '../../assets/img/main_bg3.jpg';
 import { Link } from 'react-router-dom'
+import YoutubeWrapper from './YoutubeWrapper';
 
 function Main() {
-
   return (
-    <div>
-      <StYouTubeWrapper>
-        <StYouTubeVideo>
-        </StYouTubeVideo>
-      </StYouTubeWrapper>
+    <StMainWrapper>
+      <YoutubeWrapper />
       <StEntireContainer>
         <StMenuLinkWrapper to='/products'>
           <StBgImg className='bg1' src={bg1} alt='products background img' />
           <p>PAIK'S MENU</p>
           <StMenuButtonBox>
-            <PlusButton/>
+            <PlusButton />
           </StMenuButtonBox>
         </StMenuLinkWrapper>
         <StFavoriteStoreContainer>
@@ -29,41 +26,29 @@ function Main() {
             FAVORITE<br />
             PAIK'S</p>
             <StFavoriteButtonBox>
-            <PlusButton/>
+            <PlusButton />
             </StFavoriteButtonBox>
           </StFavoriteWrapper>
           <StStoreWrapper to='/location'>
             <StBgImg src={bg3} alt='location background img' />
             <p>PAIK'S STORE</p>
             <StStoreButtonBox>
-            <PlusButton/>
+              <PlusButton />
             </StStoreButtonBox>
           </StStoreWrapper>
         </StFavoriteStoreContainer>
       </StEntireContainer>
-    </div>
-  )
+    </StMainWrapper>
+  );
 }
 
-// 유튜브가 들어갈 공간
-const StYouTubeWrapper = styled.div`
-  background-color: pink;
-  width: 100%;
-  aspect-ratio: 1.78/1;
-  position: relative;
-`;
-// 유튜브 크기 지정
-const StYouTubeVideo = styled.div`
-  border: 1px solid red;
-  height: 100%;
-  width: 100%;
-  max-width: 1280px;
-  max-height: 720px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 2rem;
+// 전체를 감싸는 컨테이너
+const StMainWrapper = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  p {
+    letter-spacing: -3.9px;
+  }
 `;
 
 // 페이지 이동 컴포넌트가 모두 들어있는 가장 큰 컨테이너
@@ -80,16 +65,16 @@ const StEntireContainer = styled.div`
     font-size: 4rem;
   }
   `;
-  // 각 컴포넌트에 들어갈 배경이미지 사이즈 지정
-  const StBgImg = styled.img`
-    top: 0;
-    left: 0;
-    transform: translate(50, 50);
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    margin: auto;
-  `;
+// 각 컴포넌트에 들어갈 배경이미지 사이즈 지정
+const StBgImg = styled.img`
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+`;
 // 메뉴 페이지 이동 컴포넌트(링크)
 const StMenuLinkWrapper = styled(Link)`
   height: 50rem;
@@ -97,12 +82,12 @@ const StMenuLinkWrapper = styled(Link)`
   position: relative;
   overflow: hidden;
   & .bg1 {
-  transform: scale(1.0);
-  transition: transform 0.5s;
+    transform: scale(1);
+    transition: transform 0.5s;
   }
   & p {
     color: #6b4d30;
-    font-weight: bold;
+    font-weight: 800;
     position: absolute;
     top: 70%;
     left: 7%;
@@ -141,7 +126,7 @@ const StButtonAnimation = styled.div`
   position: relative;
   transition: 0.4s;
   transform-style: preserve-3d;
-`
+`;
 // 플러스 모양 버튼(앞면)
 const StMoveButton = styled.button`
   background-color: white;
@@ -239,6 +224,67 @@ const StStoreButtonBox = styled.div`
   }
 `;
 
+// const StFavoriteStoreContainer = styled.div`
+//   height: 50rem;
+//   width: 50%;
+//   @media screen and (max-width: 75rem) {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//   }
+// `;
+
+// const StFavoriteWrapper = styled.div`
+//   height: 50%;
+//   position: relative;
+//   &:hover {
+//     cursor: pointer;
+//   }
+//   & p {
+//     color: #071f60;
+//     font-weight: 900;
+//     position: absolute;
+//     top: 13%;
+//     left: 7%;
+//     @media screen and (max-width: 75rem) {
+//       top: 17%;
+//       left: 7%;
+//     }
+//   }
+//   @media screen and (max-width: 75rem) {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//   }
+// `;
+
+// const StStoreWrapper = styled.div`
+//   height: 50%;
+//   position: relative;
+//   &:hover {
+//     cursor: pointer;
+//   }
+//   & p {
+//     color: white;
+//     font-weight: bold;
+//     position: absolute;
+//     bottom: 15%;
+//     right: 5%;
+//     @media screen and (max-width: 75rem) {
+//       color: white;
+//       font-weight: bold;
+//       position: absolute;
+//       bottom: 15%;
+//       right: 5%;
+//     }
+//   }
+//   @media screen and (max-width: 75rem) {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//   }
+// `;
+
 // 반복되는 플러스 버튼 함수화
 const PlusButton = () => {
   return (
@@ -246,7 +292,7 @@ const PlusButton = () => {
       <StMoveButton>+</StMoveButton>
       <StSwitchLogoImg src={logo} />
     </StButtonAnimation>
-  )
-}
+  );
+};
 
 export default Main;
