@@ -173,13 +173,8 @@ function LocationPage() {
           </StSearchBodyContents>
         </StSearchWrap>
       </StMapWrapper>
-      <Map // 로드뷰를 표시할 Container
+      <StyledMap // 로드뷰를 표시할 Container
         center={currentPosition}
-        style={{
-          width: '1200px',
-          height: '400px',
-          position: 'relative'
-        }}
         level={5}
         onCreate={(map) => {
           setMap(map);
@@ -236,12 +231,18 @@ function LocationPage() {
             )}
           </MapMarker>
         ))}
-      </Map>
+      </StyledMap>
     </Container>
   );
 }
 
 export default LocationPage;
+
+const StyledMap = styled(Map)`
+  width: 120rem;
+  height: 80rem;
+  position: relative;
+`;
 
 // 헤더 전체를 감싸는 컨테이너
 const StStoreContainer = styled.div`
@@ -366,7 +367,7 @@ const StSearchWrap = styled.form`
   left: -56rem;
   top: 1rem;
   width: 300px;
-  z-index: 999;
+  z-index: 2;
   background-color: #071f60;
   border-radius: 1rem;
 `;
