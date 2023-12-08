@@ -24,6 +24,7 @@ const StFooterContainer = styled.div`
   justify-content: center;
   text-align: center;
   align-items: center;
+  flex-direction: column;
   @media screen and (max-width: 75rem) {
     background-color: white;
   }
