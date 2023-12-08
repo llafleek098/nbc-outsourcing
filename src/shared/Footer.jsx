@@ -17,23 +17,20 @@ const Footer = () => {
 };
 
 const StFooterContainer = styled.div`
-  background-color: white;
-  width: 100vw;
-  height: 100px;
+  margin: 4rem 0;
+  width: 100%;
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
   flex-direction: column;
-  @media screen and (max-width: 75rem) {
-    background-color: white;
-  }
+
 `;
 
 const StFooterLogo = styled.img`
-  width: 200px;
-  margin-bottom: 5px;
-  @media screen and (max-width: 75rem) {
+  max-width: 200px;
+  margin-bottom: 2rem;
+  @media screen and (max-width: 37.5rem) {
     width: 150px;
   }
 `;
@@ -41,13 +38,6 @@ const StFooterLogo = styled.img`
 const StFooterText = styled.p`
   font-size: 13px;
   color: #4c4d52;
-  @media screen and (max-width: 75rem) {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    flex-direction: column;
-  }
 `;
 
 export default Footer;
