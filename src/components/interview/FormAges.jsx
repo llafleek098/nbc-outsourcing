@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useInterviewForm } from '../../contexts/interview.context';
+import {
+  StRadioInputContainer,
+  StRadioInputWrapper
+} from './InterviewForm.styles';
 import { agesData } from './form.data';
-import { StRadioInputContainer, StRadioInputWrapper } from './form.styles';
 
 const FormAges = () => {
   const { ages, handleChange } = useInterviewForm();
