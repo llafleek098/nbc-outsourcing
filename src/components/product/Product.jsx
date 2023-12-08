@@ -14,36 +14,45 @@ function Product() {
   const handleOnClickSelectCategory = e => setSelectCategory(e.target.textContent)
 
   return (
-    <>
-  <StProductHeaderContainer>
-    <StProductBgImg className='product_bg' src={product_bg} alt='product background' />
-    <StProductBgImg className='product_mbg' src={product_mbg} alt='product mobile background' />
-    <div>PAIK'S MENU</div>
-  </StProductHeaderContainer>
-  <main>
-  <StSelectCategoryContainer>
-    {productCategory.map(category => {
-      return <StCategorybutton $selectCategory={selectCategory} key={category} onClick={handleOnClickSelectCategory}>{category}</StCategorybutton>
-    })}
-  </StSelectCategoryContainer>
+    <StProductContainer>
+      <StProductHeaderContainer>
+        <StProductBgImg className='product_bg' src={product_bg} alt='product background' />
+        <StProductBgImg className='product_mbg' src={product_mbg} alt='product mobile background' />
+        <div>PAIK'S MENU</div>
+      </StProductHeaderContainer>
+      <main>
+      <StSelectCategoryContainer>
+        {productCategory.map(category => {
+          return <StCategorybutton $selectCategory={selectCategory} key={category} onClick={handleOnClickSelectCategory}>{category}</StCategorybutton>
+        })}
+      </StSelectCategoryContainer>
 
-  <StProductsContainer>
-    <StProductBox>
-      <StProductImg src={뱅쇼hot} alt='productID' />
-      <StProductName>뱅쇼(HOT)</StProductName>
-        <StProductOverlay>
-          <h1>뱅쇼(HOT)</h1>
-          <h3>VIN CHAUD</h3>
-          <hr />
-          <p>상큼한 과일향과 풍부한 시나몬향이 매력적인 메뉴</p>
-        </StProductOverlay>
-    </StProductBox>
-  </StProductsContainer>
-  </main>
-    </>
+      <StProductsContainer>
+        <StProductBox>
+          <StProductImg src={뱅쇼hot} alt='productID' />
+          <StProductName>뱅쇼(HOT)</StProductName>
+            <StProductOverlay>
+              <h1>뱅쇼(HOT)</h1>
+              <h3>VIN CHAUD</h3>
+              <hr />
+              <p>상큼한 과일향과 풍부한 시나몬향이 매력적인 메뉴</p>
+            </StProductOverlay>
+        </StProductBox>
+      </StProductsContainer>
+      </main>
+  </StProductContainer>
   )
 };
 
+// 전체를 감싸는 컨테이너
+const StProductContainer = styled.div`
+  margin: 0 auto;
+  div, button {
+    font-weight: bold;
+  }
+`;
+
+// 헤더 전체 컨테이너
 const StProductHeaderContainer = styled.header`
   position: relative;
   display: flex;
@@ -51,8 +60,8 @@ const StProductHeaderContainer = styled.header`
   align-items: center;
   & div {
     color: #6b4d30;
+    letter-spacing: -5px;
     font-size: 5rem;
-    font-weight: bold;
     position: absolute;
   }
   .product_bg {
@@ -105,10 +114,11 @@ const StSelectCategoryContainer = styled.main`
 const StCategorybutton = styled.button`
   width: 20rem;
   padding: 0.5rem 2rem;
-  border: 0.1rem solid white;
+  border: 0.1rem solid #f1f1f1;
   border-radius: 0.5rem;
   font-size: 1.5rem;
   transition: 0.3s;
+  letter-spacing: 3px;
   &:hover {
     background-color: #FFE800;
     color: #071F60;
@@ -127,8 +137,8 @@ const StCategorybutton = styled.button`
       `;
     }
     return css`
-      background-color: #071F60;
-      color: white;
+      background-color: white;
+      color: #7483aa;
     `
   }}
 `;
@@ -172,6 +182,7 @@ const StProductImg = styled.img`
 const StProductName = styled.h1`
   font-size: 1.7rem;
   position: absolute;
+  color: #071F60;
   bottom: 5%;
 `
 // 호버 시 올라오는 상품 설명 박스

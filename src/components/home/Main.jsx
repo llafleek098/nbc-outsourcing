@@ -224,67 +224,6 @@ const StStoreButtonBox = styled.div`
   }
 `;
 
-// const StFavoriteStoreContainer = styled.div`
-//   height: 50rem;
-//   width: 50%;
-//   @media screen and (max-width: 75rem) {
-//     width: 100%;
-//     display: flex;
-//     flex-direction: column;
-//   }
-// `;
-
-// const StFavoriteWrapper = styled.div`
-//   height: 50%;
-//   position: relative;
-//   &:hover {
-//     cursor: pointer;
-//   }
-//   & p {
-//     color: #071f60;
-//     font-weight: 900;
-//     position: absolute;
-//     top: 13%;
-//     left: 7%;
-//     @media screen and (max-width: 75rem) {
-//       top: 17%;
-//       left: 7%;
-//     }
-//   }
-//   @media screen and (max-width: 75rem) {
-//     width: 100%;
-//     display: flex;
-//     flex-direction: column;
-//   }
-// `;
-
-// const StStoreWrapper = styled.div`
-//   height: 50%;
-//   position: relative;
-//   &:hover {
-//     cursor: pointer;
-//   }
-//   & p {
-//     color: white;
-//     font-weight: bold;
-//     position: absolute;
-//     bottom: 15%;
-//     right: 5%;
-//     @media screen and (max-width: 75rem) {
-//       color: white;
-//       font-weight: bold;
-//       position: absolute;
-//       bottom: 15%;
-//       right: 5%;
-//     }
-//   }
-//   @media screen and (max-width: 75rem) {
-//     width: 100%;
-//     display: flex;
-//     flex-direction: column;
-//   }
-// `;
-
 // 반복되는 플러스 버튼 함수화
 const PlusButton = () => {
   return (
