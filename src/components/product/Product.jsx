@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import product_bg from '../../assets/img/product_bg.png'
 import product_mbg from '../../assets/img/product_mbg.png'
-import 뱅쇼hot from '../../assets/img/뱅쇼hot.png'
 import styled from 'styled-components';
 import { css } from 'styled-components';
 import small_logo from '../../assets/img/small_Logo.png'
@@ -45,16 +44,6 @@ function Product() {
       </StSelectCategoryContainer>
 
       <StProductsContainer>
-        <StProductBox>
-          <StProductImg src={뱅쇼hot} alt='productID' />
-          <StProductName>뱅쇼(HOT)</StProductName>
-            <StProductOverlay>
-              <h1>뱅쇼(HOT)</h1>
-              <h3>VIN CHAUD</h3>
-              <hr />
-              <p>상큼한 과일향과 풍부한 시나몬향이 매력적인 메뉴</p>
-            </StProductOverlay>
-        </StProductBox>
         {productList && productList[selectCategory]?.map(item => {
           return (
             <StProductBox key={item.name}>
