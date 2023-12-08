@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import styled from 'styled-components';
+import storebg from '../assets/img/store-bg.jpg';
 
 function LocationPage() {
   const [info, setInfo] = useState();
@@ -82,7 +83,7 @@ function LocationPage() {
     }
   }, []);
   useEffect(() => {
-    console.log('map', map);
+    // console.log('map', map);
     searchPaik();
   }, [map]);
 
@@ -114,9 +115,16 @@ function LocationPage() {
       }
     });
   };
+  const handleClickSearchContent = (marker) => {
+    console.log(marker);
+    setInfo(marker);
+  };
   return (
     <Container>
-      <StoreMain>매장 안내</StoreMain>
+      <StoreMain image={storebg}>
+        <h2>매장 안내</h2>
+        <p>원하시는 지역의 매장을 검색해 보세요!</p>
+      </StoreMain>
       <SearchWrap onSubmit={searchStore}>
         <SearchTitle>매장명</SearchTitle>
         <SearchBox>
@@ -126,8 +134,21 @@ function LocationPage() {
         {/* 검색결과창 */}
         <SearchBodyContents>
           {place.map((item) => {
+            //marker가 가지고 있는 것 : address, content, phone, position -> 'lat, lng'
+            const newMarker = {
+              address: item.address,
+              content: item.place_name,
+              phone: item.phone,
+              position: {
+                lat: item.x,
+                lng: item.y
+              }
+            };
             return (
-              <SearchContentList key={item.id}>
+              <SearchContentList
+                key={item.id}
+                onClick={() => handleClickSearchContent(newMarker)}
+              >
                 <img
                   src="https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png"
                   alt="빽다방 로고"
@@ -146,8 +167,9 @@ function LocationPage() {
       <Map // 로드뷰를 표시할 Container
         center={currentPosition}
         style={{
-          width: '100%',
-          height: '400px'
+          width: '1200px',
+          height: '400px',
+          position: 'relative'
         }}
         level={5}
         onCreate={(map) => {
@@ -214,7 +236,7 @@ export default LocationPage;
 
 const Container = styled.div`
   position: relative;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   min-width: 760px;
   height: 100%;
   display: flex;
@@ -224,17 +246,37 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
-const StoreMain = styled.h2`
-  font-size: 24px;
-  margin: 60px 0;
-  color: #071f60;
-  font-weight: 600;
+const StoreMain = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url(${(props) => props.image});
+  min-height: 300px;
+  width: 100%;
+  margin-bottom: 60px;
+  & h2 {
+    font-size: 40px;
+    ::after {
+      display: block;
+      width: 40px;
+      height: 2px;
+      margin: 32px auto;
+      background: #202020;
+      content: '';
+    }
+  }
+  & p {
+    font-size: 20px;
+    margin-top: 2rem;
+  }
 `;
 
 const SearchWrap = styled.form`
   position: absolute;
-  top: 16rem;
-  left: 2rem;
+  top: 38rem;
+  left: 23rem;
   width: 300px;
   z-index: 999;
   background-color: #071f60;
@@ -292,6 +334,7 @@ const SearchContentList = styled.li`
   padding: 1rem;
   width: 100%;
   border-bottom: 1px solid gray;
+  cursor: pointer;
 `;
 const SearchStoreInfo = styled.div`
   margin-left: 1rem;
@@ -310,7 +353,7 @@ const ContentWrap = styled.div`
 `;
 const Contents = styled.div`
   position: absolute;
-  top: -6.5rem;
+  top: -7 rem;
   left: -1rem;
   border: 4px solid #ffe800;
   z-index: 999;
