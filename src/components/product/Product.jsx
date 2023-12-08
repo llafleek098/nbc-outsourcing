@@ -1,17 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import product_bg from '../../assets/img/product_bg.png'
 import product_mbg from '../../assets/img/product_mbg.png'
 import 뱅쇼hot from '../../assets/img/뱅쇼hot.png'
 import styled from 'styled-components';
 import { css } from 'styled-components';
-// import logo from '../../assets/img/Logo.png'
+import small_logo from '../../assets/img/small_Logo.png'
+import axios from 'axios';
 
 function Product() {
 
-  const productCategory = ['신메뉴', '커피', '음료', '디저트', '빽스치노']
-  const [selectCategory, setSelectCategory] = useState('신메뉴');
+  const productCategory = ['커피', '음료', '아이스크림/디저트', '빽스치노']
+  const [selectCategory, setSelectCategory] = useState('커피');
+  const [productList, setProductList] = useState(null);
 
   const handleOnClickSelectCategory = e => setSelectCategory(e.target.textContent)
+
+  // 비동기 함수
+  const productlist = async () => {
+    try {
+      const {data} = await axios.get('http://localhost:4000/products')
+      setProductList(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    // DB로부터 값 가져오기
+    productlist();
+  }, [])
 
   return (
     <StProductContainer>
@@ -38,6 +55,20 @@ function Product() {
               <p>상큼한 과일향과 풍부한 시나몬향이 매력적인 메뉴</p>
             </StProductOverlay>
         </StProductBox>
+        {productList && productList[selectCategory]?.map(item => {
+          return (
+            <StProductBox key={item.name}>
+              <StProductImg src={item.imgSrc} alt='productID' />
+              <StProductName>{item.name}</StProductName>
+                <StProductOverlay>
+                  <h1>{item.name}</h1>
+                  <h3>{item.subName}</h3>
+                  <hr />
+                  <p>{item.description}</p>
+                </StProductOverlay>
+            </StProductBox>
+          )
+        })}
       </StProductsContainer>
       </main>
   </StProductContainer>
@@ -184,7 +215,7 @@ const StProductName = styled.h1`
   position: absolute;
   color: #071F60;
   bottom: 5%;
-`
+`;
 // 호버 시 올라오는 상품 설명 박스
 const StProductOverlay = styled.div`
   width: 100%;
@@ -218,7 +249,8 @@ const StProductOverlay = styled.div`
   &:hover {
     opacity: 0.7;
     transform: translateY(0rem);
+    cursor: url(${small_logo}) 5 5, default;
   }
-  `
+`;
 
 export default Product;
