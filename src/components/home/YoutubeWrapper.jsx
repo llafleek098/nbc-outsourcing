@@ -61,18 +61,14 @@ const StYoutubePlayerWrapper = styled.div`
   width: 100%;
   aspect-ratio: 1.78/1;
   position: relative;
-
   margin-bottom: 2rem;
   margin-top: 6rem;
 `;
 const StYoutubePlayerContainer = styled.ul`
   position: relative;
-
   width: 100%;
   height: 100%;
-
   overflow: hidden;
-
   border-radius: 1rem;
   padding: 5rem;
   @media screen and (max-width: 75rem) {
@@ -100,11 +96,9 @@ const StYoutubePlayerItem = styled.li`
 const StControlButtonContainer = styled.div`
   position: absolute;
   width: 100%;
-
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -119,7 +113,6 @@ const StControlButtonContainer = styled.div`
     color: white;
     cursor: pointer;
     transition: color 0.4s ease-in-out;
-
     color: var(--primaryColor);
   }
   button:hover {
@@ -133,7 +126,6 @@ const StControlButtonContainer = styled.div`
 `;
 const StPaginationContainer = styled.div`
   position: absolute;
-
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
@@ -153,7 +145,7 @@ const StPaginationContainer = styled.div`
     background-color: var(--accentColor);
   }
   @media screen and (max-width: 75rem) {
-    bottom: -2rem;
+    bottom: -1.6rem;
     input[type='radio'] {
       width: 0.85rem;
       height: 0.85rem;
