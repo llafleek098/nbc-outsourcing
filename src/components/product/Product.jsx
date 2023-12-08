@@ -5,6 +5,7 @@ import product_bg from '../../assets/img/product_bg.png';
 import product_mbg from '../../assets/img/product_mbg.png';
 import small_logo from '../../assets/img/small_Logo.png';
 import useProduct from '../../hooks/useProduct';
+import { default as PageBannerWrapper } from '../common/PageBanner.styles';
 import { categories } from '../interview/forms/form.data';
 
 function Product() {
@@ -14,19 +15,9 @@ function Product() {
 
   return (
     <StProductContainer>
-      <StProductHeaderContainer>
-        <StProductBgImg
-          className="product_bg"
-          src={product_bg}
-          alt="product background"
-        />
-        <StProductBgImg
-          className="product_mbg"
-          src={product_mbg}
-          alt="product mobile background"
-        />
-        <h2>PAIK'S MENU</h2>
-        <p>지금 바로 가까운 매장에서 빽다방 메뉴를 만나 보실 수 있습니다.</p>
+      <StProductHeaderContainer basicBg={product_bg} mobileBg={product_mbg}>
+        <h2>paik's menu</h2>
+        <p>빽다방에서 제공하는 메뉴를 확인해보세요</p>
       </StProductHeaderContainer>
       <main>
         <StSelectCategoryContainer>
@@ -77,58 +68,21 @@ const StProductContainer = styled.div`
 `;
 
 // 헤더 전체 컨테이너
-const StProductHeaderContainer = styled.header`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  & h2 {
+
+const StProductHeaderContainer = styled(PageBannerWrapper)`
+  h2 {
     color: #6b4d30;
-    letter-spacing: -5px;
-    font-size: 5rem;
-    position: absolute;
-    top: 45%;
-    transform: translateY(-45%);
-  }
-  & p {
-    font-size: 2rem;
-    position: absolute;
-    top: 57%;
-    transform: translateY(-57%);
-  }
-  .product_bg {
-    display: block;
-  }
-  .product_mbg {
-    display: none;
   }
   @media screen and (max-width: 37.5rem) {
-    .product_bg {
-      display: none;
-    }
-    .product_mbg {
-      display: block;
-      height: 50rem;
-      min-height: 40rem;
-      min-width: 20rem;
-    }
-    & h2 {
-      font-size: 3.5rem;
-      top: 88%;
-      transform: translateY(-88%);
-    }
-    & p {
-      font-size: 1.5rem;
-      top: 93%;
-      transform: translateY(-93%);
-    }
+    padding-bottom: 7%;
   }
   @media screen and (max-width: 30rem) {
-    & h2 {
+    h2 {
       font-size: 3.5rem;
-      top: 92%;
-      transform: translateY(-92%);
+      /* top: 92%;
+      transform: translateY(-92%); */
     }
-    & p {
+    p {
       display: none;
     }
   }
@@ -149,13 +103,14 @@ const StSelectCategoryContainer = styled.ul`
   display: flex;
   justify-content: center;
   padding: 2rem;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
   @media screen and (max-width: 37.5rem) {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0;
   }
-  `;
+`;
 // 카테고리 버튼
 const StCategoryButton = styled(Link)`
   width: 25rem;
@@ -178,7 +133,6 @@ const StCategoryButton = styled(Link)`
   @media screen and (max-width: 37.5rem) {
     min-width: 13rem;
     width: 80%;
-
   }
   /* 눌러지는 카테고리마다 조건부 css */
   ${(props) => {
@@ -210,9 +164,9 @@ const StProductListContainer = styled.div`
   @media screen and (max-width: 37.5rem) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media screen and (max-width: 20rem) {
+  /* @media screen and (max-width: 20rem) {
     grid-template-columns: 1fr;
-  }
+  } */
 `;
 // 제품 사진과 이름이 들어갈 박스
 const StProductBox = styled.li`
@@ -249,9 +203,9 @@ const StProductName = styled.h1`
   color: #071f60;
   bottom: 5%;
   max-width: 100%;
-  white-space:nowrap;
-  overflow : hidden;
-  text-overflow:ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 // 호버 시 올라오는 상품 설명 박스
 const StProductOverlay = styled.div`
@@ -287,6 +241,19 @@ const StProductOverlay = styled.div`
     opacity: 0.7;
     transform: translateY(0rem);
     cursor: url(${small_logo}) 5 5, default;
+  }
+  @media screen and (max-width: 37.5rem) {
+    padding-top: 0.5rem;
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+    h3 {
+      font-size: 0.8rem;
+    }
+    p {
+      font-size: 1rem;
+    }
   }
 `;
 

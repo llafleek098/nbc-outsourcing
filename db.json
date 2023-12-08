@@ -6,27 +6,6 @@
       "productName": "청양고추 소금빵",
       "category": "아이스크림/디저트",
       "id": 1
-    },
-    {
-      "ages": "30ages",
-      "gender": "female",
-      "productName": "청양고추 소금빵",
-      "category": "아이스크림/디저트",
-      "id": 2
-    },
-    {
-      "ages": "50ages",
-      "gender": "male",
-      "productName": "크림소다",
-      "category": "음료",
-      "id": 3
-    },
-    {
-      "ages": "40ages",
-      "gender": "female",
-      "productName": "바나나 라떼(HOT)",
-      "category": "음료",
-      "id": 4
     }
   ],
   "products": {

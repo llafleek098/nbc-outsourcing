@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import KaKaoMap from './components/location/KaKaoMap';
 import HomePage from './pages/HomePage';
 import InterviewPage from './pages/InterviewPage';
 import LocationPage from './pages/LocationPage';
@@ -16,6 +17,7 @@ function Router() {
           <Route path="/location" element={<LocationPage />} />
           <Route path="/interview" element={<InterviewPage />} />
         </Route>
+        <Route path="/test-location" element={<KaKaoMap />} />
       </Routes>
     </BrowserRouter>
   );
