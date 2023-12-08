@@ -2,12 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { useInterviewForm } from '../../../contexts/interview.context';
 import useProduct from '../../../hooks/useProduct';
+import useSearchDebounce from '../../../hooks/useSearchDebounce';
 import ProductCard from './ProductCard';
 import { categoryData } from './form.data';
 
 function FormProduct() {
   const { handleChange, category } = useInterviewForm();
+
   const { products } = useProduct();
+  const [searchValue, handleSearchValue, filteredProducts] = useSearchDebounce(
+    products[category]
+  );
 
   return (
     <>
@@ -18,12 +23,22 @@ function FormProduct() {
           </option>
         ))}
       </StSelect>
-      <StProductCardContainer>
-        {products[category] &&
-          products[category].map((product) => (
-            <ProductCard product={product} key={product.name} />
-          ))}
-      </StProductCardContainer>
+      {products[category] && (
+        <>
+          <input
+            type="text"
+            maxLength={20}
+            value={searchValue}
+            onChange={handleSearchValue}
+          />
+
+          <StProductCardContainer>
+            {filteredProducts.map((product) => (
+              <ProductCard product={product} key={product.name} />
+            ))}
+          </StProductCardContainer>
+        </>
+      )}
     </>
   );
 }
