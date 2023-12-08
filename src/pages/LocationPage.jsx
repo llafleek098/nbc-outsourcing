@@ -255,19 +255,12 @@ const StoreMain = styled.div`
   align-items: center;
 
   background-image: url(${(props) => props.image});
-  min-height: 300px;
+  min-height: 500px;
   width: 100%;
   margin-bottom: 60px;
+  color: #071f60;
   & h2 {
     font-size: 40px;
-    ::after {
-      display: block;
-      width: 40px;
-      height: 2px;
-      margin: 32px auto;
-      background: #202020;
-      content: '';
-    }
   }
   & p {
     font-size: 20px;
