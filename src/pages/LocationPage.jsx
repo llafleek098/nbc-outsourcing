@@ -127,11 +127,6 @@ function LocationPage() {
         <h2>매장 안내</h2>
         <p>원하시는 지역의 매장을 검색해 보세요!</p>
       </StBanner>
-      {/* <StoreMain image={storebg}>
-        <h2>매장 안내</h2>
-        <p>원하시는 지역의 매장을 검색해 보세요!</p>
-      </StoreMain> */}
-
       <StMapWrapper>
         <StSearchWrap onSubmit={searchStore}>
           <StSearchTitle>매장명</StSearchTitle>

@@ -19,19 +19,6 @@ function Product() {
         <h2>paik's menu</h2>
         <p>빽다방에서 제공하는 메뉴를 확인해보세요</p>
       </StProductHeaderContainer>
-      {/* <StProductHeaderContainer>
-        <StProductBgImg
-          className="product_bg"
-          src={product_bg}
-          alt="product background"
-        />
-        <StProductBgImg
-          className="product_mbg"
-          src={product_mbg}
-          alt="product mobile background"
-        />
-        <div>PAIK'S MENU</div>
-      </StProductHeaderContainer> */}
       <main>
         <StSelectCategoryContainer>
           {categories.map((category) => {

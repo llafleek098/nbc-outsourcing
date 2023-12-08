@@ -14,10 +14,6 @@ function InterviewPage() {
         <h2> WHERE'S YOUR FAVORITE PAIK'S</h2>
         <p>좋아하는 음식을 알려주세요</p>
       </StBanner>
-      {/* <StBanner>
-        <h2> WHAT'S YOUR FAVORITE PAIK'S</h2>
-        <p>좋아하는 음식을 선택해보세요</p>
-      </StBanner> */}
       <StInterviewWrapper>
         <InterviewForm />
         <InterviewResult />
