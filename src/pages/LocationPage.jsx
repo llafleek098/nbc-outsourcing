@@ -237,7 +237,6 @@ const SearchWrap = styled.form`
   left: 2rem;
   width: 300px;
   z-index: 999;
-  /* border: 4px solid #071f60; */
   background-color: #071f60;
   border-radius: 1rem;
 `;
@@ -246,11 +245,13 @@ const SearchTitle = styled.div`
   padding: 1rem;
   color: white;
   font-weight: 600;
+  margin: 0.5rem;
 `;
 const SearchBox = styled.div`
   display: flex;
   justify-content: space-evenly;
   padding: 0.5rem;
+  margin: 0.5rem 0;
 `;
 const SearchButton = styled.button`
   cursor: pointer;
@@ -263,8 +264,9 @@ const SearchButton = styled.button`
 const Input = styled.input`
   width: 75%;
   height: 50px;
-  border: 4px solid #071f60;
   padding: 10px 20px;
+  border-radius: 1rem;
+  margin: 0.5rem;
   &:focus {
     outline: none;
   }
