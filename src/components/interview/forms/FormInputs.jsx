@@ -1,16 +1,14 @@
 import { useInterviewForm } from '../../../contexts/interview.context';
-import FormAges from './FormAges';
-import FormGender from './FormGender';
-import FormProduct from './FormProduct';
+import FormContentWrapper from './FormPage';
+import { pagesData } from './form.data';
 
 const FormInputs = () => {
   const { page } = useInterviewForm();
 
-  const display = {
-    0: <FormAges />,
-    1: <FormGender />,
-    2: <FormProduct />
-  };
-  return display[page];
+  return (
+    <FormContentWrapper title={pagesData[page].title}>
+      {pagesData[page].component}
+    </FormContentWrapper>
+  );
 };
 export default FormInputs;

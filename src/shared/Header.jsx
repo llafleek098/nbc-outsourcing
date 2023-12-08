@@ -18,7 +18,7 @@ const HeaderContainer = () => {
         <StHeaderButton>매장 안내</StHeaderButton>
       </Link>
       <Link to="/interview">
-        <StHeaderButton>고객의 소리</StHeaderButton>
+        <StHeaderButton>선호 조사</StHeaderButton>
       </Link>
     </StHeaderStyle>
   );

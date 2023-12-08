@@ -1,14 +1,15 @@
 import React from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import product_bg from '../../assets/img/product_bg.png';
 import product_mbg from '../../assets/img/product_mbg.png';
 import small_logo from '../../assets/img/small_Logo.png';
-import useInput from '../../hooks/useInput';
 import useProduct from '../../hooks/useProduct';
 import { categories } from '../interview/forms/form.data';
 
 function Product() {
-  const [selectCategory, handleSelectCategory] = useInput('커피');
+  const [params] = useSearchParams();
+  const selectedCategory = params.get('category') || '커피';
   const { products } = useProduct();
 
   return (
@@ -31,9 +32,10 @@ function Product() {
           {categories.map((category) => {
             return (
               <StCategoryButton
-                $selectCategory={selectCategory}
+                to={`/products?category=${category}`}
+                $selectCategory={selectedCategory}
                 key={category}
-                onClick={handleSelectCategory}
+                // onClick={handleSelectCategory}
                 value={category}
               >
                 {category}
@@ -43,7 +45,8 @@ function Product() {
         </StSelectCategoryContainer>
         <StProductListContainer>
           {products &&
-            products[selectCategory]?.map(
+            selectedCategory &&
+            products[selectedCategory]?.map(
               ({ name, imgSrc, subName, description }) => {
                 return (
                   <StProductBox key={name}>
@@ -134,7 +137,7 @@ const StSelectCategoryContainer = styled.ul`
   }
 `;
 // 카테고리 버튼
-const StCategoryButton = styled.button`
+const StCategoryButton = styled(Link)`
   width: 25rem;
   padding: 0.5rem 2rem;
   border: 0.1rem solid #f1f1f1;
