@@ -1,6 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useInterviewForm } from '../../contexts/interview.context';
 import useProduct from '../../hooks/useProduct';
+import ProductCard from './ProductCard';
 import { categoryData } from './form.data';
 
 function FormProduct() {
@@ -8,26 +10,37 @@ function FormProduct() {
   const { products } = useProduct();
 
   return (
-    <fieldset>
-      <legend>좋아하는 상품</legend>
-      <select name="category" onChange={handleChange}>
+    <>
+      <StSelect name="category" onChange={handleChange}>
         {categoryData.map((category) => (
           <option key={category} value={category}>
             {category}
           </option>
         ))}
-      </select>
-      <select name="product" onChange={handleChange}>
-        <option value={''}>선택해주세요</option>
-        {products?.[category] &&
+      </StSelect>
+      <StProductCardContainer>
+        {products[category] &&
           products[category].map((product) => (
-            <option key={product.name} value={product.name}>
-              {product.name}
-            </option>
+            <ProductCard product={product} key={product.name} />
           ))}
-      </select>
-    </fieldset>
+      </StProductCardContainer>
+    </>
   );
 }
 
 export default FormProduct;
+
+const StSelect = styled.select`
+  margin-top: 2rem;
+`;
+const StProductCardContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) auto;
+
+  gap: 2rem;
+  margin: 2rem auto 4rem auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+`;

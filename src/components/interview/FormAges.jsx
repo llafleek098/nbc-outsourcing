@@ -1,20 +1,35 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useInterviewForm } from '../../contexts/interview.context';
 import { agesData } from './form.data';
+import { StRadioInputContainer, StRadioInputWrapper } from './form.styles';
 
 const FormAges = () => {
-  const { handleChange } = useInterviewForm();
+  const { ages, handleChange } = useInterviewForm();
+
   return (
-    <fieldset name="ages" onChange={handleChange}>
-      <legend>나이대</legend>
+    <StContainer onChange={handleChange}>
       {agesData.map((age) => (
-        <>
+        <StRadioInputWrapper key={age.value} $checked={ages === age.value}>
           <input type="radio" name="ages" id={age.value} value={age.value} />
           <label htmlFor={age.value}>{age.label}</label>
-        </>
+        </StRadioInputWrapper>
       ))}
-    </fieldset>
+    </StContainer>
   );
 };
 
 export default FormAges;
+
+const StContainer = styled(StRadioInputContainer)`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+
+  label {
+    padding: 1rem 0;
+  }
+`;
