@@ -79,8 +79,6 @@ const StProductHeaderContainer = styled(PageBannerWrapper)`
   @media screen and (max-width: 30rem) {
     h2 {
       font-size: 3.5rem;
-      /* top: 92%;
-      transform: translateY(-92%); */
     }
     p {
       display: none;
@@ -88,16 +86,6 @@ const StProductHeaderContainer = styled(PageBannerWrapper)`
   }
 `;
 
-// 헤더 배경이미지
-const StProductBgImg = styled.img`
-  top: 0;
-  left: 0;
-  transform: translate(50, 50);
-  width: 100%;
-  height: 50rem;
-  object-fit: cover;
-  margin: auto;
-`;
 // 카테고리 탭 전체 컨테이너
 const StSelectCategoryContainer = styled.ul`
   display: flex;
@@ -164,9 +152,6 @@ const StProductListContainer = styled.div`
   @media screen and (max-width: 37.5rem) {
     grid-template-columns: repeat(2, 1fr);
   }
-  /* @media screen and (max-width: 20rem) {
-    grid-template-columns: 1fr;
-  } */
 `;
 // 제품 사진과 이름이 들어갈 박스
 const StProductBox = styled.li`
