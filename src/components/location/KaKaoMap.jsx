@@ -11,22 +11,22 @@ const mapStyle = {
 };
 const initialZoom = 5;
 
-function KaKaoMap() {
+function KaKaoMap({ mapInstanceRef }) {
   const {
-    mapInstance,
     markers,
     currentPosition,
     selectedMarker,
     searchPaik,
-    updateSelectedMarker,
-    updateMapInstance
+    updateSelectedMarker
   } = useKakaoMap();
+
   const handleCreateMap = (map) => {
-    if (mapInstance) return;
-    updateMapInstance(map);
-    searchPaik();
+    if (!mapInstanceRef.current) {
+      mapInstanceRef.current = map;
+      searchPaik(mapInstanceRef.current);
+    }
   };
-  const handleIdleMap = () => searchPaik();
+  const handleIdleMap = () => searchPaik(mapInstanceRef.current);
 
   const handleSelectMarker = (marker) => () => {
     updateSelectedMarker(marker);
@@ -47,10 +47,7 @@ function KaKaoMap() {
           onClick={handleSelectMarker(marker)}
         >
           {selectedMarker?.content === marker.content && (
-            <CustomMapOverlay
-              marker={selectedMarker}
-              // handler={update}
-            />
+            <CustomMapOverlay marker={selectedMarker} />
           )}
         </CustomMapMarker>
       ))}
