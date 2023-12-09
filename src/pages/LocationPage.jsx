@@ -124,8 +124,8 @@ function LocationPage() {
   return (
     <Container>
       <StBanner basicBg={store_bg} mobileBg={store_mbg}>
-        <h2>매장 안내</h2>
-        <p>원하시는 지역의 매장을 검색해 보세요!</p>
+        <h2>Store</h2>
+        <p>원하시는 지역의 매장을 검색해 보세요</p>
       </StBanner>
       <StMapWrapper>
         <StSearchWrap onSubmit={searchStore}>
@@ -239,82 +239,6 @@ const StyledMap = styled(Map)`
   position: relative;
 `;
 
-// 헤더 전체를 감싸는 컨테이너
-const StStoreContainer = styled.div`
-  margin: 0 auto 3rem auto;
-  h2 {
-    font-weight: bold;
-  }
-`;
-
-// 헤더 전체 컨테이너
-const StStoreHeaderContainer = styled.header`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  & h2 {
-    color: #6b4d30;
-    letter-spacing: -5px;
-    font-size: 5rem;
-    position: absolute;
-    top: 45%;
-    transform: translateY(-45%);
-  }
-  & p {
-    font-size: 2rem;
-    position: absolute;
-    top: 57%;
-    transform: translateY(-57%);
-  }
-  .store_bg {
-    display: block;
-  }
-  .store_mbg {
-    display: none;
-  }
-  @media screen and (max-width: 37.5rem) {
-    .store_bg {
-      display: none;
-    }
-    .store_mbg {
-      display: block;
-      height: 50rem;
-      min-height: 40rem;
-      min-width: 20rem;
-    }
-    & h2 {
-      font-size: 3.5rem;
-      top: 88%;
-      transform: translateY(-88%);
-    }
-    & p {
-      font-size: 1.5rem;
-      top: 93%;
-      transform: translateY(-93%);
-    }
-  }
-  @media screen and (max-width: 30rem) {
-    & h2 {
-      font-size: 3.5rem;
-      top: 92%;
-      transform: translateY(-92%);
-    }
-    & p {
-      display: none;
-    }
-  }
-`;
-// 헤더 배경이미지
-const StStoreBgImg = styled.img`
-  top: 0;
-  left: 0;
-  transform: translate(50, 50);
-  width: 100%;
-  height: 50rem;
-  object-fit: cover;
-  margin: auto;
-`;
-
 const Container = styled.div`
   position: relative;
   min-width: 760px;
@@ -326,32 +250,7 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 const StBanner = styled(PageBannerWrapper)``;
-const StoreMain = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
-  background-image: url(${(props) => props.image});
-  min-height: 300px;
-  width: 100%;
-  margin-bottom: 60px;
-  & h2 {
-    font-size: 40px;
-    ::after {
-      display: block;
-      width: 40px;
-      height: 2px;
-      margin: 32px auto;
-      background: #202020;
-      content: '';
-    }
-  }
-  & p {
-    font-size: 20px;
-    margin-top: 2rem;
-  }
-`;
 const StMapWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
