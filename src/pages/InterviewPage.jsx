@@ -32,6 +32,6 @@ const StBanner = styled(PageBannerWrapper)`
   }
 `;
 const StInterviewWrapper = styled.div`
-  max-width: 1200px;
+  max-width: 100rem;
   margin: 0 auto;
 `;
