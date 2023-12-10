@@ -1,44 +1,49 @@
 import React from 'react';
 import styled from 'styled-components';
+import useInput from '../../hooks/useInput';
 import useKakaoMap from '../../hooks/useKakaoMap';
 
-function KaKaoSearch() {
-  const { markers, updateSelectedMarker } = useKakaoMap();
+function KaKaoSearch({ mapInstanceRef }) {
+  const { markers, updateSelectedMarker, searchPaikPlace } = useKakaoMap();
+  const [searchPlace, handleChangeSearchPlace] = useInput('');
 
   const handleSelectMarker = (marker) => () => {
     updateSelectedMarker(marker);
   };
+  const handleSearchStore = (e) => {
+    e.preventDefault();
+    if (!searchPlace || searchPlace.length === 0) return;
+    searchPaikPlace(mapInstanceRef.current, searchPlace);
+  };
+
   return (
     <StMapWrapper>
-      <StSearchWrap /* onSubmit={searchStore} */>
+      <StSearchWrap onSubmit={handleSearchStore}>
         <StSearchTitle>매장명</StSearchTitle>
         <StSearchBox>
-          <StInput /* value={searchPlace} */ /* onChange={onSearchChanged}  */
-          />
-          <StSearchButton>검색</StSearchButton>
+          <StInput value={searchPlace} onChange={handleChangeSearchPlace} />
+          <StSearchButton type="submit">검색</StSearchButton>
         </StSearchBox>
-        {/* 검색결과창 */}
         <StSearchBodyContents>
-          {markers.map((marker) => {
+          {markers.map((marker) => (
             //marker가 가지고 있는 것 : address, content, phone, position -> 'lat, lng'
-            return (
-              <StSearchContentList
-                key={marker.id}
-                onClick={handleSelectMarker(marker)}
-              >
-                <img
-                  src="https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png"
-                  alt="빽다방 로고"
-                  width={50}
-                  height={50}
-                />
-                <StSearchStoreInfo>
-                  <StStoreTitle>{marker.content}</StStoreTitle>
-                  <StStoreAddress>{marker.address}</StStoreAddress>
-                </StSearchStoreInfo>
-              </StSearchContentList>
-            );
-          })}
+
+            <StSearchContentList
+              key={marker.id}
+              onClick={handleSelectMarker(marker)}
+            >
+              <img
+                src="https://paikdabang.com/wp-content/themes/paikdabang/assets/images/about1.png"
+                alt="빽다방 로고"
+                width={50}
+                height={50}
+              />
+              <StSearchStoreInfo>
+                <StStoreTitle>{marker.content}</StStoreTitle>
+                <StStoreAddress>{marker.address}</StStoreAddress>
+              </StSearchStoreInfo>
+            </StSearchContentList>
+          ))}
         </StSearchBodyContents>
       </StSearchWrap>
     </StMapWrapper>

@@ -7,7 +7,7 @@ import TopButton from '../components/button/Scroll';
 function Layout() {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <Outlet />
       <Footer />
       <TopButton />

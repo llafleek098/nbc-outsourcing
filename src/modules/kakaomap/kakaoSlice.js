@@ -7,24 +7,28 @@ const initialPosition = {
 
 const initialState = {
   markers: [],
-  mapInstance: null,
   currentPosition: initialPosition,
   selectedMarker: null
 };
 
-async function searchPaik(mapInstance, searchPlace) {
+const DEFAULT_SEARCH_KEYWORD = '빽다방';
+
+async function searchPaik(mapInstance, searchPlace = DEFAULT_SEARCH_KEYWORD) {
   if (!window.kakao) throw new Error('not kakao');
+  if (!mapInstance) throw new Error('not mapInstance');
   const placeSearchInstance = new window.kakao.maps.services.Places(
-    mapInstance
+    searchPlace === DEFAULT_SEARCH_KEYWORD ? mapInstance : undefined
   );
+
   return new Promise((res) => {
     placeSearchInstance.keywordSearch(
-      searchPlace || '빽다방',
+      searchPlace,
       (data, status) => {
         if (status === window.kakao.maps.services.Status.OK) {
           const bounds = new window.kakao.maps.LatLngBounds();
           const responseMarkers = data.map((marker) => {
             bounds.extend(new window.kakao.maps.LatLng(marker.y, marker.x));
+
             return {
               position: {
                 lat: marker.y,
@@ -35,7 +39,12 @@ async function searchPaik(mapInstance, searchPlace) {
               phone: marker.phone
             };
           });
+          if (searchPlace !== DEFAULT_SEARCH_KEYWORD) {
+            mapInstance.setBounds(bounds);
+          }
           res(responseMarkers);
+        } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
+          res([]);
         }
       },
       { useMapCenter: true, radius: 3000, useMapBounds: true }
@@ -45,11 +54,10 @@ async function searchPaik(mapInstance, searchPlace) {
 
 export const searchPaikThunk = createAsyncThunk(
   'kakao/searchPaik',
-  async (_, thunkAPI) => {
-    const { mapInstance } = thunkAPI.getState().kakaoReducer;
+  async ({ mapInstance, searchPlace }, thunkAPI) => {
     if (!mapInstance) return thunkAPI.rejectWithValue();
+    const markers = await searchPaik(mapInstance, searchPlace);
 
-    const markers = await searchPaik(mapInstance);
     return markers;
   }
 );
@@ -58,9 +66,6 @@ const kakaoSlice = createSlice({
   name: 'kakao',
   initialState,
   reducers: {
-    setMapInstance: (state, action) => {
-      state.mapInstance = action.payload;
-    },
     setCurrentPosition: (state, action) => {
       state.currentPosition = action.payload;
     },

@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   searchPaikThunk,
   setCurrentPosition,
-  setMapInstance,
   setSelectedMarker
 } from '../modules/kakaomap/kakaoSlice';
+
 function useKakaoMap() {
   const dispatch = useDispatch();
-  const { markers, mapInstance, currentPosition, selectedMarker } = useSelector(
+
+  const { markers, currentPosition, selectedMarker } = useSelector(
     (state) => state.kakaoReducer
   );
 
@@ -21,23 +22,22 @@ function useKakaoMap() {
     }
   }, []);
 
-  const searchPaik = () => {
-    dispatch(searchPaikThunk());
+  const searchPaik = (mapInstance) => {
+    dispatch(searchPaikThunk({ mapInstance }));
+  };
+  const searchPaikPlace = (mapInstance, searchPlace) => {
+    dispatch(searchPaikThunk({ mapInstance, searchPlace }));
   };
   const updateSelectedMarker = (marker) => {
     dispatch(setSelectedMarker(marker));
   };
-  const updateMapInstance = (mapInstance) => {
-    dispatch(setMapInstance(mapInstance));
-  };
   return {
     markers,
-    mapInstance,
     currentPosition,
     selectedMarker,
     searchPaik,
-    updateSelectedMarker,
-    updateMapInstance
+    searchPaikPlace,
+    updateSelectedMarker
   };
 }
 
