@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
+import { MdClose } from 'react-icons/md';
 import styled from 'styled-components';
 import useInput from '../../hooks/useInput';
 import useKakaoMap from '../../hooks/useKakaoMap';
@@ -7,6 +9,7 @@ function KaKaoSearch() {
   const { markers, searchPaikPlace, mapInstanceRef, handleSelectMarker } =
     useKakaoMap();
   const [searchPlace, handleChangeSearchPlace] = useInput('');
+  const [isShow, setShow] = useState(false);
 
   const handleSearchStore = (e) => {
     e.preventDefault();
@@ -14,19 +17,20 @@ function KaKaoSearch() {
       return;
     searchPaikPlace(mapInstanceRef.current, searchPlace);
   };
+  const handleToggleShow = () => setShow((prev) => !prev);
 
   return (
-    <StMapWrapper>
-      <StSearchWrap onSubmit={handleSearchStore}>
-        <StSearchTitle>매장명</StSearchTitle>
-        <StSearchBox>
-          <StInput value={searchPlace} onChange={handleChangeSearchPlace} />
-          <StSearchButton type="submit">검색</StSearchButton>
-        </StSearchBox>
+    <StSearchWrapper>
+      <StSearchFormWrapper $isShow={isShow}>
+        <StSearchForm onSubmit={handleSearchStore} $isShow={isShow}>
+          <StSearchTitle>매장명</StSearchTitle>
+          <StSearchBox>
+            <StInput value={searchPlace} onChange={handleChangeSearchPlace} />
+            <StSearchButton type="submit">검색</StSearchButton>
+          </StSearchBox>
+        </StSearchForm>
         <StSearchBodyContents>
           {markers.map((marker) => (
-            //marker가 가지고 있는 것 : address, content, phone, position -> 'lat, lng'
-
             <StSearchContentList
               key={marker.id}
               onClick={handleSelectMarker(marker)}
@@ -44,42 +48,55 @@ function KaKaoSearch() {
             </StSearchContentList>
           ))}
         </StSearchBodyContents>
-      </StSearchWrap>
-    </StMapWrapper>
+      </StSearchFormWrapper>
+      <StSearchIconWrapper onClick={handleToggleShow}>
+        {!isShow ? <FaSearch /> : <MdClose />}
+      </StSearchIconWrapper>
+    </StSearchWrapper>
   );
 }
 export default KaKaoSearch;
-const StMapWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-`;
-const StSearchWrap = styled.form`
+const StSearchWrapper = styled.div`
   position: absolute;
-  left: -56rem;
   top: 1rem;
-  width: 300px;
-  z-index: 999;
-  background-color: #071f60;
-  border-radius: 1rem;
+  left: 1rem;
+  width: 30rem;
+  z-index: 2;
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    height: 50%;
+  }
 `;
+const StSearchFormWrapper = styled.div`
+  @media screen and (max-width: 600px) {
+    display: ${(props) => (props.$isShow ? 'block' : 'none')};
+  }
+`;
+
+const StSearchForm = styled.form`
+  background-color: var(--primaryColor);
+  border-radius: 1rem 1rem 0 0;
+`;
+
 const StSearchTitle = styled.div`
   font-size: 24px;
   padding: 1rem;
   color: white;
   font-weight: 600;
-  margin: 0.5rem;
 `;
 const StSearchBox = styled.div`
   display: flex;
   justify-content: space-evenly;
   padding: 0.5rem;
-  margin: 0.5rem 0;
 `;
 const StSearchButton = styled.button`
   cursor: pointer;
   background-color: transparent;
-  color: #ffe800;
+  color: var(--accentColor);
   font-weight: 800;
   font-size: 18px;
   padding: 0.5rem;
@@ -98,6 +115,7 @@ const StSearchBodyContents = styled.ul`
   background-color: white;
   border: 1px solid gray;
   border-top: none;
+  border-radius: 0 0 1rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,4 +145,20 @@ const StStoreTitle = styled.div`
 const StStoreAddress = styled.div`
   font-size: 14px;
   margin-top: 0.5rem;
+`;
+
+const StSearchIconWrapper = styled.div`
+  display: none;
+  font-size: 2rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+
+  background-color: white;
+  padding: 1rem;
+  border-radius: 50%;
+
+  @media screen and (max-width: 600px) {
+    display: block;
+  }
 `;

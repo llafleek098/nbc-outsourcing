@@ -62,13 +62,9 @@ function Product() {
 // 전체를 감싸는 컨테이너
 const StProductContainer = styled.div`
   margin: 0 auto 3rem auto;
-  h2 {
-    font-weight: bold;
-  }
 `;
 
 // 헤더 전체 컨테이너
-
 const StProductHeaderContainer = styled(PageBannerWrapper)`
   h2 {
     color: #6b4d30;
@@ -86,17 +82,6 @@ const StProductHeaderContainer = styled(PageBannerWrapper)`
       display: none;
     }
   }
-`;
-
-// 헤더 배경이미지
-const StProductBgImg = styled.img`
-  top: 0;
-  left: 0;
-  transform: translate(50, 50);
-  width: 100%;
-  height: 50rem;
-  object-fit: cover;
-  margin: auto;
 `;
 // 카테고리 탭 전체 컨테이너
 const StSelectCategoryContainer = styled.ul`
