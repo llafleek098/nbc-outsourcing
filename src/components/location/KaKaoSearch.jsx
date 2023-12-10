@@ -149,14 +149,29 @@ const StStoreAddress = styled.div`
 
 const StSearchIconWrapper = styled.div`
   display: none;
-  font-size: 2rem;
   position: absolute;
   top: 2rem;
   right: 2rem;
+  cursor: pointer;
+  background-color: var(--accentColor);
+  color: var(--primaryColor);
 
-  background-color: white;
-  padding: 1rem;
   border-radius: 50%;
+  overflow: hidden;
+
+  width: 4rem;
+  height: 4rem;
+  * {
+    width: 100%;
+    height: 100%;
+    scale: 0.7;
+    transition: all 0.2s ease-in-out;
+    transform-origin: center;
+  }
+
+  :hover * {
+    scale: 0.9;
+  }
 
   @media screen and (max-width: 600px) {
     display: block;
