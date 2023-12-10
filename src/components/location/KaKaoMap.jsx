@@ -11,33 +11,22 @@ const mapStyle = {
 };
 const initialZoom = 5;
 
-function KaKaoMap({ mapInstanceRef }) {
+function KaKaoMap() {
   const {
     markers,
     currentPosition,
     selectedMarker,
-    searchPaik,
-    updateSelectedMarker
+    handleCreatedMap,
+    handleIdleMap,
+    handleSelectMarker
   } = useKakaoMap();
-
-  const handleCreateMap = (map) => {
-    if (!mapInstanceRef.current) {
-      mapInstanceRef.current = map;
-      searchPaik(mapInstanceRef.current);
-    }
-  };
-  const handleIdleMap = () => searchPaik(mapInstanceRef.current);
-
-  const handleSelectMarker = (marker) => () => {
-    updateSelectedMarker(marker);
-  };
 
   return (
     <Map
       center={currentPosition}
       style={mapStyle}
       level={initialZoom}
-      onCreate={handleCreateMap}
+      onCreate={handleCreatedMap}
       onIdle={handleIdleMap}
     >
       {markers.map((marker) => (
