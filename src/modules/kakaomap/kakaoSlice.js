@@ -56,9 +56,12 @@ export const searchPaikThunk = createAsyncThunk(
   'kakao/searchPaik',
   async ({ mapInstance, searchPlace }, thunkAPI) => {
     if (!mapInstance) return thunkAPI.rejectWithValue();
-    const markers = await searchPaik(mapInstance, searchPlace);
-
-    return markers;
+    try {
+      const markers = await searchPaik(mapInstance, searchPlace);
+      return markers;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
@@ -74,9 +77,13 @@ const kakaoSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(searchPaikThunk.fulfilled, (state, action) => {
-      state.markers = action.payload;
-    });
+    builder
+      .addCase(searchPaikThunk.fulfilled, (state, action) => {
+        state.markers = action.payload;
+      })
+      .addCase(searchPaikThunk.rejected, (_, action) => {
+        console.error(action.payload);
+      });
   }
 });
 
