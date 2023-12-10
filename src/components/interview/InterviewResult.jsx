@@ -68,7 +68,7 @@ const StInterviewResultWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1.5rem;
-  
+  gap: 3rem;
   > * {
     flex: 1;
   }
@@ -83,16 +83,21 @@ const StFigure = styled.figure`
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   img {
-    position: relative;
     max-width: 30rem;
+    @media screen and (max-width: 37.5rem) {
+      max-width: 20rem;
+  }
   }
   h2 {
-    position: absolute;
     font-size: 3rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
     margin-top: 2rem;
+    @media screen and (max-width: 37.5rem) {
+      font-size: 2.5rem;
+  }
   }
 `;
 

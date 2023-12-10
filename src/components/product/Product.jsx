@@ -62,13 +62,9 @@ function Product() {
 // 전체를 감싸는 컨테이너
 const StProductContainer = styled.div`
   margin: 0 auto 3rem auto;
-  h2 {
-    font-weight: bold;
-  }
 `;
 
 // 헤더 전체 컨테이너
-
 const StProductHeaderContainer = styled(PageBannerWrapper)`
   h2 {
     color: #6b4d30;

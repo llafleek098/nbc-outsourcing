@@ -146,6 +146,48 @@
       "productName": "아메리카노(HOT)",
       "category": "커피",
       "id": 21
+    },
+    {
+      "ages": "30ages",
+      "gender": "male",
+      "productName": "콜드브루 오리지널 커피원액",
+      "category": "커피",
+      "id": 22
+    },
+    {
+      "ages": "10ages",
+      "gender": "female",
+      "productName": "디카페인 콜드브루라떼(흑당)(ICED)",
+      "category": "커피",
+      "id": 23
+    },
+    {
+      "ages": "10ages",
+      "gender": "female",
+      "productName": "디카페인 콜드브루라떼(흑당)(ICED)",
+      "category": "커피",
+      "id": 24
+    },
+    {
+      "ages": "30ages",
+      "gender": "male",
+      "productName": "빽사이즈 달콤아이스티(ICED)",
+      "category": "음료",
+      "id": 25
+    },
+    {
+      "ages": "20ages",
+      "gender": "female",
+      "productName": "디카페인 콜드브루라떼(흑당)(ICED)",
+      "category": "커피",
+      "id": 26
+    },
+    {
+      "ages": "50ages",
+      "gender": "male",
+      "productName": "디카페인 콜드브루라떼(ICED)",
+      "category": "커피",
+      "id": 27
     }
   ],
   "products": {

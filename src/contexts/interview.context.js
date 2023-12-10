@@ -30,7 +30,7 @@ export default function InterviewFormProvider({ children }) {
   const [data, setData] = useState(initialData);
   const [page, setPage] = useState(0);
 
-  const { mutation } = useInterview();
+  const { addInterview } = useInterview();
 
   const handleChange = (e) => {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -42,7 +42,7 @@ export default function InterviewFormProvider({ children }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setPage(MAX_PAGE);
-    mutation.mutate({ ...data });
+    addInterview({ ...data });
   };
 
   const handleNavigateNextPage = () => {

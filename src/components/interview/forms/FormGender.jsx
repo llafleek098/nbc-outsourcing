@@ -30,7 +30,6 @@ export default FormGender;
 const StContainer = styled(StRadioInputContainer)`
   display: flex;
   flex-direction: row;
-  margin-bottom: 2rem;
   justify-content: stretch;
   align-items: stretch;
   gap: 4rem;

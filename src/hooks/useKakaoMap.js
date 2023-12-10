@@ -6,6 +6,8 @@ import {
   setSelectedMarker
 } from '../modules/kakaomap/kakaoSlice';
 
+let mapInstanceRef = { current: null };
+
 function useKakaoMap() {
   const dispatch = useDispatch();
 
@@ -25,19 +27,39 @@ function useKakaoMap() {
   const searchPaik = (mapInstance) => {
     dispatch(searchPaikThunk({ mapInstance }));
   };
+
   const searchPaikPlace = (mapInstance, searchPlace) => {
     dispatch(searchPaikThunk({ mapInstance, searchPlace }));
   };
+
   const updateSelectedMarker = (marker) => {
     dispatch(setSelectedMarker(marker));
   };
+
+  const handleCreatedMap = (map) => {
+    if (!mapInstanceRef.current) {
+      mapInstanceRef.current = map;
+      searchPaik(map);
+    }
+  };
+
+  const handleIdleMap = () => searchPaik(mapInstanceRef.current);
+
+  const handleSelectMarker = (marker) => () => {
+    updateSelectedMarker(marker);
+  };
+
   return {
+    mapInstanceRef,
     markers,
     currentPosition,
     selectedMarker,
     searchPaik,
     searchPaikPlace,
-    updateSelectedMarker
+    updateSelectedMarker,
+    handleCreatedMap,
+    handleIdleMap,
+    handleSelectMarker
   };
 }
 

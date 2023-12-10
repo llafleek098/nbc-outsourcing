@@ -31,6 +31,11 @@ const StBanner = styled(PageBannerWrapper)`
   @media screen and (max-width: 37.5rem) {
     justify-content: center;
   }
+  @media screen and (max-width: 20.5rem) {
+    p {
+      display: none;
+    }
+  }
 `;
 const StInterviewWrapper = styled.div`
   max-width: 100rem;
