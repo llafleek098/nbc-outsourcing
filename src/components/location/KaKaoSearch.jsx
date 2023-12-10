@@ -3,16 +3,15 @@ import styled from 'styled-components';
 import useInput from '../../hooks/useInput';
 import useKakaoMap from '../../hooks/useKakaoMap';
 
-function KaKaoSearch({ mapInstanceRef }) {
-  const { markers, updateSelectedMarker, searchPaikPlace } = useKakaoMap();
+function KaKaoSearch() {
+  const { markers, searchPaikPlace, mapInstanceRef, handleSelectMarker } =
+    useKakaoMap();
   const [searchPlace, handleChangeSearchPlace] = useInput('');
 
-  const handleSelectMarker = (marker) => () => {
-    updateSelectedMarker(marker);
-  };
   const handleSearchStore = (e) => {
     e.preventDefault();
-    if (!searchPlace || searchPlace.length === 0) return;
+    if (!searchPlace || searchPlace.length === 0 || !mapInstanceRef.current)
+      return;
     searchPaikPlace(mapInstanceRef.current, searchPlace);
   };
 

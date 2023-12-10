@@ -1,15 +1,13 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import KaKaoMap from '../components/location/KaKaoMap';
 import KaKaoSearch from '../components/location/KaKaoSearch';
 
 function LocationPage() {
-  const mapInstanceRef = useRef(null);
-
   return (
     <StWrapper>
-      <KaKaoSearch mapInstanceRef={mapInstanceRef} />
-      <KaKaoMap mapInstanceRef={mapInstanceRef} />
+      <KaKaoSearch />
+      <KaKaoMap />
     </StWrapper>
   );
 }
