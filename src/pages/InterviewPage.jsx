@@ -24,6 +24,7 @@ function InterviewPage() {
 export default InterviewPage;
 
 const StBanner = styled(PageBannerWrapper)`
+  text-align: center;
   h2 {
     color: var(--primaryColor);
   }

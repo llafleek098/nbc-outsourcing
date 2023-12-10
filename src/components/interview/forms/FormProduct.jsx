@@ -18,7 +18,6 @@ function FormProduct() {
   const filteredProducts =
     products[category] &&
     products[category].filter((product) => product.name.includes(searchValue));
-console.log(category)
   return (
     <>
       <StSelectInputContainer>

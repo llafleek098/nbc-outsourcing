@@ -72,6 +72,11 @@ const StInterviewResultWrapper = styled.div`
   > * {
     flex: 1;
   }
+  @media screen and (max-width: 60rem) {
+    max-width: 60rem;
+    flex-direction: column;
+    margin: auto;
+  }
 `;
 
 const StFigure = styled.figure`
@@ -96,6 +101,9 @@ const StInterviewChartContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 3rem;
+  @media screen and (max-width: 30rem) {
+    gap: 2rem; 
+  }
 `;
 const StReloadButton = styled.button`
   margin-top: 2rem;

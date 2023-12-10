@@ -6,6 +6,146 @@
       "productName": "청양고추 소금빵",
       "category": "아이스크림/디저트",
       "id": 1
+    },
+    {
+      "ages": "10ages",
+      "gender": "male",
+      "productName": "콜드브루라떼(흑당)(ICED)",
+      "category": "커피",
+      "id": 2
+    },
+    {
+      "ages": "10ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 3
+    },
+    {
+      "ages": "40ages",
+      "gender": "female",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 4
+    },
+    {
+      "ages": "20ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 5
+    },
+    {
+      "ages": "30ages",
+      "gender": "female",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 6
+    },
+    {
+      "ages": "60ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 7
+    },
+    {
+      "ages": "30ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 8
+    },
+    {
+      "ages": "10ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 9
+    },
+    {
+      "ages": "30ages",
+      "gender": "female",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 10
+    },
+    {
+      "ages": "50ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 11
+    },
+    {
+      "ages": "30ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 12
+    },
+    {
+      "ages": "10ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 13
+    },
+    {
+      "ages": "30ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 14
+    },
+    {
+      "ages": "10ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 15
+    },
+    {
+      "ages": "30ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 16
+    },
+    {
+      "ages": "20ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 17
+    },
+    {
+      "ages": "40ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 18
+    },
+    {
+      "ages": "50ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 19
+    },
+    {
+      "ages": "60ages",
+      "gender": "male",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 20
+    },
+    {
+      "ages": "20ages",
+      "gender": "female",
+      "productName": "아메리카노(HOT)",
+      "category": "커피",
+      "id": 21
     }
   ],
   "products": {
