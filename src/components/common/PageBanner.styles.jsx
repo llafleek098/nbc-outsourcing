@@ -1,13 +1,12 @@
 import styled from 'styled-components';
+
 const PageBannerWrapper = styled.header`
   position: relative;
-
   height: 50rem;
   width: 100%;
   padding: 1rem;
   margin-bottom: 2rem;
   background: url(${(props) => props.basicBg}) center no-repeat;
-
   display: flex;
   flex-direction: column;
   justify-content: center;

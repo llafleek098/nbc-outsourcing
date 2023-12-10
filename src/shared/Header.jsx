@@ -44,7 +44,7 @@ const StHeaderStyle = styled.div`
   position: sticky;
   gap: 5rem;
   top: 0;
-  z-index: 10; //헤더 맨 앞으로 불러오는
+  z-index: 10; // 헤더 맨 앞으로 불러오는 속성
   @media screen and (max-width: 75rem) {
     background-color: rgba(255, 255, 255, 0.8);
     display: flex;
@@ -66,7 +66,7 @@ const StNavContainer = styled.div`
     display: none;
   }
 
-  @media screen and (max-width: 30rem) {
+  @media screen and (max-width: 37.5rem) {
     a svg {
       display: block;
     }
