@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import PageBannerWrapper from '../components/common/PageBanner.styles';
 import KaKaoMap from '../components/location/KaKaoMap';
 import KaKaoSearch from '../components/location/KaKaoSearch';
-
 import location_bg from '../assets/img/store_bg.jpg';
 import location_mbg from '../assets/img/store_mbg.jpg';
 
@@ -12,7 +11,7 @@ function LocationPage() {
     <StLocationWrapper>
       <StBanner basicBg={location_bg} mobileBg={location_mbg}>
         <h2>paik's store</h2>
-        <p>원하시는 지역의 매장을 검색해 보세요!</p>
+        <p>원하시는 지역의 매장을 검색해 보세요</p>
       </StBanner>
       <StLocationMapWrapper>
         <KaKaoSearch />
@@ -24,7 +23,17 @@ function LocationPage() {
 export default LocationPage;
 
 const StBanner = styled(PageBannerWrapper)`
-  justify-content: center;
+  @media screen and (max-width: 37.5rem) {
+    padding-bottom: 7%;
+  }
+  @media screen and (max-width: 30rem) {
+    h2 {
+      font-size: 3.5rem;
+    }
+    p {
+      display: none;
+    }
+  }
 `;
 
 const StLocationWrapper = styled.div`

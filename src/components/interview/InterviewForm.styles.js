@@ -6,12 +6,21 @@ export const StFieldSet = styled.fieldset`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 37.5rem) {
+    padding-top: 2rem;
+  }
 `;
 export const StLegend = styled.legend`
   position: absolute;
   top: 2rem;
   margin: 0 auto;
   font-size: 3rem;
+  @media screen and (max-width: 37.5rem) {
+    font-size: 2rem;
+  }
+  @media screen and (max-width: 20.5rem) {
+    font-size: 1.5rem;
+  }
 `;
 export const StRadioInputContainer = styled.ul`
   margin-top: 5rem;

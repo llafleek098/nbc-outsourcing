@@ -53,14 +53,13 @@ const StForm = styled.form`
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
 `;
 
 const StNavigateButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   gap: 2rem;
 `;
 const StNavigateButton = styled.button`
@@ -69,6 +68,10 @@ const StNavigateButton = styled.button`
   cursor: pointer;
   &:disabled {
     display: none;
+  }
+  @media screen and (max-width: 25rem) {
+    width: 15rem;
+    padding: 1rem;
   }
 `;
 const StNavigateButtonPrev = styled(StNavigateButton)`

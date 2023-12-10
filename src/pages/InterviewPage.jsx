@@ -24,14 +24,20 @@ function InterviewPage() {
 export default InterviewPage;
 
 const StBanner = styled(PageBannerWrapper)`
+  text-align: center;
   h2 {
     color: var(--primaryColor);
   }
   @media screen and (max-width: 37.5rem) {
     justify-content: center;
   }
+  @media screen and (max-width: 20.5rem) {
+    p {
+      display: none;
+    }
+  }
 `;
 const StInterviewWrapper = styled.div`
-  max-width: 1200px;
+  max-width: 100rem;
   margin: 0 auto;
 `;

@@ -10,7 +10,7 @@ function ProgressBar({ page }) {
 export default ProgressBar;
 
 const StProgressBar = styled.div`
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   display: flex;
   height: 20px;

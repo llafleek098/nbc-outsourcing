@@ -68,25 +68,36 @@ const StInterviewResultWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1.5rem;
-
-  border-radius: 1rem;
-  border: 1px solid black;
-
+  gap: 3rem;
   > * {
     flex: 1;
+  }
+  @media screen and (max-width: 60rem) {
+    max-width: 60rem;
+    flex-direction: column;
+    margin: auto;
   }
 `;
 
 const StFigure = styled.figure`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
-
+  text-align: center;
+  img {
+    max-width: 30rem;
+    @media screen and (max-width: 37.5rem) {
+      max-width: 20rem;
+  }
+  }
   h2 {
-    font-size: 4rem;
+    font-size: 3rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
+    margin-top: 2rem;
+    @media screen and (max-width: 37.5rem) {
+      font-size: 2.5rem;
+  }
   }
 `;
 
@@ -95,9 +106,12 @@ const StInterviewChartContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 3rem;
+  @media screen and (max-width: 30rem) {
+    gap: 2rem; 
+  }
 `;
 const StReloadButton = styled.button`
-  margin-top: 5rem;
+  margin-top: 2rem;
   padding: 1rem 0;
   border-radius: 1rem;
   background-color: var(--primaryColor);

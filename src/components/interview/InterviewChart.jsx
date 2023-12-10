@@ -24,13 +24,26 @@ function InterviewChart({ title, countData, total }) {
                 $bgColor={colors[index]}
                 $percent={percent}
               >
-                <p>{label}</p>
                 <p>{parseInt(percent * 100)}%</p>
               </StInterviewChartItem>
             )
           );
         })}
       </StInterviewChartItemWrapper>
+      <StLegendWrapper>
+        {Object.keys(countData).map((key, index) => {
+          const {label} = countData[key];
+          return (
+            <StLegendCard>
+              <StLegendcolorBox
+                key={label}
+                $bgColor={colors[index]}
+              />
+                <p>{label}</p>
+            </StLegendCard>
+            )
+          })}
+      </StLegendWrapper>
     </StInterviewChartWrapper>
   );
 }
@@ -44,7 +57,7 @@ const StInterviewChartWrapper = styled.div`
   gap: 1rem;
 
   > p {
-    font-size: 3rem;
+    font-size: 2.6rem;
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
   }
@@ -52,8 +65,8 @@ const StInterviewChartWrapper = styled.div`
 const StInterviewChartItemWrapper = styled.div`
   display: flex;
   flex-direction: row;
-
   border-radius: 1rem;
+  overflow: hidden;
   & * {
     font-size: 1.5rem;
   }
@@ -61,9 +74,51 @@ const StInterviewChartItemWrapper = styled.div`
 
 const StInterviewChartItem = styled.div`
   background-color: ${(props) => props.$bgColor};
-  min-width: 10rem;
   text-align: center;
   padding: 1rem;
 
   flex: ${(props) => props.$percent};
+
+  @media screen and (max-width: 30rem) {
+    p {
+      font-size: 1rem;
+    }  
+  }
+`;
+
+const StLegendWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  @media screen and (max-width: 30rem) {
+    flex-wrap : wrap;
+  }
+  `;
+
+const StLegendCard = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 0.5rem;
+p {
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 30rem) {
+  flex-wrap : wrap;
+  p {
+  font-size: 1rem;
+}
+}
+`;
+
+const StLegendcolorBox = styled.div`
+  background-color: ${(props) => props.$bgColor};
+  width: 2rem;
+  height: 2rem;
+  @media screen and (max-width: 30rem) {
+  width: 1rem;
+  height: 1rem;
+}
 `;
