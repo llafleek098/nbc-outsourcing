@@ -25,7 +25,13 @@ function useInterview() {
     }
   });
 
-  return { interviews, isLoading, error, mutation };
+  return {
+    interviews,
+    isLoading,
+    error,
+    mutation,
+    addInterview: mutation.mutate
+  };
 }
 
 async function fetchInterview() {
