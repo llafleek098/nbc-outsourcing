@@ -5,8 +5,8 @@ import CustomMapMarker from './CustomMapMarker';
 import CustomMapOverlay from './CustomMapOverlay';
 
 const mapStyle = {
-  width: '1200px',
-  height: '400px',
+  width: '100%',
+  height: '100%',
   position: 'relative'
 };
 const initialZoom = 5;
