@@ -28,12 +28,14 @@ const StContainer = styled(StRadioInputContainer)`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-
   gap: 0.5rem;
   padding: 0 0.5rem;
-
+  font-size: 2rem;
   label {
     padding: 1rem 0;
     cursor: pointer;
+  }
+  @media screen and (max-width: 37.5rem) {
+    font-size: 1.5rem;
   }
 `;

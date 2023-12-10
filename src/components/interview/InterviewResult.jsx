@@ -68,10 +68,7 @@ const StInterviewResultWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1.5rem;
-
-  border-radius: 1rem;
-  border: 1px solid black;
-
+  
   > * {
     flex: 1;
   }
@@ -80,13 +77,17 @@ const StInterviewResultWrapper = styled.div`
 const StFigure = styled.figure`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
-
+  img {
+    position: relative;
+    max-width: 30rem;
+  }
   h2 {
-    font-size: 4rem;
+    position: absolute;
+    font-size: 3rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
+    margin-top: 2rem;
   }
 `;
 
@@ -97,7 +98,7 @@ const StInterviewChartContainer = styled.div`
   gap: 3rem;
 `;
 const StReloadButton = styled.button`
-  margin-top: 5rem;
+  margin-top: 2rem;
   padding: 1rem 0;
   border-radius: 1rem;
   background-color: var(--primaryColor);

@@ -69,6 +69,10 @@ const StNavigateButton = styled.button`
   &:disabled {
     display: none;
   }
+  @media screen and (max-width: 25rem) {
+    width: 15rem;
+    padding: 1rem;
+  }
 `;
 const StNavigateButtonPrev = styled(StNavigateButton)`
   background-color: var(--secondaryColor);

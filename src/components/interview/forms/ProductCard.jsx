@@ -25,27 +25,29 @@ function ProductCard({ product }) {
 export default ProductCard;
 
 const StProductCardWrapper = styled.div`
-  width: 100px;
-
+  width: 100%;
+  max-height: 20rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding-bottom: 0.3rem;
+  background-color: ${(props) => (props.$checked ? 'lightblue' : 'white')};
+  &:hover {
+    border-radius: 1rem;
+    box-shadow: 0 0 10px #a9a8e9;
+  }
   label {
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-
-    border: 1px solid black;
-
     border-radius: 1rem;
     padding: 0.5rem 1rem;
     text-align: center;
-
-    background-color: ${(props) => (props.$checked ? 'lightblue' : 'white')};
   }
   img {
-    width: 40px;
-    height: 50px;
+    width: 100%;
+    height: 100%;
   }
-
   input {
     display: none;
   }
