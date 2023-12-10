@@ -12,10 +12,10 @@
 
 ## Technologies assigned to each individual
 
-장가을 - Layout(header, footer)
-이진호 - Youtube Player, Interview Page
-이하빈 - Product Page, Responsive Styling
-김지예 - KaKao Map API를 이용한 구현
+- 장가을 - Layout(header, footer)
+- 이진호 - Youtube Player, Interview Page
+- 이하빈 - Product Page, Responsive Styling
+- 김지예 - KaKao Map API를 이용한 구현
 
 ## Duration
 
