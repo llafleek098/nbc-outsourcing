@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Paik's Coffee(Outsourcing Project)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+빽다방 소개 페이지의 아웃소싱을 받았다고 가정하고 만든 웹 페이지로, 반응형 디자인, 유튜브 홍보 영상, 매장 안내에 지도 추가, 선호도 조사 등을 추가하여 만든 웹 페이지
 
-## Available Scripts
+## Project Type
 
-In the project directory, you can run:
+팀 프로젝트
 
-### `yarn start`
+## Project Members
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+장가을, 김지예, 이하빈, 이진호
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies assigned to each individual
 
-### `yarn test`
+장가을 - Layout(header, footer)
+이진호 - Youtube Player, Interview Page
+이하빈 - Product Page, Responsive Styling
+김지예 - KaKao Map API를 이용한 구현
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Duration
 
-### `yarn build`
+5/12/2023 - 11/12/2023
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Development Environment
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. React(+ Context API, Custom Hook)
+2. React-Query
+3. axios
+4. json server
+5. Styled-components
+6. React Router Dom
+7. Redux
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## State Manamgement
 
-### `yarn eject`
+- JSON-SERVER + React-Query (server state management)
+  - Products (useQuery)
+  - Interviews (useQuery, useMutation) + Context API
+- KaKao Map API : Redux, Redux Thunk를 이용한 상태 관리
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Features
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Build UI
+2. View home page with Youtube player
+3. Product Page
+4. Location Page
+5. Interview Page
