@@ -9,8 +9,8 @@ import jsonServerInstance from '../api/serverInstance';
 function useInterview() {
   const {
     data: interviews,
-    isLoading,
     error,
+    isLoading,
     refetch
   } = useQuery({
     queryKey: ['interviews'],
