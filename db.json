@@ -188,6 +188,13 @@
       "productName": "디카페인 콜드브루라떼(ICED)",
       "category": "커피",
       "id": 27
+    },
+    {
+      "ages": "20ages",
+      "gender": "female",
+      "productName": "키르시 블렌딩 파인",
+      "category": "음료",
+      "id": 28
     }
   ],
   "products": {

@@ -67,12 +67,10 @@ function Product() {
   );
 }
 
-// 전체를 감싸는 컨테이너
 const StProductContainer = styled.div`
   margin: 0 auto 3rem auto;
 `;
 
-// 헤더 전체 컨테이너
 const StProductHeaderContainer = styled(PageBannerWrapper)`
   h2 {
     color: #6b4d30;
@@ -90,7 +88,6 @@ const StProductHeaderContainer = styled(PageBannerWrapper)`
   }
 `;
 
-// 카테고리 탭 전체 컨테이너
 const StSelectCategoryContainer = styled.ul`
   display: flex;
   justify-content: center;
@@ -103,7 +100,6 @@ const StSelectCategoryContainer = styled.ul`
     padding: 0;
   }
 `;
-// 카테고리 버튼
 const StCategoryButton = styled(Link)`
   width: 25rem;
   min-height: 4rem;
@@ -126,7 +122,6 @@ const StCategoryButton = styled(Link)`
     min-width: 13rem;
     width: 80%;
   }
-  /* 눌러지는 카테고리마다 조건부 css */
   ${(props) => {
     if (props.$selectCategory === props.children) {
       return css`
@@ -141,7 +136,6 @@ const StCategoryButton = styled(Link)`
   }}
 `;
 
-// 제품 카드 전체 리스트를 감싸는 컨테이너
 const StProductListContainer = styled.div`
   max-width: 100rem;
   margin: auto;
@@ -157,7 +151,6 @@ const StProductListContainer = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
 `;
-// 제품 사진과 이름이 들어갈 박스
 const StProductBox = styled.li`
   list-style-type: none;
   width: 100%;
@@ -175,13 +168,11 @@ const StProductBox = styled.li`
     width: 100%;
   }
 `;
-// 상품 카드 안에 들어갈 이미지
 const StProductImg = styled.img`
   width: 100%;
   height: 100%;
   display: block;
 `;
-// 상품 카드 안에 들어갈 이름
 const StProductName = styled.h1`
   width: 100%;
   padding: 0 1rem;
@@ -196,7 +187,6 @@ const StProductName = styled.h1`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
-// 호버 시 올라오는 상품 설명 박스
 const StProductOverlay = styled.div`
   width: 100%;
   height: 100%;
