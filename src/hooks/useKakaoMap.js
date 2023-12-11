@@ -19,7 +19,9 @@ function useKakaoMap() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const { coords } = position;
-        dispatch(setCurrentPosition(coords));
+        dispatch(
+          setCurrentPosition({ lat: coords.latitude, lng: coords.longitude })
+        );
       });
     }
   }, []);
