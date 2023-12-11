@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { SkeletonLine } from '../common/skeleton/Skeleton.styles';
 
 const colors = [
   '#FC6A6A',
@@ -9,14 +10,19 @@ const colors = [
   '#DDB5F5',
   '#FFC9E3'
 ];
-function InterviewChart({ title, countData, total }) {
+function InterviewChart({ title, countData, total, isLoading }) {
+  const countDataWithPercent = Object.keys(countData).map((key) => {
+    const { count } = countData[key];
+    const percent = calcPercent(count, total);
+    return { ...countData[key], percent };
+  });
+
   return (
     <StInterviewChartWrapper>
       <p>{title}</p>
       <StInterviewChartItemWrapper>
-        {Object.keys(countData).map((key, index) => {
-          const { value, label, count } = countData[key];
-          const percent = calcPercent(count, total);
+        {isLoading && <SkeletonLine />}
+        {countDataWithPercent.map(({ value, label, percent }, index) => {
           return (
             percent > 0 && (
               <StInterviewChartItem
@@ -31,18 +37,14 @@ function InterviewChart({ title, countData, total }) {
         })}
       </StInterviewChartItemWrapper>
       <StLegendWrapper>
-        {Object.keys(countData).map((key, index) => {
-          const {label} = countData[key];
+        {countDataWithPercent.map(({ label }, index) => {
           return (
             <StLegendCard>
-              <StLegendcolorBox
-                key={label}
-                $bgColor={colors[index]}
-              />
-                <p>{label}</p>
+              <StLegendcolorBox key={label} $bgColor={colors[index]} />
+              <p>{label}</p>
             </StLegendCard>
-            )
-          })}
+          );
+        })}
       </StLegendWrapper>
     </StInterviewChartWrapper>
   );
@@ -82,7 +84,7 @@ const StInterviewChartItem = styled.div`
   @media screen and (max-width: 30rem) {
     p {
       font-size: 1rem;
-    }  
+    }
   }
 `;
 
@@ -92,25 +94,25 @@ const StLegendWrapper = styled.div`
   gap: 1rem;
 
   @media screen and (max-width: 30rem) {
-    flex-wrap : wrap;
+    flex-wrap: wrap;
   }
-  `;
+`;
 
 const StLegendCard = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-gap: 0.5rem;
-p {
-  font-size: 1.5rem;
-}
-
-@media screen and (max-width: 30rem) {
-  flex-wrap : wrap;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
   p {
-  font-size: 1rem;
-}
-}
+    font-size: 1.5rem;
+  }
+
+  @media screen and (max-width: 30rem) {
+    flex-wrap: wrap;
+    p {
+      font-size: 1rem;
+    }
+  }
 `;
 
 const StLegendcolorBox = styled.div`
@@ -118,7 +120,7 @@ const StLegendcolorBox = styled.div`
   width: 2rem;
   height: 2rem;
   @media screen and (max-width: 30rem) {
-  width: 1rem;
-  height: 1rem;
-}
+    width: 1rem;
+    height: 1rem;
+  }
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import product_bg from '../../assets/img/product_bg.png';
@@ -6,12 +6,18 @@ import product_mbg from '../../assets/img/product_mbg.png';
 import small_logo from '../../assets/img/small_Logo.png';
 import useProduct from '../../hooks/useProduct';
 import { default as PageBannerWrapper } from '../common/PageBanner.styles';
+import { SkeltonProductItem } from '../common/skeleton/Skeleton.styles';
 import { categories } from '../interview/forms/form.data';
 
 function Product() {
   const [params] = useSearchParams();
   const selectedCategory = params.get('category') || '커피';
-  const { products } = useProduct();
+  const { products, isLoading } = useProduct();
+
+  const skeletonDummyData = useMemo(
+    () => Array.from({ length: 8 }, (_, index) => `skeleton${index}`),
+    []
+  );
 
   return (
     <StProductContainer>
@@ -35,6 +41,8 @@ function Product() {
           })}
         </StSelectCategoryContainer>
         <StProductListContainer>
+          {isLoading &&
+            skeletonDummyData.map((key) => <SkeltonProductItem key={key} />)}
           {products &&
             selectedCategory &&
             products[selectedCategory]?.map(

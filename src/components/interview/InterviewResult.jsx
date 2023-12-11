@@ -12,7 +12,7 @@ import {
 } from './forms/form.data';
 
 function InterviewResult() {
-  const { interviews } = useInterview();
+  const { interviews, isLoading } = useInterview();
   const { products } = useProduct();
   const { category, productName, page, handleResetInterview } =
     useInterviewForm();
@@ -46,11 +46,13 @@ function InterviewResult() {
             title="나이대"
             total={filteredInterviews.length}
             countData={agesCountData}
+            isLoading={isLoading}
           />
           <InterviewChart
             title="성별"
             total={filteredInterviews.length}
             countData={genderCountData}
+            isLoading={isLoading}
           />
           <StReloadButton onClick={handleResetInterview}>
             <IoReload />
@@ -88,7 +90,7 @@ const StFigure = styled.figure`
     max-width: 30rem;
     @media screen and (max-width: 37.5rem) {
       max-width: 20rem;
-  }
+    }
   }
   h2 {
     font-size: 3rem;
@@ -97,7 +99,7 @@ const StFigure = styled.figure`
     margin-top: 2rem;
     @media screen and (max-width: 37.5rem) {
       font-size: 2.5rem;
-  }
+    }
   }
 `;
 
@@ -107,7 +109,7 @@ const StInterviewChartContainer = styled.div`
   justify-content: center;
   gap: 3rem;
   @media screen and (max-width: 30rem) {
-    gap: 2rem; 
+    gap: 2rem;
   }
 `;
 const StReloadButton = styled.button`
