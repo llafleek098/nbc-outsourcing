@@ -121,8 +121,8 @@ const StMenuButtonBox = styled.div`
 `;
 // 메뉴 페이지 이동 버튼 애니메이션을 위한 추가 박스
 const StButtonAnimation = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 5rem;
+  height: 5rem;
   position: relative;
   transition: 0.4s;
   transform-style: preserve-3d;
@@ -130,8 +130,8 @@ const StButtonAnimation = styled.div`
 // 플러스 모양 버튼(앞면)
 const StMoveButton = styled.button`
   background-color: white;
-  width: 100%;
-  height: 100%;
+  width: 5rem;
+  height: 5rem;
   position: absolute;
   backface-visibility: hidden;
   border-radius: 50%;
