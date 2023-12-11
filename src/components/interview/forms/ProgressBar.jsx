@@ -14,7 +14,7 @@ const StProgressBar = styled.div`
   margin: 0 auto;
   display: flex;
   height: 20px;
-  background-color: #edf2f7; /* 차크라 UI의 기본 배경색 */
+  background-color: #edf2f7;
   border-radius: 10px;
   overflow: hidden;
 `;

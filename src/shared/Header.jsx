@@ -44,7 +44,7 @@ const StHeaderStyle = styled.div`
   position: sticky;
   gap: 5rem;
   top: 0;
-  z-index: 10; // 헤더 맨 앞으로 불러오는 속성
+  z-index: 10;
   @media screen and (max-width: 75rem) {
     background-color: rgba(255, 255, 255, 0.8);
     display: flex;

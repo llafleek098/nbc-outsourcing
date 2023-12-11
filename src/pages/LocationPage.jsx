@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import location_bg from '../assets/img/store_bg.jpg';
+import location_mbg from '../assets/img/store_mbg.jpg';
 import PageBannerWrapper from '../components/common/PageBanner.styles';
 import KaKaoMap from '../components/location/KaKaoMap';
 import KaKaoSearch from '../components/location/KaKaoSearch';
-import location_bg from '../assets/img/store_bg.jpg';
-import location_mbg from '../assets/img/store_mbg.jpg';
 
 function LocationPage() {
   return (
@@ -37,14 +37,6 @@ const StBanner = styled(PageBannerWrapper)`
 `;
 
 const StLocationWrapper = styled.div`
-  /* position: relative;
-  min-width: 760px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 0 auto; */
   margin: 0 auto 3rem auto;
 `;
 
